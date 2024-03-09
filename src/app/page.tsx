@@ -2,9 +2,10 @@
 
 import { decrement, increment, incrementByAmount } from "@/Redux/features";
 import { RootState } from "@/Redux/store";
+import { NextPage } from "next";
 import { useDispatch, useSelector } from "react-redux";
 
-const Home = () => {
+const Home: NextPage = () => {
   const count = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch();
 
