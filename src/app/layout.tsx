@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 import { FC, PropsWithChildren } from "react";
 
 import { ReduxProviders } from "@/redux/Providers";
+import { dark } from "@clerk/themes";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,9 +17,15 @@ export const metadata: Metadata = {
 };
 
 const RootLayout: FC<Readonly<PropsWithChildren>> = ({ children }) => (
-  <ClerkProvider>
+  <ClerkProvider
+    appearance={{
+      baseTheme: dark,
+    }}
+  >
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={`${inter.className} flex justify-center items-center min-h-screen`}
+      >
         <ReduxProviders>
           {children}
           <Analytics />
