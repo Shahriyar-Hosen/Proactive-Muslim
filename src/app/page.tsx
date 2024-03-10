@@ -5,7 +5,7 @@ import { Counter } from "@/components/Counter";
 
 const Home: NextPage = () => {
   return (
-    <main className="flex flex-col justify-center items-center h-screen">
+    <main className="flex flex-col justify-center items-center h-screen gap-5 bg-slate-950 w-full text-slate-300">
       <UserButton />
       <Counter />
     </main>
