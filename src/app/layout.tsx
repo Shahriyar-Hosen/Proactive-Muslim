@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { FC, PropsWithChildren } from "react";
 
-import { ReduxProviders } from "@/Redux/provider";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,11 +16,11 @@ export const metadata: Metadata = {
 const RootLayout: FC<Readonly<PropsWithChildren>> = ({ children }) => (
   <html lang="en">
     <body className={inter.className}>
-      <ReduxProviders>
-        {children}
-        <Analytics />
-        <SpeedInsights />
-      </ReduxProviders>
+      {/* <ReduxProviders> */}
+      {children}
+      <Analytics />
+      <SpeedInsights />
+      {/* </ReduxProviders> */}
     </body>
   </html>
 );
