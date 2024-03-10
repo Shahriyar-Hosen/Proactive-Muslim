@@ -1,3 +1,5 @@
+"use client";
+
 import { decrement, increment, incrementByAmount } from "@/redux/features";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { FC } from "react";

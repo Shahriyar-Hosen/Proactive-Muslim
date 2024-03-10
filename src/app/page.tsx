@@ -1,6 +1,7 @@
-import { Counter } from "@/components/Counter";
 import { UserButton } from "@clerk/nextjs";
 import { NextPage } from "next";
+
+import { Counter } from "@/components/Counter";
 
 const Home: NextPage = () => {
   return (
