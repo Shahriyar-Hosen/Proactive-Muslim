@@ -1,14 +1,13 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import prisma from "../db/prism";
 import { handleError } from "./utils";
-
-const prisma = new PrismaClient();
 
 // CREATE
 export const createUser = async (user: any): Promise<any> => {
   try {
+    console.log("🚀 ~ createUser ~ createUser:");
     const newUser = await prisma.user.create({
       data: user,
     });
