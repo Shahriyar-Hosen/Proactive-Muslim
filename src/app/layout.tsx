@@ -1,3 +1,4 @@
+import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
@@ -15,15 +16,17 @@ export const metadata: Metadata = {
 };
 
 const RootLayout: FC<Readonly<PropsWithChildren>> = ({ children }) => (
-  <html lang="en">
-    <body className={inter.className}>
-      <ReduxProviders>
-        {children}
-        <Analytics />
-        <SpeedInsights />
-      </ReduxProviders>
-    </body>
-  </html>
+  <ClerkProvider>
+    <html lang="en">
+      <body className={inter.className}>
+        <ReduxProviders>
+          {children}
+          <Analytics />
+          <SpeedInsights />
+        </ReduxProviders>
+      </body>
+    </html>
+  </ClerkProvider>
 );
 
 export default RootLayout;
