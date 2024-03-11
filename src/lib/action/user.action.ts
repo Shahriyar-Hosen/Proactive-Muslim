@@ -7,11 +7,6 @@ import { handleError } from "../utils";
 // CREATE
 export const createUser = async (userData: any): Promise<any> => {
   try {
-    // const newUser = {
-    //   clerkId: "clerkId",
-    //   username: "test username",
-    //   email: "1.test@gamil.com",
-    // };
     const result = await prisma.user.create({
       data: userData,
     });
