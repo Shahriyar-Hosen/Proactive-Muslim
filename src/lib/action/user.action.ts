@@ -33,8 +33,6 @@ export const getUserById = async (
       },
     });
 
-    console.log("🚀 ~ get UserBy Id:", { user });
-
     if (!user) throw new Error("User not found");
 
     return JSON.parse(JSON.stringify(user));
@@ -56,8 +54,6 @@ export const updateUser = async (
       },
     });
 
-    console.log("🚀 ~ updated User by clerkId:", { updatedUser });
-
     if (!updatedUser) throw new Error("User update failed");
 
     return JSON.parse(JSON.stringify(updatedUser));
@@ -75,7 +71,6 @@ export const deleteUser = async (clerkId: string): Promise<any> => {
         clerkId: clerkId,
       },
     });
-    console.log("🚀 ~ deleteUser ~ userToDelete:", userToDelete);
 
     if (!userToDelete) {
       throw new Error("User not found");
@@ -87,7 +82,6 @@ export const deleteUser = async (clerkId: string): Promise<any> => {
         id: userToDelete.id,
       },
     });
-    console.log("🚀 ~ deleteUser ~ deletedUser:", deletedUser);
     revalidatePath("/");
 
     return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null;
