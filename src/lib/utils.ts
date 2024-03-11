@@ -1,3 +1,8 @@
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
+
 // ERROR HANDLER
 export const handleError = (error: unknown) => {
   if (error instanceof Error) {

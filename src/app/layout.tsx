@@ -1,3 +1,4 @@
+import { dark } from "@clerk/themes";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
@@ -16,11 +17,13 @@ export const metadata: Metadata = {
 };
 
 const RootLayout: FC<Readonly<PropsWithChildren>> = ({ children }) => (
-  <ClerkProvider>
-    <html lang="en">
-      <body
-        className={`${inter.className} flex justify-center items-center min-h-screen`}
-      >
+  <ClerkProvider
+    appearance={{
+      baseTheme: dark,
+    }}
+  >
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
         <ReduxProviders>
           {children}
           <Analytics />
