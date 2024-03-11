@@ -22,10 +22,9 @@ datasource db {
 model User {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
   clerkId   String  @unique
-  username  String  @unique
   email     String  @unique
+  username  String
   photo     String?
   firstname String?
   lastname  String?
-  name      String?
 }
