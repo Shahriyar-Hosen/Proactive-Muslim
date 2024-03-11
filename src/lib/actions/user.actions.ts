@@ -1,55 +1,94 @@
-import { IncomingHttpHeaders } from "http";
-import { headers } from "next/headers";
-import { NextResponse } from "next/server";
-import { Webhook, WebhookRequiredHeaders } from "svix";
-import { prisma } from "../db/prism";
+// "use server";
 
-const webhookSecret = process.env.WEBHOOK_SECRET || "";
+// import { revalidatePath } from "next/cache";
+// import { prisma } from "../db/prism";
+// import { handleError } from "./utils";
 
-async function handler(request: Request) {
-  const payload = await request.json();
-  const headersList = headers();
-  const heads = {
-    "svix-id": headersList.get("svix-id"),
-    "svix-timestamp": headersList.get("svix-timestamp"),
-    "svix-signature": headersList.get("svix-signature"),
-  };
-  const wh = new Webhook(webhookSecret);
-  let evt: Event | null = null;
+// // CREATE
+// export const createUser = async (user: any): Promise<any> => {
+//   try {
+//     console.log("🚀 ~ createUser ~ createUser:");
+//     const newUser = await prisma.user.create({
+//       data: user,
+//     });
+//     console.log("🚀 ~ createUser ~ newUser:", { newUser });
 
-  try {
-    evt = wh.verify(
-      JSON.stringify(payload),
-      heads as IncomingHttpHeaders & WebhookRequiredHeaders
-    ) as Event;
-  } catch (err) {
-    console.error((err as Error).message);
-    return NextResponse.json({}, { status: 400 });
-  }
+//     return JSON.parse(JSON.stringify(newUser));
+//   } catch (error) {
+//     handleError(error);
+//   }
+// };
 
-  const eventType: EventType = evt.type;
-  if (eventType === "user.created" || eventType === "user.updated") {
-    const { id, ...attributes } = evt.data;
+// // Red
+// export const getUserById = async (
+//   userId: string
+// ): Promise<IUser | undefined> => {
+//   try {
+//     const user = await prisma.user.findUnique({
+//       where: {
+//         clerkId: userId,
+//       },
+//     });
 
-    await prisma.user.upsert({
-      where: { externalId: id as string },
-      create: {
-        externalId: id as string,
-        attributes,
-      },
-      update: { attributes },
-    });
-  }
-}
+//     console.log("🚀 ~ get UserBy Id:", { user });
 
-type EventType = "user.created" | "user.updated" | "*";
+//     if (!user) throw new Error("User not found");
 
-type Event = {
-  data: Record<string, string | number>;
-  object: "event";
-  type: EventType;
-};
+//     return JSON.parse(JSON.stringify(user));
+//   } catch (error) {
+//     handleError(error);
+//   }
+// };
 
-export const GET = handler;
-export const POST = handler;
-export const PUT = handler;
+// // UPDATE
+// export const updateUser = async (
+//   clerkId: string,
+//   user: any
+// ): Promise<IUser | undefined> => {
+//   try {
+//     const updatedUser = await prisma.user.update({
+//       data: user,
+//       where: {
+//         clerkId,
+//       },
+//     });
+
+//     console.log("🚀 ~ updated User by clerkId:", { updatedUser });
+
+//     if (!updatedUser) throw new Error("User update failed");
+
+//     return JSON.parse(JSON.stringify(updatedUser));
+//   } catch (error) {
+//     handleError(error);
+//   }
+// };
+
+// // DELETE
+// export const deleteUser = async (clerkId: string): Promise<any> => {
+//   try {
+//     // Find user to delete
+//     const userToDelete = await prisma.user.findUnique({
+//       where: {
+//         clerkId: clerkId,
+//       },
+//     });
+//     console.log("🚀 ~ deleteUser ~ userToDelete:", userToDelete);
+
+//     if (!userToDelete) {
+//       throw new Error("User not found");
+//     }
+
+//     // Delete user
+//     const deletedUser = await prisma.user.delete({
+//       where: {
+//         id: userToDelete.id,
+//       },
+//     });
+//     console.log("🚀 ~ deleteUser ~ deletedUser:", deletedUser);
+//     revalidatePath("/");
+
+//     return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null;
+//   } catch (error) {
+//     handleError(error);
+//   }
+// };
