@@ -24,11 +24,13 @@ export const createUser = async (
           email: user.email,
         },
       });
+      console.log("🚀 ~ updatedUser:", updatedUser);
       return JSON.parse(JSON.stringify(updatedUser));
     } else {
       const newUser = await prisma.user.create({
         data: userData,
       });
+      console.log("🚀 ~ newUser:", newUser);
       return JSON.parse(JSON.stringify(newUser));
     }
   } catch (error) {
