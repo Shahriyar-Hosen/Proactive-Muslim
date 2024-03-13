@@ -77,7 +77,9 @@ export const updateUser = async (
 };
 
 // DELETE
-export const deleteUser = async (clerkId: string): Promise<any> => {
+export const deleteUser = async (
+  clerkId: string
+): Promise<IUser | undefined> => {
   try {
     // Find user to delete
     const userToDelete = await prisma.user.findUnique({
