@@ -1,6 +1,4 @@
 import { ReduxProviders } from "@/redux/Providers";
-import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
@@ -37,21 +35,15 @@ const LocaleLayout: FC<Readonly<ILocaleLayoutProps>> = ({
   unstable_setRequestLocale(locale);
 
   return (
-    <ClerkProvider
-      appearance={{
-        baseTheme: dark,
-      }}
-    >
-      <html lang={locale} suppressHydrationWarning>
-        <body className={inter.className}>
-          <ReduxProviders>
-            {children}
-            <Analytics />
-            <SpeedInsights />
-          </ReduxProviders>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang={locale} suppressHydrationWarning>
+      <body className={inter.className}>
+        <ReduxProviders>
+          {children}
+          <Analytics />
+          <SpeedInsights />
+        </ReduxProviders>
+      </body>
+    </html>
   );
 };
 
