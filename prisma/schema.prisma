@@ -19,6 +19,6 @@ model User {
   email     String  @unique
   username  String  @unique
   photo     String?
-  firstname String?
-  lastname  String?
+  firstName String?
+  lastName  String?
 }
