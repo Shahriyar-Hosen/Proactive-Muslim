@@ -10,9 +10,11 @@ export const createUser = async (userData: any): Promise<any> => {
     const result = await prisma.user.create({
       data: userData,
     });
+    console.log("🚀 ~ createUser ~ result:", result);
 
     return JSON.parse(JSON.stringify(result));
   } catch (error) {
+    console.log("🚀 ~ createUser ~ error:", error);
     handleError(error);
   }
 };
