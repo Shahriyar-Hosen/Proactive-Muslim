@@ -7,7 +7,6 @@ import { FC } from "react";
 export const Counter: FC = () => {
   const count = useAppSelector((state) => state.counter.value);
   const dispatch = useAppDispatch();
-
   return (
     <section className="flex flex-col justify-center items-center">
       <h1>Count: - {count}</h1>
