@@ -1,1 +1,1 @@
-<h1 align="center">Proactive Muslim </h1>
+<h1 align="center">Proactive Muslim</h1>

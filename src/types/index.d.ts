@@ -1,5 +1,4 @@
 declare interface IUser {
-  id?: string;
   clerkId: string;
   email: string;
   username: string;
