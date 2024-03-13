@@ -5,13 +5,32 @@ import { prisma } from "../db";
 import { handleError } from "../utils";
 
 // CREATE
-export const createUser = async (userData: any): Promise<any> => {
+export const createUser = async (
+  userData: IUser
+): Promise<IUser | undefined> => {
   try {
-    const result = await prisma.user.create({
-      data: userData,
+    const user = await prisma.user.findUnique({
+      where: {
+        email: userData.email,
+      },
     });
 
-    return JSON.parse(JSON.stringify(result));
+    if (user) {
+      const updatedUser = await prisma.user.update({
+        data: {
+          clerkId: userData.clerkId,
+        },
+        where: {
+          email: user.email,
+        },
+      });
+      return JSON.parse(JSON.stringify(updatedUser));
+    } else {
+      const newUser = await prisma.user.create({
+        data: userData,
+      });
+      return JSON.parse(JSON.stringify(newUser));
+    }
   } catch (error) {
     handleError(error);
   }
@@ -58,7 +77,9 @@ export const updateUser = async (
 };
 
 // DELETE
-export const deleteUser = async (clerkId: string): Promise<any> => {
+export const deleteUser = async (
+  clerkId: string
+): Promise<IUser | undefined> => {
   try {
     // Find user to delete
     const userToDelete = await prisma.user.findUnique({
