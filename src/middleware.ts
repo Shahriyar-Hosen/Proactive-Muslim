@@ -1,6 +1,8 @@
-import { localePrefix, locales, pathnames } from "@/config";
 import { authMiddleware } from "@clerk/nextjs";
+
 import createMiddleware from "next-intl/middleware";
+
+import { localePrefix, locales, pathnames } from "@/config";
 
 const intlMiddleware = createMiddleware({
   defaultLocale: "en",
