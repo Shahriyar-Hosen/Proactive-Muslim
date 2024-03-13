@@ -1,4 +1,4 @@
-import { createUser } from "@/lib/action/user.action";
+import { createUser } from "@/server/action/user.action";
 
 const Test = () => {
   const handleCrateUser = () => {};

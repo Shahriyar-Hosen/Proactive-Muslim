@@ -1,7 +1,8 @@
 "use server";
 
+import { handleError } from "@/lib/utils";
+import { prisma } from "@/server/prisma";
 import { revalidatePath } from "next/cache";
-import { handleError, prisma } from "..";
 
 // CREATE
 export const createUser = async (userData: any): Promise<any> => {
