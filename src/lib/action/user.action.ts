@@ -14,7 +14,8 @@ export const createUser = async (
         email: userData.email,
       },
     });
-    console.log("🚀 ~ user:", user);
+    
+    console.log("🚀 ~ user.action createUser ~ result:", result);
 
     if (user) {
       const updatedUser = await prisma.user.update({
