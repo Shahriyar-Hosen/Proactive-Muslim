@@ -14,8 +14,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.29.9",
-    "@clerk/themes": "^1.7.9",
     "@prisma/client": "^5.10.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@reduxjs/toolkit": "^2.2.1",
@@ -30,7 +28,6 @@
     "react": "^18",
     "react-dom": "^18",
     "react-redux": "^9.1.0",
-    "svix": "^1.21.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7"
   },

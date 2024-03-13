@@ -1,26 +1,25 @@
-import { authMiddleware } from "@clerk/nextjs";
-
 import createMiddleware from "next-intl/middleware";
 
 import { localePrefix, locales, pathnames } from "@/config";
 
-const intlMiddleware = createMiddleware({
+export default createMiddleware({
   defaultLocale: "en",
   locales,
   pathnames,
   localePrefix,
 });
 
-export default authMiddleware({
-  beforeAuth: (req) => {
-    // Execute next-intl middleware before Clerk's auth middleware
-    return intlMiddleware(req);
-  },
-
-  // Ensure that locale specific sign-in pages are public
-  publicRoutes: ["/", "/api/webhooks/clerk"],
-});
-
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: [
+    // Enable a redirect to a matching locale at the root
+    "/",
+
+    // Set a cookie to remember the previous locale for
+    // all requests that have a locale prefix
+    "/(bn|en)/:path*",
+
+    // Enable redirects that add missing locales
+    // (e.g. `/pathnames` -> `/en/pathnames`)
+    "/((?!_next|_vercel|.*\\..*).*)",
+  ],
 };

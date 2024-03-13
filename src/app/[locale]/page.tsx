@@ -1,4 +1,3 @@
-import { UserButton } from "@clerk/nextjs";
 import { NextPage } from "next";
 import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
@@ -28,7 +27,6 @@ const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
           })}
         </p>
       </section>
-      <UserButton />
       <Button className="bg-orange-500 hover:bg-orange-600">Button</Button>
       <Counter />
     </main>
