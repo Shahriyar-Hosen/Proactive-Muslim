@@ -21,5 +21,4 @@ const PathnamesPage: FC<ParamsLocale> = ({ params: { locale } }) => {
     </main>
   );
 };
-
 export default PathnamesPage;
