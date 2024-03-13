@@ -2,19 +2,11 @@
 
 import { decrement, increment, incrementByAmount } from "@/redux/features";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useUser } from "@clerk/nextjs";
 import { FC } from "react";
 
 export const Counter: FC = () => {
   const count = useAppSelector((state) => state.counter.value);
   const dispatch = useAppDispatch();
-  const { isLoaded, isSignedIn, user } = useUser();
-
-  if (!isLoaded || !isSignedIn) {
-    return null;
-  }
-
-  console.log("🚀 ~ user:", user);
 
   return (
     <section className="flex flex-col justify-center items-center">
