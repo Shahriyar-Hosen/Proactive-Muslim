@@ -6,3 +6,9 @@ declare interface IUser {
   lastName: string;
   photo: string;
 }
+
+declare type ILocale = "en" | "bn";
+
+declare interface ParamsLocale {
+  params: { locale: ILocale };
+}
