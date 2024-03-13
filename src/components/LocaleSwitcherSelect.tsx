@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import clsx from 'clsx';
-import {useParams} from 'next/navigation';
-import {ChangeEvent, ReactNode, useTransition} from 'react';
-import {useRouter, usePathname} from '../navigation';
+import { cn } from "@/lib/utils";
+import { useParams } from "next/navigation";
+import { ChangeEvent, FC, ReactNode, useTransition } from "react";
+import { usePathname, useRouter } from "../navigation";
 
 type Props = {
   children: ReactNode;
@@ -11,11 +11,11 @@ type Props = {
   label: string;
 };
 
-export default function LocaleSwitcherSelect({
+export const LocaleSwitcherSelect: FC<Props> = ({
   children,
   defaultValue,
-  label
-}: Props) {
+  label,
+}) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
@@ -28,17 +28,17 @@ export default function LocaleSwitcherSelect({
         // @ts-expect-error -- TypeScript will validate that only known `params`
         // are used in combination with a given `pathname`. Since the two will
         // always match for the current route, we can skip runtime checks.
-        {pathname, params},
-        {locale: nextLocale}
+        { pathname, params },
+        { locale: nextLocale }
       );
     });
   }
 
   return (
     <label
-      className={clsx(
-        'relative text-gray-400',
-        isPending && 'transition-opacity [&:disabled]:opacity-30'
+      className={cn(
+        "relative text-gray-400",
+        isPending && "transition-opacity [&:disabled]:opacity-30"
       )}
     >
       <p className="sr-only">{label}</p>
@@ -53,4 +53,4 @@ export default function LocaleSwitcherSelect({
       <span className="pointer-events-none absolute right-2 top-[8px]">⌄</span>
     </label>
   );
-}
+};

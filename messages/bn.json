@@ -7,19 +7,19 @@
     "description": "This is a basic example that demonstrates the usage of <code>next-intl</code> with the Next.js App Router. Try changing the locale in the top right corner and see how the content changes."
   },
   "LocaleSwitcher": {
-    "label": "Change language",
-    "locale": "{locale, select, bn {bn Bangla} en {🇺🇸 English} other {Unknown}}"
+    "label": "ভাষা পরিবর্তন",
+    "locale": "{locale, select, bn {🇧🇩 বাংলা} en {🇺🇸 English} other {Unknown}}"
   },
   "LocaleLayout": {
     "title": "প্রোএক্টিভ মুসলিম",
     "description": "Sunnah-IT এটি তৈরি করেছেন"
   },
   "NotFoundPage": {
-    "title": "Page not found (Bangla)",
-    "description": "Please double-check the browser address bar or use the navigation to go to a known page."
+    "title": "পৃষ্ঠা খুঁজে পাওয়া যায়নি",
+    "description": "ব্রাউজার অ্যাড্রেস বারটি দুবার চেক করুন অথবা হোমপেজ এ যান।"
   },
   "Error": {
-    "title": "Something went wrong!",
-    "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>"
+    "title": "কিছু ভুল হয়েছে!",
+    "description": "<p>আমরা দুর্ভাগ্যবশত একটি ত্রুটির সম্মুখীন হয়েছি.</p><p>আপনি যে পৃষ্ঠাটি পরিদর্শন করছেন সেটি <retry>পুনরায় লোড</retry> করার চেষ্টা করতে পারেন৷</p>"
   }
 }

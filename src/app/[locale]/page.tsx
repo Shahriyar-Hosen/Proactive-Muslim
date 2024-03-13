@@ -4,14 +4,15 @@ import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 import { Counter } from "@/components/Counter";
+import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { Button } from "@/components/ui/button";
-import LocaleSwitcher from "@/components/LocaleSwitcher";
 
 const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
   // Enable static rendering
   unstable_setRequestLocale(locale);
 
   const t = useTranslations("HomePage");
+
   return (
     <main className="flex flex-col justify-center items-center h-screen gap-5 bg-slate-950 w-full text-slate-300">
       <LocaleSwitcher />
@@ -22,7 +23,7 @@ const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
         <p className="max-w-[590px]">
           {t.rich("description", {
             code: (chunks) => (
-              <code className="font-mono text-white">{chunks}</code>
+              <code className="font-mono text-cyan-400">{chunks}</code>
             ),
           })}
         </p>
