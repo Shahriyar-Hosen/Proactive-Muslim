@@ -4,10 +4,10 @@ import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 
-import { newVerification } from "@/actions/new-verification";
 import { CardWrapper } from "@/components/auth/card-wrapper";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
+import { newVerification } from "@/server/actions/new-verification";
 
 export const NewVerificationForm = () => {
   const [error, setError] = useState<string | undefined>();
