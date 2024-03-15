@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ResetSchema } from "@/schemas";
+import { ResetSchema } from "@/lib/schemas";
 import { reset } from "@/server/actions/reset";
 
 export const ResetForm = () => {

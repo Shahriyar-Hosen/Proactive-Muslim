@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { SettingsSchema } from "@/schemas";
+import { SettingsSchema } from "@/lib/schemas";
 import { settings } from "@/server/actions/settings";
 import { UserRole } from "@prisma/client";
 

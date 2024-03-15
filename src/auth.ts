@@ -3,10 +3,10 @@ import { UserRole } from "@prisma/client";
 import NextAuth from "next-auth";
 
 import authConfig from "@/auth.config";
-import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
-import { getUserById } from "@/data/user";
 import { db } from "@/lib/db";
-import { getAccountByUserId } from "./data/account";
+import { getTwoFactorConfirmationByUserId } from "@/server/data/two-factor-confirmation";
+import { getUserById } from "@/server/data/user";
+import { getAccountByUserId } from "./server/data/account";
 
 export const {
   handlers: { GET, POST },
