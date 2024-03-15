@@ -1,9 +1,8 @@
 "use client";
 
 import { logout } from "@/server/actions/logout";
-import { FC, PropsWithChildren } from "react";
 
-export const LogoutButton: FC<PropsWithChildren> = ({ children }) => {
+export const LogoutButton = ({ children }: IChildren) => {
   const onClick = () => {
     logout();
   };

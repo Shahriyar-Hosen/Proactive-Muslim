@@ -1,12 +1,11 @@
 import { ReduxProviders } from "@/redux/Providers";
 import { NextIntlClientProvider, useMessages } from "next-intl";
-import { FC, PropsWithChildren } from "react";
 
-interface IProviderProps extends PropsWithChildren {
+interface IProviderProps extends IChildren {
   locale: ILocale;
 }
 
-const Providers: FC<IProviderProps> = ({ children, locale }) => {
+const Providers = ({ children, locale }: IProviderProps) => {
   const messages = useMessages();
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>

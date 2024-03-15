@@ -1,7 +1,6 @@
 import { Poppins } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-import { FC } from "react";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -12,7 +11,7 @@ interface HeaderProps {
   label: string;
 }
 
-export const Header: FC<HeaderProps> = ({ label }) => {
+export const Header = ({ label }: HeaderProps) => {
   return (
     <div className="w-full flex flex-col gap-y-4 items-center justify-center">
       <h1 className={cn("text-3xl font-semibold", font.className)}>🔐 Auth</h1>

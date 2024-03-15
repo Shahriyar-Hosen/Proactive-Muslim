@@ -1,14 +1,14 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { FC, useEffect } from "react";
+import { useEffect } from "react";
 
 type Props = {
   error: Error;
   reset(): void;
 };
 
-const Error: FC<Props> = ({ error, reset }) => {
+const Error = ({ error, reset }: Props) => {
   const t = useTranslations("Error");
 
   useEffect(() => {

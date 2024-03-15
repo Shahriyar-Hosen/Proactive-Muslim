@@ -9,23 +9,21 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { FC } from "react";
 
-interface CardWrapperProps {
-  children: React.ReactNode;
+interface CardWrapperProps extends IChildren {
   headerLabel: string;
   backButtonLabel: string;
   backButtonHref: string;
   showSocial?: boolean;
 }
 
-export const CardWrapper: FC<CardWrapperProps> = ({
+export const CardWrapper = ({
   children,
   headerLabel,
   backButtonLabel,
   backButtonHref,
   showSocial,
-}) => {
+}: CardWrapperProps) => {
   return (
     <Card className="w-[400px] shadow-md">
       <CardHeader>

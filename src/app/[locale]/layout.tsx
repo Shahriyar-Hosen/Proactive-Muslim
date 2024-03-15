@@ -4,7 +4,6 @@ import { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { Inter } from "next/font/google";
-import { FC, PropsWithChildren } from "react";
 
 import { auth } from "@/auth";
 import Providers from "@/components/providers";
@@ -13,7 +12,7 @@ import { locales } from "@/config";
 
 const inter = Inter({ subsets: ["latin"] });
 
-interface ILocaleLayoutProps extends PropsWithChildren, ParamsLocale {}
+interface ILocaleLayoutProps extends IChildren, ParamsLocale {}
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -30,10 +29,10 @@ export const generateMetadata = async ({
   };
 };
 
-const LocaleLayout: FC<Readonly<ILocaleLayoutProps>> = async ({
+const LocaleLayout = async ({
   children,
   params: { locale },
-}) => {
+}: Readonly<ILocaleLayoutProps>) => {
   // Enable static rendering
   unstable_setRequestLocale(locale);
   const session = await auth();
