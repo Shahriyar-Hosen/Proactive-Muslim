@@ -1,9 +1,8 @@
 "use client";
 
-import { FC, PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
-export const ReduxProviders: FC<PropsWithChildren> = ({ children }) => (
+export const ReduxProviders = ({ children }: IChildren) => (
   <Provider store={store}> {children} </Provider>
 );

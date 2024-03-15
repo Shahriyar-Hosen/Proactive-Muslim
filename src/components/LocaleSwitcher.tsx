@@ -1,9 +1,8 @@
 import { useLocale, useTranslations } from "next-intl";
-import { FC } from "react";
 import { locales } from "../config";
 import { LocaleSwitcherSelect } from "./LocaleSwitcherSelect";
 
-export const LocaleSwitcher: FC = () => {
+export const LocaleSwitcher = () => {
   const t = useTranslations("LocaleSwitcher");
   const locale = useLocale();
 

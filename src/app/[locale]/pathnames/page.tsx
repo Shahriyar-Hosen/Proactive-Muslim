@@ -1,8 +1,7 @@
 import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
-import { FC } from "react";
 
-const PathnamesPage: FC<ParamsLocale> = ({ params: { locale } }) => {
+const PathnamesPage = ({ params: { locale } }: ParamsLocale) => {
   // Enable static rendering
   unstable_setRequestLocale(locale);
 

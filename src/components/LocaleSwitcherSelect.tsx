@@ -2,20 +2,19 @@
 
 import { cn } from "@/lib/utils";
 import { useParams } from "next/navigation";
-import { ChangeEvent, FC, ReactNode, useTransition } from "react";
+import { ChangeEvent, useTransition } from "react";
 import { usePathname, useRouter } from "../navigation";
 
-type Props = {
-  children: ReactNode;
+interface Props extends IChildren {
   defaultValue: string;
   label: string;
-};
+}
 
-export const LocaleSwitcherSelect: FC<Props> = ({
+export const LocaleSwitcherSelect = ({
   children,
   defaultValue,
   label,
-}) => {
+}: Props) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
