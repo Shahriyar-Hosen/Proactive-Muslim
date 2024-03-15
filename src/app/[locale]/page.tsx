@@ -4,6 +4,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 
 import { Counter } from "@/components/Counter";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
+import { LoginButton } from "@/components/auth/login-button";
 import { Button } from "@/components/ui/button";
 
 const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
@@ -27,7 +28,20 @@ const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
           })}
         </p>
       </section>
-      <Button className="bg-orange-500 hover:bg-orange-600">Button</Button>
+
+      <div className="space-y-6 text-center">
+        <h1 className="text-6xl font-semibold text-white drop-shadow-md">
+          🔐 Auth
+        </h1>
+        <p className="text-white text-lg">A simple authentication service</p>
+        <div>
+          <LoginButton asChild>
+            <Button variant="secondary" size="lg">
+              User Auth Dashboard
+            </Button>
+          </LoginButton>
+        </div>
+      </div>
       <Counter />
     </main>
   );
