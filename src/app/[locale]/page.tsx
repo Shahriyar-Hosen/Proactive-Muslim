@@ -2,9 +2,9 @@ import { NextPage } from "next";
 import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
 
-import { LoginButton } from "@/components/auth/login-button";
 import { Counter } from "@/components/Counter";
-import { LocaleSwitcher } from "@/components/LocaleSwitcher";
+import { LoginButton } from "@/components/auth/login-button";
+import { LocaleSwitcher } from "@/components/lang/LocaleSwitcher";
 import { Button } from "@/components/ui/button";
 
 const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {

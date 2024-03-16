@@ -9,6 +9,7 @@ import { auth } from "@/auth";
 import Providers from "@/components/providers";
 import { Toaster } from "@/components/ui/sonner";
 import { locales } from "@/config";
+import { Navbar } from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,6 +43,7 @@ const LocaleLayout = async ({
       <html lang={locale} suppressHydrationWarning>
         <body className={inter.className}>
           <Providers locale={locale}>
+            <Navbar />
             {children}
             <Toaster />
             <Analytics />
