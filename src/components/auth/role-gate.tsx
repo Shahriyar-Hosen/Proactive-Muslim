@@ -2,7 +2,7 @@
 
 import { UserRole } from "@prisma/client";
 
-import { FormError } from "@/components/form-error";
+import { FormError } from "@/components/form/form-error";
 import { useCurrentRole } from "@/hooks/use-current-role";
 
 interface RoleGateProps extends IChildren {

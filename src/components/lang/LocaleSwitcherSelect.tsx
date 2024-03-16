@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { useParams } from "next/navigation";
 import { ChangeEvent, useTransition } from "react";
-import { usePathname, useRouter } from "../navigation";
+import { usePathname, useRouter } from "../../navigation";
 
 interface Props extends IChildren {
   defaultValue: string;
