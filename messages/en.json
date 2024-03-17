@@ -8,7 +8,8 @@
   },
   "LocaleSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, bn {bn বাংলা} en {🇺🇸 English} other {Unknown}}"
+    "locale": "{locale, select, bn {/bd-flag.png} en {/en-flag.webp} other {Unknown}}",
+    "language": "{locale, select, bn {বাংলা} en {English} other {Unknown}}"
   },
   "LocaleLayout": {
     "title": "Proactive Muslim",

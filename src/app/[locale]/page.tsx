@@ -4,7 +4,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 
 import { Counter } from "@/components/Counter";
 import { LoginButton } from "@/components/auth/login-button";
-import { LocaleSwitcher } from "@/components/lang/LocaleSwitcher";
+import { LanguageSwitcher } from "@/components/lang/LocaleSwitcher";
 import { Button } from "@/components/ui/button";
 
 const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
@@ -15,7 +15,7 @@ const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
 
   return (
     <main className="flex flex-col justify-center items-center h-screen gap-5 bg-slate-950 w-full text-slate-300">
-      <LocaleSwitcher />
+      <LanguageSwitcher />
       <section className="space-y-5">
         <h1 className="text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
           {t("title")}

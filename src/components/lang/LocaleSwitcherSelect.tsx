@@ -1,27 +1,35 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { useParams } from "next/navigation";
-import { ChangeEvent, useTransition } from "react";
-import { usePathname, useRouter } from "../../navigation";
+import { FC, useTransition } from "react";
+
+import {
+  Select,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import { usePathname, useRouter } from "@/navigation";
 
 interface Props extends IChildren {
+  defaultOption: JSX.Element;
   defaultValue: string;
   label: string;
 }
 
-export const LocaleSwitcherSelect = ({
+export const LocaleSwitcherSelect: FC<Props> = ({
   children,
   defaultValue,
+  defaultOption,
   label,
-}: Props) => {
+}) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
   const params = useParams();
 
-  function onSelectChange(event: ChangeEvent<HTMLSelectElement>) {
-    const nextLocale = event.target.value;
+  function onSelectChange(nextLocale: string) {
     startTransition(() => {
       router.replace(
         // @ts-expect-error -- TypeScript will validate that only known `params`
@@ -34,22 +42,26 @@ export const LocaleSwitcherSelect = ({
   }
 
   return (
-    <label
-      className={cn(
-        "relative text-gray-400",
-        isPending && "transition-opacity [&:disabled]:opacity-30"
-      )}
+    <Select
+      defaultValue={defaultValue}
+      onValueChange={(e) => onSelectChange(e)}
+      disabled={isPending}
     >
       <p className="sr-only">{label}</p>
-      <select
-        className="inline-flex appearance-none bg-transparent py-3 pl-2 pr-6"
-        defaultValue={defaultValue}
-        disabled={isPending}
-        onChange={onSelectChange}
+      <SelectTrigger
+        className={cn(
+          "w-fit md:w-[130px] space-x-1",
+          isPending && "transition-opacity [&:disabled]:opacity-30",
+          "bg-slate-900 border-none focus:outline-none text-white"
+        )}
       >
+        <SelectValue placeholder={defaultValue} className="focus:text-white">
+          {defaultOption}
+        </SelectValue>
+      </SelectTrigger>
+      <SelectContent className="bg-slate-900 border-none focus:outline-none text-white">
         {children}
-      </select>
-      <span className="pointer-events-none absolute right-2 top-[8px]">⌄</span>
-    </label>
+      </SelectContent>
+    </Select>
   );
 };
