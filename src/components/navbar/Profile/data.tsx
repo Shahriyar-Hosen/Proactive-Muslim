@@ -60,6 +60,8 @@ export const group3: IDropdownItem[] = [
   {
     title: "GitHub",
     icon: <Github className="mr-2 h-4 w-4" />,
+    href: "https://github.com/Shahriyar-Hosen",
+    target: "_blank",
   },
   {
     title: "Support",

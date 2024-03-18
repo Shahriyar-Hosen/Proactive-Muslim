@@ -13,15 +13,17 @@ export interface IDropdownItem {
   disabled?: boolean;
   onclick?: () => void;
   subMenu?: IDropdownItem[];
+  target?: "_blank";
 }
 
 const DropdownItemProvider: FC<IDropdownItem & IChildren> = ({
   children,
   href,
+  target,
   ...props
 }) =>
   href ? (
-    <Link href={href}>
+    <Link href={href} target={target}>
       <DropdownMenuItem
         className="focus:bg-slate-900 data-[state=open]:bg-slate-900 focus:text-slate-300 focus:cursor-pointer"
         {...props}
