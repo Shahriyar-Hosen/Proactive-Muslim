@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 
 import { CardWrapper } from "@/components/auth/card-wrapper";
 import { FormError } from "@/components/form/form-error";
@@ -20,7 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { LoginSchema } from "@/lib/schemas";
+import { ILoginSchema, LoginSchema } from "@/lib/schemas";
 import { login } from "@/server/actions/login";
 
 export const LoginForm = () => {
@@ -36,7 +35,7 @@ export const LoginForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof LoginSchema>>({
+  const form = useForm<ILoginSchema>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: "",
@@ -44,7 +43,7 @@ export const LoginForm = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+  const onSubmit = (values: ILoginSchema) => {
     setError("");
     setSuccess("");
 
@@ -149,7 +148,11 @@ export const LoginForm = () => {
           </div>
           <FormError message={error || urlError} />
           <FormSuccess message={success} />
-          <Button disabled={isPending} type="submit" className="w-full">
+          <Button
+            disabled={isPending}
+            type="submit"
+            className="w-full bg-cyan-500/60 hover:bg-cyan-400/70"
+          >
             {showTwoFactor ? "Confirm" : "Login"}
           </Button>
         </form>

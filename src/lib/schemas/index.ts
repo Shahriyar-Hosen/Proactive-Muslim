@@ -8,6 +8,7 @@ export const UserSchema = z
     gender: z.enum([Gender.Male, Gender.Female]),
     role: z.enum([UserRole.ADMIN, UserRole.USER]),
     email: z.optional(z.string().email()),
+    phone: z.optional(z.string()),
     password: z.optional(z.string().min(6)),
     newPassword: z.optional(z.string().min(6)),
   })

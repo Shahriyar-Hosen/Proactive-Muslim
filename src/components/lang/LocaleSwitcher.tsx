@@ -20,6 +20,7 @@ export const LanguageSwitcher: FC = () => {
         height={25}
         src={t("locale", { locale: cur || locale })}
         alt={t("label")}
+        className="w-5 md:w-[25] h-auto"
       />
       <span className="hidden sm:block md:hidden capitalize">
         {cur || locale}

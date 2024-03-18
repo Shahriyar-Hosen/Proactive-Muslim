@@ -13,7 +13,7 @@ export const Navbar = () => {
   return (
     <div className="fixed w-screen bg-slate-800/50 dark:bg-slate-950/50 z-50">
       <div className="mx-auto max-w-7xl px-2 md:px-6 lg:px-8">
-        <div className="relative flex h-16 items-center justify-start">
+        <div className="relative flex h-16 items-center justify-between md:justify-start">
           <MobileMenuButton open={open} setOpen={setOpen} />
           <div className="flex items-center justify-start sm:justify-center md:items-stretch md:justify-start">
             <Logo />
@@ -21,7 +21,7 @@ export const Navbar = () => {
 
           <MenuItems />
 
-          <div className="flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0 space-x-2.5">
+          <div className="flex items-center justify-between pr-2 md:static md:inset-auto md:ml-6 md:pr-0 space-x-2.5">
             <LanguageSwitcher />
             <Profile />
           </div>
