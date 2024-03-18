@@ -27,7 +27,7 @@ export const Profile: FC = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild className="cursor-pointer">
         <Avatar>
           <AvatarImage src={user?.image || ""} alt="@proactive-muslim" />
           <AvatarFallback className="bg-cyan-500 text-slate-800 font-medium">

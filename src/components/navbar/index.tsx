@@ -11,17 +11,17 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-slate-800 dark:bg-slate-900">
+    <div className="fixed w-screen bg-slate-800/50 dark:bg-slate-950/50 z-50">
       <div className="mx-auto max-w-7xl px-2 md:px-6 lg:px-8">
-        <div className="relative flex h-16 items-center justify-between">
+        <div className="relative flex h-16 items-center justify-start">
           <MobileMenuButton open={open} setOpen={setOpen} />
-          <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
+          <div className="flex items-center justify-start sm:justify-center md:items-stretch md:justify-start">
             <Logo />
           </div>
 
           <MenuItems />
 
-          <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0 space-x-2.5">
+          <div className="flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0 space-x-2.5">
             <LanguageSwitcher />
             <Profile />
           </div>

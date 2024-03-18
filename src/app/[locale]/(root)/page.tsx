@@ -14,7 +14,7 @@ const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
   const t = useTranslations("HomePage");
 
   return (
-    <main className="flex flex-col justify-center items-center h-screen gap-5 bg-slate-950 w-full text-slate-300">
+    <main className="flex flex-col justify-center items-center h-screen gap-5 relative">
       <LanguageSwitcher />
       <section className="space-y-5">
         <h1 className="text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
