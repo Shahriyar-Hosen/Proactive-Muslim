@@ -9,7 +9,7 @@ import { auth } from "@/auth";
 import Providers from "@/components/providers";
 import { Toaster } from "@/components/ui/sonner";
 import { locales } from "@/config";
-import { Navbar } from "@/components/navbar";
+import { FC } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,10 +30,10 @@ export const generateMetadata = async ({
   };
 };
 
-const LocaleLayout = async ({
+const LocaleLayout: FC<Readonly<ILocaleLayoutProps>> = async ({
   children,
   params: { locale },
-}: Readonly<ILocaleLayoutProps>) => {
+}) => {
   // Enable static rendering
   unstable_setRequestLocale(locale);
   const session = await auth();
@@ -43,7 +43,6 @@ const LocaleLayout = async ({
       <html lang={locale} suppressHydrationWarning>
         <body className={inter.className}>
           <Providers locale={locale}>
-            <Navbar />
             {children}
             <Toaster />
             <Analytics />

@@ -6,10 +6,10 @@ import { FC } from "react";
 
 export interface IDropdownItem {
   title: string;
-  onclick: () => void;
   icon: JSX.Element;
   label?: string;
   disabled?: boolean;
+  onclick?: () => void;
   subMenu?: IDropdownItem[];
 }
 

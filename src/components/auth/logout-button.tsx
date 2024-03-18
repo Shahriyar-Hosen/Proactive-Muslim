@@ -1,11 +1,10 @@
 "use client";
 
 import { logout } from "@/server/actions/logout";
+import { FC } from "react";
 
-export const LogoutButton = ({ children }: IChildren) => {
-  const onClick = () => {
-    logout();
-  };
+export const LogoutButton: FC<IChildren> = ({ children }) => {
+  const onClick = () => logout();
 
   return (
     <span onClick={onClick} className="cursor-pointer">

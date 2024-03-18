@@ -80,10 +80,4 @@ export const group3: IDropdownItem[] = [
     icon: <Cloud className="mr-2 h-4 w-4" />,
     disabled: true,
   },
-  {
-    title: "Log out",
-    onclick: () => {},
-    icon: <LogOut className="mr-2 h-4 w-4" />,
-    label: "⇧⌘Q",
-  },
 ];

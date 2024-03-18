@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import { LogoutButton } from "@/components/auth/logout-button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -15,6 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { cn } from "@/lib/utils";
+import { LogOut } from "lucide-react";
 import { group1, group2, group3 } from "./data";
 import { DropdownItem } from "./dropdown-item";
 
@@ -81,6 +83,14 @@ export const Profile: FC = () => {
               <DropdownItem key={title} title={title} {...others} />
             </>
           ))}
+
+          <LogoutButton>
+            <DropdownItem
+              title="Log out"
+              label="⇧⌘Q"
+              icon={<LogOut className="mr-2 h-4 w-4" />}
+            />
+          </LogoutButton>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
