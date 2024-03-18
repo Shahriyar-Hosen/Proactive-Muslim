@@ -1,10 +1,11 @@
-import { UserRole } from "@prisma/client";
+import { Gender, UserRole } from "@prisma/client";
 import * as z from "zod";
 
-export const SettingsSchema = z
+export const UserSchema = z
   .object({
     name: z.optional(z.string()),
     isTwoFactorEnabled: z.optional(z.boolean()),
+    gender: z.enum([Gender.Male, Gender.Female]),
     role: z.enum([UserRole.ADMIN, UserRole.USER]),
     email: z.optional(z.string().email()),
     password: z.optional(z.string().min(6)),
@@ -15,7 +16,6 @@ export const SettingsSchema = z
       if (data.password && !data.newPassword) {
         return false;
       }
-
       return true;
     },
     {
@@ -28,7 +28,6 @@ export const SettingsSchema = z
       if (data.newPassword && !data.password) {
         return false;
       }
-
       return true;
     },
     {
@@ -71,7 +70,7 @@ export const RegisterSchema = z.object({
   }),
 });
 
-export type ISettingsSchema = z.infer<typeof SettingsSchema>;
+export type IUserSchema = z.infer<typeof UserSchema>;
 export type INewPasswordSchema = z.infer<typeof NewPasswordSchema>;
 export type IResetSchema = z.infer<typeof ResetSchema>;
 export type ILoginSchema = z.infer<typeof LoginSchema>;

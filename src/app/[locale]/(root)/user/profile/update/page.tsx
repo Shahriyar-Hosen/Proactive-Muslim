@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -29,9 +29,9 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { UserSchema } from "@/lib/schemas";
+import { IUserSchema, UserSchema } from "@/lib/schemas";
 import { userProfile } from "@/server/actions/user-profile";
-import { UserRole } from "@prisma/client";
+import { Gender, UserRole } from "@prisma/client";
 
 const ProfilePage = () => {
   const user = useCurrentUser();
@@ -41,13 +41,29 @@ const ProfilePage = () => {
   const { update } = useSession();
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof UserSchema>>({
+  useEffect(() => {
+    if (success || error) {
+      const timeoutId = setTimeout(
+        () => {
+          // Clear the message after 5 seconds
+          success ? setSuccess(undefined) : setError(undefined);
+        },
+        success ? 5000 : 15000
+      );
+
+      // Clean up the timeout when the component unmounts
+      return () => clearTimeout(timeoutId);
+    }
+  }, [success, error]);
+
+  const form = useForm<IUserSchema>({
     resolver: zodResolver(UserSchema),
     defaultValues: {
       password: undefined,
       newPassword: undefined,
       name: user?.name || undefined,
       email: user?.email || undefined,
+      gender: user?.gender || undefined,
       role: user?.role || undefined,
       isTwoFactorEnabled: user?.isTwoFactorEnabled || undefined,
     },
@@ -73,7 +89,7 @@ const ProfilePage = () => {
   const oauth = user?.isOAuth;
 
   return (
-    <Card className="w-full max-w-screen-lg mx-auto mt-10 bg-slate-900/50 text-white border-slate-600">
+    <Card className="w-full max-w-screen-lg mx-auto mt-10 bg-slate-900/50 text-white border-slate-600 relative">
       <CardHeader>
         <p className="text-2xl font-semibold text-center">
           🙎🏻‍♂️🧕🏻 Update Profile
@@ -119,6 +135,58 @@ const ProfilePage = () => {
                   </FormItem>
                 )}
               />
+
+              <FormField
+                control={form.control}
+                name="gender"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Gender</FormLabel>
+                    <Select
+                      disabled={isPending}
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a gender" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value={Gender.Male}>Male</SelectItem>
+                        <SelectItem value={Gender.Female}>Female</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="role"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Role</FormLabel>
+                    <Select
+                      disabled={isPending || user?.role !== "ADMIN"}
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a role" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
+                        <SelectItem value={UserRole.USER}>User</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               {oauth ? (
                 <FormField
                   control={form.control}
@@ -181,32 +249,6 @@ const ProfilePage = () => {
 
               <FormField
                 control={form.control}
-                name="role"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Role</FormLabel>
-                    <Select
-                      disabled={isPending || user?.role !== "ADMIN"}
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a role" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
-                        <SelectItem value={UserRole.USER}>User</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
                 name="isTwoFactorEnabled"
                 render={({ field }) => (
                   <FormItem className="flex flex-row items-center justify-between rounded-lg border border-slate-600 p-3 shadow-sm">
@@ -229,7 +271,11 @@ const ProfilePage = () => {
             </div>
             <FormError message={error} />
             <FormSuccess message={success} />
-            <Button disabled={isPending} type="submit">
+            <Button
+              disabled={isPending}
+              type="submit"
+              className="bg-cyan-400/70 hover:bg-cyan-400 disabled:bg-cyan-500/25 hover:cursor-pointer disabled:cursor-not-allowed"
+            >
               Save
             </Button>
           </form>
