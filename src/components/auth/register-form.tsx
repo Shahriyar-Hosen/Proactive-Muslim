@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { CardWrapper } from "@/components/auth/card-wrapper";
-import { FormError } from "@/components/form-error";
-import { FormSuccess } from "@/components/form-success";
+import { FormError } from "@/components/form/form-error";
+import { FormSuccess } from "@/components/form/form-success";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -113,7 +113,11 @@ export const RegisterForm = () => {
           </div>
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button disabled={isPending} type="submit" className="w-full">
+          <Button
+            disabled={isPending}
+            type="submit"
+            className="w-full bg-cyan-500/60 hover:bg-cyan-400/70"
+          >
             Create an account
           </Button>
         </form>

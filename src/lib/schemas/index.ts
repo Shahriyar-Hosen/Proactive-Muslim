@@ -1,34 +1,41 @@
+import { Gender, UserRole } from "@prisma/client";
 import * as z from "zod";
-import { UserRole } from "@prisma/client";
 
-export const SettingsSchema = z.object({
-  name: z.optional(z.string()),
-  isTwoFactorEnabled: z.optional(z.boolean()),
-  role: z.enum([UserRole.ADMIN, UserRole.USER]),
-  email: z.optional(z.string().email()),
-  password: z.optional(z.string().min(6)),
-  newPassword: z.optional(z.string().min(6)),
-})
-  .refine((data) => {
-    if (data.password && !data.newPassword) {
-      return false;
-    }
-
-    return true;
-  }, {
-    message: "New password is required!",
-    path: ["newPassword"]
+export const UserSchema = z
+  .object({
+    name: z.optional(z.string()),
+    isTwoFactorEnabled: z.optional(z.boolean()),
+    gender: z.enum([Gender.Male, Gender.Female]),
+    role: z.enum([UserRole.ADMIN, UserRole.USER]),
+    email: z.optional(z.string().email()),
+    phone: z.optional(z.string()),
+    password: z.optional(z.string().min(6)),
+    newPassword: z.optional(z.string().min(6)),
   })
-  .refine((data) => {
-    if (data.newPassword && !data.password) {
-      return false;
+  .refine(
+    (data) => {
+      if (data.password && !data.newPassword) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message: "New password is required!",
+      path: ["newPassword"],
     }
-
-    return true;
-  }, {
-    message: "Password is required!",
-    path: ["password"]
-  })
+  )
+  .refine(
+    (data) => {
+      if (data.newPassword && !data.password) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message: "Password is required!",
+      path: ["password"],
+    }
+  );
 
 export const NewPasswordSchema = z.object({
   password: z.string().min(6, {
@@ -63,3 +70,9 @@ export const RegisterSchema = z.object({
     message: "Name is required",
   }),
 });
+
+export type IUserSchema = z.infer<typeof UserSchema>;
+export type INewPasswordSchema = z.infer<typeof NewPasswordSchema>;
+export type IResetSchema = z.infer<typeof ResetSchema>;
+export type ILoginSchema = z.infer<typeof LoginSchema>;
+export type IRegisterSchema = z.infer<typeof RegisterSchema>;

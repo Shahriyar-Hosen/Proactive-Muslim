@@ -1,17 +1,16 @@
 "use server";
 
 import bcrypt from "bcryptjs";
-import * as z from "zod";
 
 import { update } from "@/auth";
 import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { sendVerificationEmail } from "@/lib/mail";
-import { SettingsSchema } from "@/lib/schemas";
+import { IUserSchema } from "@/lib/schemas";
 import { generateVerificationToken } from "@/lib/tokens";
 import { getUserByEmail, getUserById } from "@/server/data/user";
 
-export const settings = async (values: z.infer<typeof SettingsSchema>) => {
+export const userProfile = async (values: IUserSchema) => {
   const user = await currentUser();
 
   if (!user) {
@@ -26,9 +25,6 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
 
   if (user.isOAuth) {
     values.email = undefined;
-    values.password = undefined;
-    values.newPassword = undefined;
-    values.isTwoFactorEnabled = undefined;
   }
 
   if (values.email && values.email !== user.email) {
@@ -73,10 +69,11 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
     user: {
       name: updatedUser.name,
       email: updatedUser.email,
-      isTwoFactorEnabled: updatedUser.isTwoFactorEnabled,
       role: updatedUser.role,
+      gender: updatedUser.gender || undefined,
+      isTwoFactorEnabled: updatedUser.isTwoFactorEnabled,
     },
   });
 
-  return { success: "Settings Updated!" };
+  return { success: "Profile Updated!" };
 };

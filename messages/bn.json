@@ -8,7 +8,8 @@
   },
   "LocaleSwitcher": {
     "label": "ভাষা পরিবর্তন",
-    "locale": "{locale, select, bn {🇧🇩 বাংলা} en {🇺🇸 English} other {Unknown}}"
+    "locale": "{locale, select, bn {/bd-flag.png} en {/en-flag.webp} other {Unknown}}",
+    "language": "{locale, select, bn {বাংলা} en {English} other {Unknown}}"
   },
   "LocaleLayout": {
     "title": "প্রোএক্টিভ মুসলিম",

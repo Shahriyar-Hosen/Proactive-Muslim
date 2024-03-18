@@ -3,7 +3,7 @@
 import { toast } from "sonner";
 
 import { RoleGate } from "@/components/auth/role-gate";
-import { FormSuccess } from "@/components/form-success";
+import { FormSuccess } from "@/components/form/form-success";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { admin } from "@/server/actions/admin";

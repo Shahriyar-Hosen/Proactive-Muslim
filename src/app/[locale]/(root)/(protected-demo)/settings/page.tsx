@@ -6,8 +6,8 @@ import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { FormError } from "@/components/form-error";
-import { FormSuccess } from "@/components/form-success";
+import { FormError } from "@/components/form/form-error";
+import { FormSuccess } from "@/components/form/form-success";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
@@ -29,8 +29,8 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { SettingsSchema } from "@/lib/schemas";
-import { settings } from "@/server/actions/settings";
+import { UserSchema } from "@/lib/schemas";
+import { userProfile } from "@/server/actions/user-profile";
 import { UserRole } from "@prisma/client";
 
 const SettingsPage = () => {
@@ -41,8 +41,8 @@ const SettingsPage = () => {
   const { update } = useSession();
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof SettingsSchema>>({
-    resolver: zodResolver(SettingsSchema),
+  const form = useForm<z.infer<typeof UserSchema>>({
+    resolver: zodResolver(UserSchema),
     defaultValues: {
       password: undefined,
       newPassword: undefined,
@@ -53,9 +53,9 @@ const SettingsPage = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof SettingsSchema>) => {
+  const onSubmit = (values: z.infer<typeof UserSchema>) => {
     startTransition(() => {
-      settings(values)
+      userProfile(values)
         .then((data) => {
           if (data.error) {
             setError(data.error);

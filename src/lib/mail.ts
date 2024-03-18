@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import { createTransport } from "nodemailer";
 import {
   compile2FATemplate,
   compileEmailVerificationTemplate,
@@ -12,7 +12,7 @@ const defaultFrom = `Proactive Muslim <${smtpEmail}>`;
 
 type ISendMail = { to: string; subject: string; body: string };
 export const sendMail = async ({ to, subject, body }: ISendMail) => {
-  const transport = await nodemailer.createTransport({
+  const transport = await createTransport({
     service: "gmail",
     auth: {
       user: smtpEmail,

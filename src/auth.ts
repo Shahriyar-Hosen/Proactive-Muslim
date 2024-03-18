@@ -1,5 +1,5 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { UserRole } from "@prisma/client";
+import { Gender, UserRole } from "@prisma/client";
 import NextAuth from "next-auth";
 
 import authConfig from "@/auth.config";
@@ -57,8 +57,14 @@ export const {
         session.user.id = token.sub;
       }
 
+      if (token.gender && session.user) {
+        session.user.gender = token.gender as Gender;
+      }
       if (token.role && session.user) {
         session.user.role = token.role as UserRole;
+      }
+      if (token.phone && session.user) {
+        session.user.phone = token.phone as string;
       }
 
       if (session.user) {
@@ -85,6 +91,8 @@ export const {
       token.isOAuth = !!existingAccount;
       token.name = existingUser.name;
       token.email = existingUser.email;
+      token.phone = existingUser.phone;
+      token.gender = existingUser.gender;
       token.role = existingUser.role;
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
 

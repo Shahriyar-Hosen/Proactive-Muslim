@@ -1,51 +1,84 @@
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import { ExtendedUser } from "@/next-auth";
+import Link from "next/link";
+import { FC } from "react";
+import { Button } from "./ui/button";
 
 interface UserInfoProps {
   user?: ExtendedUser;
   label: string;
 }
 
-export const UserInfo = ({ user, label }: UserInfoProps) => {
+const InfoBox: FC<IChildren> = ({ children }) => (
+  <div className="flex flex-row items-center justify-between rounded-lg border border-slate-600 p-3 shadow-sm">
+    {children}
+  </div>
+);
+const Label: FC<IChildren> = ({ children }) => (
+  <p className="text-sm font-medium">{children}</p>
+);
+type ITruncate = { label?: string | null };
+const Truncate: FC<ITruncate> = ({ label }) => (
+  <p
+    className="truncate text-xs max-w-[180px] font-mono p-1 px-2 bg-slate-800 rounded-md"
+    title={label || ""}
+  >
+    {label}
+  </p>
+);
+
+export const UserInfo: FC<UserInfoProps> = ({ user, label }) => {
   return (
-    <Card className="w-[600px] shadow-md">
+    <Card className="w-full mt-5 max-w-screen-lg mx-auto bg-slate-900/70 text-white border-slate-600 relative shadow-md">
       <CardHeader>
         <p className="text-2xl font-semibold text-center">{label}</p>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-          <p className="text-sm font-medium">ID</p>
-          <p className="truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">
-            {user?.id}
-          </p>
-        </div>
-        <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-          <p className="text-sm font-medium">Name</p>
-          <p className="truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">
-            {user?.name}
-          </p>
-        </div>
-        <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-          <p className="text-sm font-medium">Email</p>
-          <p className="truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">
-            {user?.email}
-          </p>
-        </div>
-        <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-          <p className="text-sm font-medium">Role</p>
-          <p className="truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">
-            {user?.role}
-          </p>
-        </div>
+        <InfoBox>
+          <Label>Name</Label>
+          <Truncate label={user?.name} />
+        </InfoBox>
+        <InfoBox>
+          <Label>Email</Label>
+          <Truncate label={user?.email} />
+        </InfoBox>
+        <InfoBox>
+          <Label>Phone</Label>
+          <Truncate label={user?.phone} />
+        </InfoBox>
+        <InfoBox>
+          <Label>Gender</Label>
+          <Truncate label={user?.gender} />
+        </InfoBox>
+        <InfoBox>
+          <Label>Role</Label>
+          <Truncate label={user?.role} />
+        </InfoBox>
 
-        <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-          <p className="text-sm font-medium">Two Factor Authentication</p>
-          <Badge variant={user?.isTwoFactorEnabled ? "success" : "destructive"}>
+        <InfoBox>
+          <Label>Two Factor Authentication</Label>
+          <Badge
+            variant="destructive"
+            className={cn(user?.isTwoFactorEnabled && "bg-green-600")}
+          >
             {user?.isTwoFactorEnabled ? "ON" : "OFF"}
           </Badge>
-        </div>
+        </InfoBox>
       </CardContent>
+      <CardFooter>
+        <Link href="/user/profile/update">
+          <Button className="bg-cyan-400 hover:bg-cyan-500">
+            Edit Profile Information
+          </Button>
+        </Link>
+      </CardFooter>
     </Card>
   );
 };

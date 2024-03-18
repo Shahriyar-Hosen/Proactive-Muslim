@@ -4,17 +4,18 @@ import { useRouter } from "next/navigation";
 
 import { LoginForm } from "@/components/auth/login-form";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { FC } from "react";
 
 interface LoginButtonProps extends IChildren {
   mode?: "modal" | "redirect";
   asChild?: boolean;
 }
 
-export const LoginButton = ({
+export const LoginButton: FC<LoginButtonProps> = ({
   children,
   mode = "redirect",
   asChild,
-}: LoginButtonProps) => {
+}) => {
   const router = useRouter();
 
   const onClick = () => {
