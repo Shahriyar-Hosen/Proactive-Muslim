@@ -6,7 +6,7 @@ import * as z from "zod";
 import { signIn } from "@/auth";
 import { db } from "@/lib/db";
 import { sendTwoFactorTokenEmail, sendVerificationEmail } from "@/lib/mail";
-import { LoginSchema } from "@/lib/schemas";
+import { ILoginSchema, LoginSchema } from "@/lib/schemas";
 import {
   generateTwoFactorToken,
   generateVerificationToken,
@@ -17,7 +17,7 @@ import { getTwoFactorTokenByEmail } from "@/server/data/two-factor-token";
 import { getUserByEmail } from "@/server/data/user";
 
 export const login = async (
-  values: z.infer<typeof LoginSchema>,
+  values: ILoginSchema,
   callbackUrl?: string | null
 ) => {
   const validatedFields = LoginSchema.safeParse(values);

@@ -1,15 +1,14 @@
 "use server";
 
 import bcrypt from "bcryptjs";
-import * as z from "zod";
 
 import { db } from "@/lib/db";
-import { NewPasswordSchema } from "@/lib/schemas";
+import { INewPasswordSchema, NewPasswordSchema } from "@/lib/schemas";
 import { getPasswordResetTokenByToken } from "@/server/data/password-reset-token";
 import { getUserByEmail } from "@/server/data/user";
 
 export const newPassword = async (
-  values: z.infer<typeof NewPasswordSchema>,
+  values: INewPasswordSchema,
   token?: string | null
 ) => {
   if (!token) {

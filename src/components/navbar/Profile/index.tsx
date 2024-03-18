@@ -1,142 +1,24 @@
-import {
-  Cloud,
-  Github,
-  LifeBuoy,
-  LogOut,
-  Mail,
-  MessageSquare,
-  Plus,
-  PlusCircle,
-  Settings,
-  User,
-  UserPlus,
-} from "lucide-react";
+import { FC } from "react";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { cn } from "@/lib/utils";
-import { FC } from "react";
+import { group1, group2, group3 } from "./data";
+import { DropdownItem } from "./dropdown-item";
 
-interface IDropdownItem {
-  title: string;
-  onclick: () => void;
-  icon: JSX.Element;
-  label?: string;
-  disabled?: boolean;
-  subMenu?: IDropdownItem[];
-}
-
-const itemStyles =
-  "focus:bg-slate-900 data-[state=open]:bg-slate-900 focus:text-slate-300 focus:cursor-pointer";
 const menuBgStyles = "bg-slate-800 border-slate-900 text-slate-300";
-
-const group1: IDropdownItem[] = [
-  {
-    title: "Profile",
-    icon: <User className="mr-2 h-4 w-4" />,
-    onclick: () => {},
-    label: "⇧⌘P",
-  },
-  {
-    title: "Settings",
-    onclick: () => {},
-    icon: <Settings className="mr-2 h-4 w-4" />,
-    label: "⌘S",
-  },
-];
-const group2: IDropdownItem[] = [
-  {
-    title: "Personal practice",
-    icon: <User className="mr-2 h-4 w-4" />,
-    onclick: () => {},
-  },
-  {
-    title: "Invite users",
-    icon: <UserPlus className="mr-2 h-4 w-4" />,
-    onclick: () => {},
-    subMenu: [
-      {
-        title: "Email",
-        icon: <Mail className="mr-2 h-4 w-4" />,
-        onclick: () => {},
-      },
-      {
-        title: "Message",
-        icon: <MessageSquare className="mr-2 h-4 w-4" />,
-        onclick: () => {},
-      },
-      {
-        title: "More...",
-        icon: <PlusCircle className="mr-2 h-4 w-4" />,
-        onclick: () => {},
-      },
-    ],
-  },
-  {
-    title: "New Feature",
-    onclick: () => {},
-    icon: <Plus className="mr-2 h-4 w-4" />,
-    label: "⌘+T",
-  },
-];
-
-const group3: IDropdownItem[] = [
-  {
-    title: "GitHub",
-    icon: <Github className="mr-2 h-4 w-4" />,
-    onclick: () => {},
-  },
-  {
-    title: "Support",
-    onclick: () => {},
-    icon: <LifeBuoy className="mr-2 h-4 w-4" />,
-  },
-  {
-    title: "API",
-    onclick: () => {},
-    icon: <Cloud className="mr-2 h-4 w-4" />,
-    disabled: true,
-  },
-  {
-    title: "Log out",
-    onclick: () => {},
-    icon: <LogOut className="mr-2 h-4 w-4" />,
-    label: "⇧⌘Q",
-  },
-];
-
-const DropdownItem: FC<IDropdownItem> = ({
-  title,
-  label,
-  onclick,
-  icon,
-  disabled,
-}) => (
-  <DropdownMenuItem
-    className={itemStyles}
-    onClick={onclick}
-    disabled={disabled}
-  >
-    {icon}
-    <span>{title}</span>
-    {label && <DropdownMenuShortcut>{label}</DropdownMenuShortcut>}
-  </DropdownMenuItem>
-);
 
 export const Profile: FC = () => {
   const user = useCurrentUser();
@@ -146,7 +28,9 @@ export const Profile: FC = () => {
       <DropdownMenuTrigger asChild>
         <Avatar>
           <AvatarImage src={user?.image || ""} alt="@proactive-muslim" />
-          <AvatarFallback>AS</AvatarFallback>
+          <AvatarFallback className="bg-cyan-500 text-slate-800 font-medium">
+            AS
+          </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className={cn(menuBgStyles, "w-56")}>
@@ -162,7 +46,7 @@ export const Profile: FC = () => {
           {group2.map(({ title, icon, subMenu, ...others }, i) =>
             subMenu ? (
               <DropdownMenuSub key={i}>
-                <DropdownMenuSubTrigger className={itemStyles}>
+                <DropdownMenuSubTrigger className="focus:bg-slate-900 data-[state=open]:bg-slate-900 focus:text-slate-300 focus:cursor-pointer">
                   {icon}
                   <span>{title}</span>
                 </DropdownMenuSubTrigger>
