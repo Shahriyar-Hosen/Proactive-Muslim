@@ -1,14 +1,14 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 
 type Props = {
   error: Error;
   reset(): void;
 };
 
-const Error = ({ error, reset }: Props) => {
+const Error: FC<Props> = ({ error, reset }) => {
   const t = useTranslations("Error");
 
   useEffect(() => {
@@ -17,12 +17,12 @@ const Error = ({ error, reset }: Props) => {
 
   return (
     <main>
-      <div>
+      <div className="flex justify-center items-center w-full h-screen">
         {t.rich("description", {
           p: (chunks) => <p className="mt-4">{chunks}</p>,
           retry: (chunks) => (
             <button
-              className="text-white underline underline-offset-2"
+              className="text-destructive-foreground underline underline-offset-2"
               onClick={reset}
               type="button"
             >
