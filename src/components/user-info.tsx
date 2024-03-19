@@ -74,7 +74,7 @@ export const UserInfo: FC<UserInfoProps> = ({ user, label }) => {
       </CardContent>
       <CardFooter>
         <Link href="/user/profile/update">
-          <Button className="bg-cyan-400 hover:bg-cyan-500">
+          <Button className="bg-cyan-400/75 hover:bg-cyan-400/90">
             Edit Profile Information
           </Button>
         </Link>
