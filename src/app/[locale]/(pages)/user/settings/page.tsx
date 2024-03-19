@@ -1,9 +1,8 @@
+import { ComingSoon } from "@/components/common";
+import { Maintenance } from "@/components/common/maintenance";
+
 const SettingsPage = () => {
-  return (
-    <div>
-      <h1>Settings page</h1>
-    </div>
-  );
+  return <ComingSoon />;
 };
 
 export default SettingsPage;
