@@ -1,0 +1,13 @@
+{
+  "TransLations": {
+    "prefix": ["t", "tl", "tla", "tlng", "tlang"],
+    "body": ["{t(\"$0\")}"],
+    "description": "{t('title')}"
+  },
+  "useTranslations": {
+    "scope": "",
+    "prefix": ["ut", "utlng", "utlang"],
+    "body": ["const t = useTranslations$1(\"$2\");$3"],
+    "description": ""
+  }
+}

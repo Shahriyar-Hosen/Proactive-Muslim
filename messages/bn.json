@@ -6,6 +6,13 @@
     "title": "next-intl example",
     "description": "This is a basic example that demonstrates the usage of <code>next-intl</code> with the Next.js App Router. Try changing the locale in the top right corner and see how the content changes."
   },
+  "Extra-Page": {
+    "maintenance-title": "সাইট রক্ষণাবেক্ষণ কাজ চলছে",
+    "coming-soon-title": "শীঘ্রই আসছে",
+    "des": "আমরা ব্যবহারকারীর অভিজ্ঞতা উন্নত করার জন্য কঠোর পরিশ্রম করছি। আমাদের সাথে থাকুন!",
+    "btn1": "যোগাযোগ করুন",
+    "btn2": "পুনরায় লোড করুন"
+  },
   "LocaleSwitcher": {
     "label": "ভাষা পরিবর্তন",
     "locale": "{locale, select, bn {/bd-flag.png} en {/en-flag.webp} other {Unknown}}",
@@ -22,7 +29,8 @@
   },
   "Error": {
     "title": "কিছু ভুল হয়েছে!",
-    "description": "<p>আমরা দুর্ভাগ্যবশত একটি ত্রুটির সম্মুখীন হয়েছি.</p><p>আপনি যে পৃষ্ঠাটি পরিদর্শন করছেন সেটি <retry>পুনরায় লোড</retry> করার চেষ্টা করতে পারেন৷</p>"
+    "description": "আমরা দুর্ভাগ্যবশত একটি ত্রুটির সম্মুখীন হয়েছি. আপনি যে পৃষ্ঠাটি পরিদর্শন করছেন সেটি পুনরায় লোড করার চেষ্টা করতে পারেন৷",
+    "buttonText": "পুনরায় লোড"
   },
   "PathnamesPage": {
     "title": "Pathnames",

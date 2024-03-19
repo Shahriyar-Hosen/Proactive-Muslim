@@ -6,6 +6,13 @@
     "title": "Home Page!",
     "description": "This is a basic example that demonstrates the usage of <code>next-intl</code> with the Next.js App Router. Try changing the locale in the top right corner and see how the content changes."
   },
+  "Extra-Page": {
+    "maintenance-title": "Site is under maintenance",
+    "coming-soon-title": "Coming Soon",
+    "des": "We're working hard to improve the user experience. Stay tuned!",
+    "btn1": "Contact Us",
+    "btn2": "Reload"
+  },
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, bn {/bd-flag.png} en {/en-flag.webp} other {Unknown}}",
@@ -22,7 +29,8 @@
   },
   "Error": {
     "title": "Something went wrong!",
-    "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>"
+    "description": "We've unfortunately encountered an error. You can try to reload the page you were visiting.",
+    "buttonText": "Reload"
   },
   "PathnamesPage": {
     "title": "Pathnames",
