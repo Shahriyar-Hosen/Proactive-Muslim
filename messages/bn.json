@@ -13,6 +13,17 @@
     "btn1": "যোগাযোগ করুন",
     "btn2": "পুনরায় লোড করুন"
   },
+  "Auth": {
+    "Register": {
+      "headerLabel": "অ্যাকাউন্ট তৈরি করুন",
+      "backButtonLabel": "ইতিমধ্যে একটি একাউন্ট আছে?",
+      "name": "নাম",
+      "name-placeholder": "সালমান আহমেদ",
+      "email": "ইমেল",
+      "password": "পাসওয়ার্ড",
+      "button": "অ্যাকাউন্ট তৈরি করুন"
+    }
+  },
   "LocaleSwitcher": {
     "label": "ভাষা পরিবর্তন",
     "locale": "{locale, select, bn {/bd-flag.png} en {/en-flag.webp} other {Unknown}}",

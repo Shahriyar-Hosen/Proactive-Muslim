@@ -1,7 +1,7 @@
 {
   "TransLations": {
     "prefix": ["t", "tl", "tla", "tlng", "tlang"],
-    "body": ["{t(\"$0\")}"],
+    "body": ["{t(\"$1\")}$2"],
     "description": "{t('title')}"
   },
   "useTranslations": {

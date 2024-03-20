@@ -13,6 +13,17 @@
     "btn1": "Contact Us",
     "btn2": "Reload"
   },
+  "Auth": {
+    "Register": {
+      "headerLabel": "Create an account",
+      "backButtonLabel": "Already have an account?",
+      "name": "Name",
+      "name-placeholder": "Salman Ahamad",
+      "email": "Email",
+      "password": "Password",
+      "button": "Create an account"
+    }
+  },
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, bn {/bd-flag.png} en {/en-flag.webp} other {Unknown}}",
