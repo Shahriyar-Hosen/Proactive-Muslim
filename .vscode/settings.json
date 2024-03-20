@@ -1,5 +1,10 @@
 {
     "cSpell.words": [
         "Sunnah"
-    ]
+    ],
+    "i18n-ally.localesPaths": [
+        "messages",
+        "../messages"
+    ],
+    "i18n-ally.keystyle": "nested"
 }
