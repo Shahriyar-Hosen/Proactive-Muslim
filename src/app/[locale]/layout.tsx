@@ -1,18 +1,19 @@
-import { ReduxProviders } from "@/redux/Providers";
-import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { Inter } from "next/font/google";
-import { FC, PropsWithChildren } from "react";
 
+import { auth } from "@/auth";
+import Providers from "@/components/providers";
+import { Toaster } from "@/components/ui/sonner";
 import { locales } from "@/config";
-import { Metadata } from "next";
+import { FC } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-interface ILocaleLayoutProps extends PropsWithChildren, ParamsLocale {}
+interface ILocaleLayoutProps extends IChildren, ParamsLocale {}
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -29,29 +30,33 @@ export const generateMetadata = async ({
   };
 };
 
-const LocaleLayout: FC<Readonly<ILocaleLayoutProps>> = ({
+const LocaleLayout: FC<Readonly<ILocaleLayoutProps>> = async ({
   children,
   params: { locale },
 }) => {
   // Enable static rendering
   unstable_setRequestLocale(locale);
+  const session = await auth();
 
   return (
-    <ClerkProvider
-      appearance={{
-        baseTheme: dark,
-      }}
-    >
+    <SessionProvider session={session}>
       <html lang={locale} suppressHydrationWarning>
         <body className={inter.className}>
-          <ReduxProviders>
-            {children}
-            <Analytics />
-            <SpeedInsights />
-          </ReduxProviders>
+          <Providers locale={locale}>
+            <div className="pb-20 bg-[#020817] text-primary-foreground relative bg-fixed min-h-screen">
+              {/* Background Shadow effect */}
+              <div className="dark:opacity-40 fixed right-[28%] top-0 h-[150px] w-[200px] rotate-12 rounded-3xl bg-gradient-to-l from-blue-600 to-sky-400 opacity-30 blur-3xl filter lg:top-44 lg:right-[10%] lg:h-72 lg:w-[350px] xl:h-80 xl:w-[500px]" />
+              <div className="fixed bottom-44 -left-64 h-[150px] w-[900px] -rotate-45 rounded-3xl bg-gradient-to-r from-violet-600 to-indigo-800 opacity-40 blur-3xl filter lg:bottom-24 lg:left-[10%] lg:h-28 lg:w-[250px] lg:-rotate-12 lg:opacity-20 xl:h-52 xl:w-[400px]" />
+
+              {children}
+              <Toaster />
+              <Analytics />
+              <SpeedInsights />
+            </div>
+          </Providers>
         </body>
       </html>
-    </ClerkProvider>
+    </SessionProvider>
   );
 };
 

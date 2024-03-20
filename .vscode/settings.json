@@ -3,6 +3,13 @@
         "Sunnah"
     ],
     "i18n-ally.localesPaths": [
+<<<<<<< HEAD
         "messages"
     ]
+=======
+        "messages",
+        "../messages"
+    ],
+    "i18n-ally.keystyle": "nested"
+>>>>>>> b45554c22b5948b7257a14ab519e5c77a0c6bc28
 }

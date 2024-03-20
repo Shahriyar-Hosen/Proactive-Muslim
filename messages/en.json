@@ -8,9 +8,96 @@
     "title": "Home Page!",
     "description": "This is a basic example that demonstrates the usage of <code>next-intl</code> with the Next.js App Router. Try changing the locale in the top right corner and see how the content changes."
   },
+  "ProfilePage": {
+    "page-label": "💻 Profile Information",
+    "two-factor-authentication": "Two Factor Authentication",
+    "edit-button": "Edit Profile Information",
+    "user": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "gender": "Gender",
+      "role": "Role",
+      "on": "ON",
+      "off": "OFF"
+    },
+    "update": {
+      "page-label": "Update Profile",
+      "pre-page": "Profile",
+      "name-placeholder": "Salman Ahamad",
+      "phone-placeholder": "01511222333",
+      "gender": {
+        "placeholder": "Select a gender",
+        "male": "Male",
+        "female": "Female"
+      },
+      "role": {
+        "placeholder": "Select a role",
+        "admin": "Admin",
+        "user": "User"
+      },
+      "password": {
+        "update-password": "Update Password",
+        "title": "Set Password",
+        "des": "If you want to change password then set new password from here",
+        "old": "Old Password",
+        "new": "New Password",
+        "enable-2fa": "Enable two factor authentication for your account",
+        "button": "Save"
+      }
+    }
+  },
+  "Extra-Page": {
+    "maintenance-title": "Site is under maintenance",
+    "coming-soon-title": "Coming Soon",
+    "des": "We're working hard to improve the user experience. Stay tuned!",
+    "btn1": "Contact Us",
+    "btn2": "Reload"
+  },
+  "Auth": {
+    "email": "Email",
+    "password": "Password",
+    "back-to-login": "Back to login",
+    "Register": {
+      "headerLabel": "Create an account",
+      "backButtonLabel": "Already have an account?",
+      "name": "Name",
+      "name-placeholder": "Salman Ahamad",
+      "button": "Create an account"
+    },
+    "Login": {
+      "headerLabel": "Welcome back",
+      "backButtonLabel": "Don't have an account?",
+      "forgot-password": "Forgot password?",
+      "button": "Login"
+    },
+    "2FA": {
+      "2fa": "Two Factor Code",
+      "2fa-placeholder": "123456",
+      "2fa-button": "Confirm"
+    },
+    "Reset": {
+      "headerLabel": "Forgot your password?",
+      "button": "Send reset email"
+    },
+    "NewVerification": {
+      "headerLabel": "Confirming your verification"
+    },
+    "NewPassword": {
+      "headerLabel": "Enter a new password",
+      "button": "Reset password"
+    },
+    "ErrorCard": {
+      "headerLabel": "Oops! Something went wrong!"
+    },
+    "Error": {
+      "Email already in use": "Email already in use with different provider!"
+    }
+  },
   "LocaleSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, bn {🇧🇩 বাংলা} en {🇺🇸 English} other {Unknown}}"
+    "locale": "{locale, select, bn {/bd-flag.png} en {/en-flag.webp} other {Unknown}}",
+    "language": "{locale, select, bn {বাংলা} en {English} other {Unknown}}"
   },
   "LocaleLayout": {
     "title": "Proactive Muslim",
@@ -18,11 +105,13 @@
   },
   "NotFoundPage": {
     "title": "Page not found",
-    "description": "Please double-check the browser address bar or use the navigation to go to a known page."
+    "description": "Sorry, the page you are looking for could not be found. Please double-check the browser address bar or use the navigation to go to a known page.",
+    "buttonText": "Return Home"
   },
   "Error": {
     "title": "Something went wrong!",
-    "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>"
+    "description": "We've unfortunately encountered an error. You can try to reload the page you were visiting.",
+    "buttonText": "Reload"
   },
   "PathnamesPage": {
     "title": "Pathnames",
