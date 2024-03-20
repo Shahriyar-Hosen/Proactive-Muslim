@@ -49,7 +49,7 @@ export const ResetForm = () => {
   return (
     <CardWrapper
       headerLabel={t("Reset.headerLabel")}
-      backButtonLabel={t("Reset.backButtonLabel")}
+      backButtonLabel={t("back-to-login")}
       backButtonHref="/auth/login"
     >
       <Form {...form}>

@@ -8,10 +8,12 @@ import { CardWrapper } from "@/components/auth/card-wrapper";
 import { FormError } from "@/components/form/form-error";
 import { FormSuccess } from "@/components/form/form-success";
 import { newVerification } from "@/server/actions/new-verification";
+import { useTranslations } from "next-intl";
 
 export const NewVerificationForm = () => {
   const [error, setError] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>();
+  const t = useTranslations("Auth");
 
   const searchParams = useSearchParams();
 
@@ -41,8 +43,8 @@ export const NewVerificationForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Confirming your verification"
-      backButtonLabel="Back to login"
+      headerLabel={t("NewVerification.headerLabel")}
+      backButtonLabel={t("back-to-login")}
       backButtonHref="/auth/login"
     >
       <div className="flex items-center w-full justify-center">

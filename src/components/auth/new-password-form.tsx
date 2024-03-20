@@ -20,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { INewPasswordSchema, NewPasswordSchema } from "@/lib/schemas";
 import { newPassword } from "@/server/actions/new-password";
+import { useTranslations } from "next-intl";
 
 export const NewPasswordForm = () => {
   const searchParams = useSearchParams();
@@ -28,6 +29,8 @@ export const NewPasswordForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
+
+  const t = useTranslations("Auth");
 
   const form = useForm<INewPasswordSchema>({
     resolver: zodResolver(NewPasswordSchema),
@@ -50,8 +53,8 @@ export const NewPasswordForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Enter a new password"
-      backButtonLabel="Back to login"
+      headerLabel={t("NewPassword.headerLabel")}
+      backButtonLabel={t("back-to-login")}
       backButtonHref="/auth/login"
     >
       <Form {...form}>
@@ -62,7 +65,7 @@ export const NewPasswordForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>{t("password")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -83,7 +86,7 @@ export const NewPasswordForm = () => {
             type="submit"
             className="w-full bg-cyan-500/60 hover:bg-cyan-400/70"
           >
-            Reset password
+            {t("NewPassword.button")}
           </Button>
         </form>
       </Form>

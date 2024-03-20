@@ -16,6 +16,7 @@
   "Auth": {
     "email": "ইমেল",
     "password": "পাসওয়ার্ড",
+    "back-to-login": "লগইন করতে যান",
     "Register": {
       "headerLabel": "অ্যাকাউন্ট তৈরি করুন",
       "backButtonLabel": "ইতিমধ্যে একটি একাউন্ট আছে?",
@@ -36,8 +37,17 @@
     },
     "Reset": {
       "headerLabel": "আপনি কি পাসওয়ার্ড ভুলে গেছেন?",
-      "backButtonLabel": "লগইন করতে যান",
       "button": "রিসেট ইমেল পাঠান"
+    },
+    "NewVerification": {
+      "headerLabel": "আপনার যাচাইকরণ নিশ্চিত করা হচ্ছে"
+    },
+    "NewPassword": {
+      "headerLabel": "একটি নতুন পাসওয়ার্ড লিখুন",
+      "button": "পাসওয়ার্ড রিসেট করুন"
+    },
+    "ErrorCard": {
+      "headerLabel": "উফ! কিছু ভুল হয়েছে!"
     },
     "Error": {
       "Email already in use": "ইমেল ইতিমধ্যে বিভিন্ন প্রদানকারীর সাথে ব্যবহার করা হচ্ছে!"
