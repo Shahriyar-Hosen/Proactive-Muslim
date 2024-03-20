@@ -25,7 +25,7 @@ export const RegisterForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
-  const t = useTranslations("Auth.Register");
+  const t = useTranslations("Auth");
 
   const form = useForm<IRegisterSchema>({
     resolver: zodResolver(RegisterSchema),
@@ -50,8 +50,8 @@ export const RegisterForm = () => {
 
   return (
     <CardWrapper
-      headerLabel={t("headerLabel")}
-      backButtonLabel={t("backButtonLabel")}
+      headerLabel={t("Register.headerLabel")}
+      backButtonLabel={t("Register.backButtonLabel")}
       backButtonHref="/auth/login"
       showSocial
     >
@@ -63,12 +63,12 @@ export const RegisterForm = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t("name")}</FormLabel>
+                  <FormLabel>{t("Register.name")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
                       disabled={isPending}
-                      placeholder={t("name-placeholder")}
+                      placeholder={t("Register.name-placeholder")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -119,7 +119,7 @@ export const RegisterForm = () => {
             type="submit"
             className="w-full bg-cyan-500/60 hover:bg-cyan-400/70"
           >
-            {t("button")}
+            {t("Register.button")}
           </Button>
         </form>
       </Form>

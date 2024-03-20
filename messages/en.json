@@ -14,14 +14,28 @@
     "btn2": "Reload"
   },
   "Auth": {
+    "email": "Email",
+    "password": "Password",
     "Register": {
       "headerLabel": "Create an account",
       "backButtonLabel": "Already have an account?",
       "name": "Name",
       "name-placeholder": "Salman Ahamad",
-      "email": "Email",
-      "password": "Password",
       "button": "Create an account"
+    },
+    "Login": {
+      "headerLabel": "Welcome back",
+      "backButtonLabel": "Don't have an account?",
+      "forgot-password": "Forgot password?",
+      "button": "Login"
+    },
+    "2FA": {
+      "2fa": "Two Factor Code",
+      "2fa-placeholder": "123456",
+      "2fa-button": "Confirm"
+    },
+    "Error": {
+      "Email already in use": "Email already in use with different provider!"
     }
   },
   "LocaleSwitcher": {

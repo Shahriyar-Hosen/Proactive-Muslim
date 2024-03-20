@@ -21,13 +21,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { ILoginSchema, LoginSchema } from "@/lib/schemas";
 import { login } from "@/server/actions/login";
+import { useTranslations } from "next-intl";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
+  const t = useTranslations("Auth");
+
   const callbackUrl = searchParams.get("callbackUrl");
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
-      ? "Email already in use with different provider!"
+      ? t("Error.Email already in use")
       : "";
 
   const [showTwoFactor, setShowTwoFactor] = useState(false);
@@ -70,8 +73,8 @@ export const LoginForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Welcome back"
-      backButtonLabel="Don't have an account?"
+      headerLabel={t("Login.headerLabel")}
+      backButtonLabel={t("Login.backButtonLabel")}
       backButtonHref="/auth/register"
       showSocial
     >
@@ -84,12 +87,12 @@ export const LoginForm = () => {
                 name="code"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Two Factor Code</FormLabel>
+                    <FormLabel>{t("2FA.2fa")}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         disabled={isPending}
-                        placeholder="123456"
+                        placeholder={t("2FA.2fa-placeholder")}
                       />
                     </FormControl>
                     <FormMessage />
@@ -104,12 +107,12 @@ export const LoginForm = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>{t("email")}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           disabled={isPending}
-                          placeholder="john.doe@example.com"
+                          placeholder="salman.ahamad@example.com"
                           type="email"
                         />
                       </FormControl>
@@ -122,7 +125,7 @@ export const LoginForm = () => {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Password</FormLabel>
+                      <FormLabel>{t("password")}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -137,7 +140,9 @@ export const LoginForm = () => {
                         asChild
                         className="px-0 font-normal"
                       >
-                        <Link href="/auth/reset">Forgot password?</Link>
+                        <Link href="/auth/reset">
+                          {t("Login.forgot-password")}
+                        </Link>
                       </Button>
                       <FormMessage />
                     </FormItem>
@@ -153,7 +158,7 @@ export const LoginForm = () => {
             type="submit"
             className="w-full bg-cyan-500/60 hover:bg-cyan-400/70"
           >
-            {showTwoFactor ? "Confirm" : "Login"}
+            {showTwoFactor ? t("2FA.2fa") : t("Login.button")}
           </Button>
         </form>
       </Form>

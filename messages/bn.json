@@ -14,14 +14,28 @@
     "btn2": "পুনরায় লোড করুন"
   },
   "Auth": {
+    "email": "ইমেল",
+    "password": "পাসওয়ার্ড",
     "Register": {
       "headerLabel": "অ্যাকাউন্ট তৈরি করুন",
       "backButtonLabel": "ইতিমধ্যে একটি একাউন্ট আছে?",
       "name": "নাম",
       "name-placeholder": "সালমান আহমেদ",
-      "email": "ইমেল",
-      "password": "পাসওয়ার্ড",
       "button": "অ্যাকাউন্ট তৈরি করুন"
+    },
+    "Login": {
+      "headerLabel": "ফিরে আসার জন্য স্বাগতম",
+      "backButtonLabel": "অ্যাকাউন্ট নেই?",
+      "forgot-password": "পাসওয়ার্ড ভুলে গেছেন?",
+      "button": "প্রবেশ করুন"
+    },
+    "2FA": {
+      "2fa": "দুই ফ্যাক্টর কোড",
+      "2fa-placeholder": "১২৩৪৫৬",
+      "2fa-button": "নিশ্চিত করুন"
+    },
+    "Error": {
+      "Email already in use": "ইমেল ইতিমধ্যে বিভিন্ন প্রদানকারীর সাথে ব্যবহার করা হচ্ছে!"
     }
   },
   "LocaleSwitcher": {
