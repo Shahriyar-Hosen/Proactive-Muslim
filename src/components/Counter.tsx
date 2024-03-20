@@ -2,9 +2,8 @@
 
 import { decrement, increment, incrementByAmount } from "@/redux/features";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { FC } from "react";
 
-export const Counter: FC = () => {
+export const Counter = () => {
   const count = useAppSelector((state) => state.counter.value);
   const dispatch = useAppDispatch();
   return (

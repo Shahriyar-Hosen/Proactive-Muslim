@@ -1,24 +1,77 @@
-import { localePrefix, locales, pathnames } from "@/config";
-import { authMiddleware } from "@clerk/nextjs";
-import createMiddleware from "next-intl/middleware";
+import NextAuth from "next-auth";
+import createIntlMiddleware from "next-intl/middleware";
 
-const intlMiddleware = createMiddleware({
+import authConfig from "@/auth.config";
+import {
+  DEFAULT_LOGIN_REDIRECT,
+  apiAuthPrefix,
+  authRoutes,
+  publicRoutes,
+} from "@/routes";
+
+import { localePrefix, locales, pathnames } from "@/config";
+
+const intlMiddleware = createIntlMiddleware({
   defaultLocale: "en",
   locales,
   pathnames,
   localePrefix,
 });
 
-export default authMiddleware({
-  beforeAuth: (req) => {
-    // Execute next-intl middleware before Clerk's auth middleware
-    return intlMiddleware(req);
-  },
+const { auth } = NextAuth(authConfig);
 
-  // Ensure that locale specific sign-in pages are public
-  publicRoutes: ["/", "/api/webhooks/clerk", "/:locale/sign-in"],
+export default auth((req): Response => {
+  const { nextUrl } = req;
+  const isLoggedIn = !!req.auth;
+
+  const publicPathnameRegex = RegExp(
+    `^(/(${locales.join("|")}))?(${publicRoutes
+      .flatMap((p) => (p === "/" ? ["", "/"] : p))
+      .join("|")})/?$`,
+    "i"
+  );
+  const authPathnameRegex = RegExp(
+    `^(/(${locales.join("|")}))?(${authRoutes
+      .flatMap((p) => (p === "/" ? ["", "/"] : p))
+      .join("|")})/?$`,
+    "i"
+  );
+
+  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+  const isPublicRoute = publicPathnameRegex.test(req.nextUrl.pathname);
+  const isAuthRoute = authPathnameRegex.test(req.nextUrl.pathname);
+
+  if (isApiAuthRoute) {
+    // return NextResponse.next();
+    return intlMiddleware(req);
+  }
+
+  if (isAuthRoute) {
+    if (isLoggedIn) {
+      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+      // return intlMiddleware(req);
+    }
+    // return NextResponse.next();
+    return intlMiddleware(req);
+  }
+
+  if (!isLoggedIn && !isPublicRoute) {
+    let callbackUrl = nextUrl.pathname;
+    if (nextUrl.search) {
+      callbackUrl += nextUrl.search;
+    }
+
+    const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+
+    return Response.redirect(
+      new URL(`/auth/login?callbackUrl=${encodedCallbackUrl}`, nextUrl)
+    );
+  }
+
+  return intlMiddleware(req);
 });
 
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  // Skip all paths that should not be internationalized
+  matcher: ["/((?!api|_next|.*\\..*).*)"],
 };

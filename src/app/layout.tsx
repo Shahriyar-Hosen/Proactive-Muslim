@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { FC, PropsWithChildren } from "react";
+import { FC } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 // Since we have a `not-found.tsx` page on the root, a layout file
 // is required, even if it's just passing children through.
-const RootLayout: FC<Readonly<PropsWithChildren>> = ({ children }) => {
+const RootLayout: FC<Readonly<IChildren>> = ({ children }) => {
   return children;
 };
 
