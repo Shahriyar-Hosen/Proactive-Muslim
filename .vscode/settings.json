@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
         "Sunnah"
+    ],
+    "i18n-ally.localesPaths": [
+        "messages"
     ]
 }
