@@ -9,5 +9,17 @@
     "prefix": ["ut", "utlng", "utlang"],
     "body": ["const t = useTranslations$1(\"$2\");$3"],
     "description": ""
+  },
+  "getTranslations": {
+    "scope": "",
+    "prefix": ["gt", "gtl", "gtlng", "gtlang"],
+    "body": ["const t = await getTranslations$1(\"$2\");$3"],
+    "description": "const t = await getTranslations(\"index\");"
+  },
+  "Only T Function": {
+    "scope": "",
+    "prefix": ["ot", "ont", "ontl", "otl", "otlng"],
+    "body": ["t(\"$1\")$2"],
+    "description": ""
   }
 }

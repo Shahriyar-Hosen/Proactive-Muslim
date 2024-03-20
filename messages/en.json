@@ -6,6 +6,20 @@
     "title": "Home Page!",
     "description": "This is a basic example that demonstrates the usage of <code>next-intl</code> with the Next.js App Router. Try changing the locale in the top right corner and see how the content changes."
   },
+  "ProfilePage": {
+    "page-label": "💻 Profile Information",
+    "user": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "gender": "Gender",
+      "role": "Role",
+      "two-factor-authentication": "Two Factor Authentication",
+      "on": "ON",
+      "off": "OFF",
+      "edit-button": "Edit Profile Information"
+    }
+  },
   "Extra-Page": {
     "maintenance-title": "Site is under maintenance",
     "coming-soon-title": "Coming Soon",

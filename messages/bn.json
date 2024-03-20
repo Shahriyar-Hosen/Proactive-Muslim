@@ -6,6 +6,21 @@
     "title": "next-intl example",
     "description": "This is a basic example that demonstrates the usage of <code>next-intl</code> with the Next.js App Router. Try changing the locale in the top right corner and see how the content changes."
   },
+  "ProfilePage": {
+    "page-label": "💻 প্রোফাইল ইনফরমেশন",
+
+    "user": {
+      "name": "নাম",
+      "email": "ইমেল",
+      "phone": "ফোন",
+      "gender": "লিঙ্গ",
+      "role": "ভূমিকা",
+      "two-factor-authentication": "দুই ফ্যাক্টর অথেন্টিকেশন",
+      "on": "চালু",
+      "off": "বন্ধ",
+      "edit-button": "প্রোফাইল তথ্য এডিট করুন"
+    }
+  },
   "Extra-Page": {
     "maintenance-title": "সাইট রক্ষণাবেক্ষণ কাজ চলছে",
     "coming-soon-title": "শীঘ্রই আসছে",
