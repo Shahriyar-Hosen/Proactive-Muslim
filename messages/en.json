@@ -8,16 +8,41 @@
   },
   "ProfilePage": {
     "page-label": "💻 Profile Information",
+    "two-factor-authentication": "Two Factor Authentication",
+    "edit-button": "Edit Profile Information",
     "user": {
       "name": "Name",
       "email": "Email",
       "phone": "Phone",
       "gender": "Gender",
       "role": "Role",
-      "two-factor-authentication": "Two Factor Authentication",
       "on": "ON",
-      "off": "OFF",
-      "edit-button": "Edit Profile Information"
+      "off": "OFF"
+    },
+    "update": {
+      "page-label": "Update Profile",
+      "pre-page": "Profile",
+      "name-placeholder": "Salman Ahamad",
+      "phone-placeholder": "01511222333",
+      "gender": {
+        "placeholder": "Select a gender",
+        "male": "Male",
+        "female": "Female"
+      },
+      "role": {
+        "placeholder": "Select a role",
+        "admin": "Admin",
+        "user": "User"
+      },
+      "password": {
+        "update-password": "Update Password",
+        "title": "Set Password",
+        "des": "If you want to change password then set new password from here",
+        "old": "Old Password",
+        "new": "New Password",
+        "enable-2fa": "Enable two factor authentication for your account",
+        "button": "Save"
+      }
     }
   },
   "Extra-Page": {

@@ -67,7 +67,7 @@ export const UserInfo: FC<UserInfoProps> = ({ user, label }) => {
         </InfoBox>
 
         <InfoBox>
-          <Label>{t("user.two-factor-authentication")}</Label>
+          <Label>{t("two-factor-authentication")}</Label>
           <Badge
             variant="destructive"
             className={cn(user?.isTwoFactorEnabled && "bg-green-600")}
@@ -79,7 +79,7 @@ export const UserInfo: FC<UserInfoProps> = ({ user, label }) => {
       <CardFooter>
         <Link href="/user/profile/update">
           <Button className="bg-cyan-400/75 hover:bg-cyan-400/90">
-            {t("user.edit-button")}
+            {t("edit-button")}
           </Button>
         </Link>
       </CardFooter>

@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Gender, UserRole } from "@prisma/client";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
@@ -50,6 +51,7 @@ const ProfilePage = () => {
   const [success, setSuccess] = useState<string | undefined>();
   const { update } = useSession();
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("ProfilePage");
 
   const oauth = user?.isOAuth;
 
@@ -105,13 +107,13 @@ const ProfilePage = () => {
   return (
     <div className="mt-5">
       <CustomBreadcrumb
-        current="Update Profile"
-        pre={{ label: "Profile", link: "/user/profile" }}
+        current={t("update.page-label")}
+        pre={{ label: t("update.pre-page"), link: "/user/profile" }}
       />
       <Card className="w-full mt-5 max-w-screen-lg mx-auto bg-slate-900/70 text-white border-slate-600 relative">
         <CardHeader>
           <p className="text-2xl font-semibold text-center">
-            {user?.gender === "Male" ? "🙎🏻‍♂️" : "🧕🏻"} Update Profile
+            {user?.gender === "Male" ? "🙎🏻‍♂️" : "🧕🏻"} {t("update.page-label")}
           </p>
         </CardHeader>
         <CardContent>
@@ -123,11 +125,11 @@ const ProfilePage = () => {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel>{t("user.name")}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
-                          placeholder="John Doe"
+                          placeholder={t("update.name-placeholder")}
                           disabled={isPending}
                         />
                       </FormControl>
@@ -141,11 +143,11 @@ const ProfilePage = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>{t("user.email")}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
-                          placeholder="john.doe@example.com"
+                          placeholder="salman.ahamad@example.com"
                           type="email"
                           disabled={oauth || isPending}
                         />
@@ -159,11 +161,11 @@ const ProfilePage = () => {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Phone</FormLabel>
+                      <FormLabel>{t("user.phone")}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
-                          placeholder="01511222333"
+                          placeholder={t("update.phone-placeholder")}
                           type="text"
                           disabled={isPending}
                         />
@@ -178,7 +180,7 @@ const ProfilePage = () => {
                   name="gender"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Gender</FormLabel>
+                      <FormLabel>{t("user.gender")}</FormLabel>
                       <Select
                         disabled={isPending}
                         onValueChange={field.onChange}
@@ -186,12 +188,18 @@ const ProfilePage = () => {
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select a gender" />
+                            <SelectValue
+                              placeholder={t("update.gender.placeholder")}
+                            />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value={Gender.Male}>Male</SelectItem>
-                          <SelectItem value={Gender.Female}>Female</SelectItem>
+                          <SelectItem value={Gender.Male}>
+                            {t("update.gender.male")}
+                          </SelectItem>
+                          <SelectItem value={Gender.Female}>
+                            {t("update.gender.female")}
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -203,7 +211,7 @@ const ProfilePage = () => {
                   name="role"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Role</FormLabel>
+                      <FormLabel>{t("user.role")}</FormLabel>
                       <Select
                         disabled={isPending || user?.role !== "ADMIN"}
                         onValueChange={field.onChange}
@@ -211,12 +219,18 @@ const ProfilePage = () => {
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select a role" />
+                            <SelectValue
+                              placeholder={t("update.role.placeholder")}
+                            />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
-                          <SelectItem value={UserRole.USER}>User</SelectItem>
+                          <SelectItem value={UserRole.ADMIN}>
+                            {t("update.role.admin")}
+                          </SelectItem>
+                          <SelectItem value={UserRole.USER}>
+                            {t("update.role.user")}
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -235,15 +249,14 @@ const ProfilePage = () => {
                       disabled={oauth}
                     >
                       <Button variant="outline" className="text-start">
-                        Update Password
+                        {t("update.password.update-password")}
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[425px]">
                       <DialogHeader>
-                        <DialogTitle>Set Password</DialogTitle>
+                        <DialogTitle>{t("update.password.title")}</DialogTitle>
                         <DialogDescription>
-                          If you want to change password then set new password
-                          from here
+                          {t("update.password.des")}
                         </DialogDescription>
                       </DialogHeader>
                       <>
@@ -252,7 +265,7 @@ const ProfilePage = () => {
                           name="password"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Old Password</FormLabel>
+                              <FormLabel>{t("update.password.old")}</FormLabel>
                               <FormControl>
                                 <Input
                                   {...field}
@@ -270,7 +283,7 @@ const ProfilePage = () => {
                           name="newPassword"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>New Password</FormLabel>
+                              <FormLabel>{t("update.password.new")}</FormLabel>
                               <FormControl>
                                 <Input
                                   {...field}
@@ -292,7 +305,7 @@ const ProfilePage = () => {
                               disabled={isPending}
                               className="bg-cyan-400/70 hover:bg-cyan-400 disabled:bg-cyan-500/25 hover:cursor-pointer disabled:cursor-not-allowed"
                             >
-                              Update Password
+                              {t("update.password.update-password")}
                             </Button>
                           </DialogClose>
                         </span>
@@ -307,10 +320,10 @@ const ProfilePage = () => {
                     <FormItem className="flex flex-row items-center justify-between rounded-lg border border-slate-600 p-3 shadow-sm">
                       <div className="space-y-0.5">
                         <FormLabel className="cursor-pointer">
-                          Two Factor Authentication
+                          {t("two-factor-authentication")}
                         </FormLabel>
                         <FormDescription>
-                          Enable two factor authentication for your account
+                          {t("update.password.enable-2fa")}
                         </FormDescription>
                       </div>
                       <FormControl>
@@ -331,7 +344,7 @@ const ProfilePage = () => {
                 type="submit"
                 className="bg-cyan-400/70 hover:bg-cyan-400 disabled:bg-cyan-500/25 hover:cursor-pointer disabled:cursor-not-allowed"
               >
-                Save
+                {t("update.password.button")}
               </Button>
             </form>
           </Form>
