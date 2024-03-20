@@ -4,7 +4,7 @@ import { currentUser } from "@/lib/auth";
 const ProfilePage = async () => {
   const user = await currentUser();
 
-  return <UserInfo label="💻 Profile Information" user={user} />;
+  return <UserInfo user={user} />;
 };
 
 export default ProfilePage;

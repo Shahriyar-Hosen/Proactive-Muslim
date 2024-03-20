@@ -1,3 +1,7 @@
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { FC } from "react";
+
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -7,13 +11,11 @@ import {
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ExtendedUser } from "@/next-auth";
-import Link from "next/link";
-import { FC } from "react";
 import { Button } from "./ui/button";
 
 interface UserInfoProps {
   user?: ExtendedUser;
-  label: string;
+  label?: string;
 }
 
 const InfoBox: FC<IChildren> = ({ children }) => (
@@ -35,47 +37,49 @@ const Truncate: FC<ITruncate> = ({ label }) => (
 );
 
 export const UserInfo: FC<UserInfoProps> = ({ user, label }) => {
+  const t = useTranslations("ProfilePage");
+
   return (
     <Card className="w-full mt-5 max-w-screen-lg mx-auto bg-slate-900/70 text-white border-slate-600 relative shadow-md">
       <CardHeader>
-        <p className="text-2xl font-semibold text-center">{label}</p>
+        <p className="text-2xl font-semibold text-center">{t("page-label")}</p>
       </CardHeader>
       <CardContent className="space-y-4">
         <InfoBox>
-          <Label>Name</Label>
+          <Label>{t("user.name")}</Label>
           <Truncate label={user?.name} />
         </InfoBox>
         <InfoBox>
-          <Label>Email</Label>
+          <Label>{t("user.email")}</Label>
           <Truncate label={user?.email} />
         </InfoBox>
         <InfoBox>
-          <Label>Phone</Label>
+          <Label>{t("user.phone")}</Label>
           <Truncate label={user?.phone} />
         </InfoBox>
         <InfoBox>
-          <Label>Gender</Label>
+          <Label>{t("user.gender")}</Label>
           <Truncate label={user?.gender} />
         </InfoBox>
         <InfoBox>
-          <Label>Role</Label>
+          <Label>{t("user.role")}</Label>
           <Truncate label={user?.role} />
         </InfoBox>
 
         <InfoBox>
-          <Label>Two Factor Authentication</Label>
+          <Label>{t("two-factor-authentication")}</Label>
           <Badge
             variant="destructive"
             className={cn(user?.isTwoFactorEnabled && "bg-green-600")}
           >
-            {user?.isTwoFactorEnabled ? "ON" : "OFF"}
+            {user?.isTwoFactorEnabled ? t("user.on") : t("user.off")}
           </Badge>
         </InfoBox>
       </CardContent>
       <CardFooter>
         <Link href="/user/profile/update">
           <Button className="bg-cyan-400/75 hover:bg-cyan-400/90">
-            Edit Profile Information
+            {t("edit-button")}
           </Button>
         </Link>
       </CardFooter>

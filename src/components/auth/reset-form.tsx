@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 
 import { CardWrapper } from "@/components/auth/card-wrapper";
 import { FormError } from "@/components/form/form-error";
@@ -18,22 +17,24 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ResetSchema } from "@/lib/schemas";
+import { IResetSchema, ResetSchema } from "@/lib/schemas";
 import { reset } from "@/server/actions/reset";
+import { useTranslations } from "next-intl";
 
 export const ResetForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("Auth");
 
-  const form = useForm<z.infer<typeof ResetSchema>>({
+  const form = useForm<IResetSchema>({
     resolver: zodResolver(ResetSchema),
     defaultValues: {
       email: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof ResetSchema>) => {
+  const onSubmit = (values: IResetSchema) => {
     setError("");
     setSuccess("");
 
@@ -47,8 +48,8 @@ export const ResetForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Forgot your password?"
-      backButtonLabel="Back to login"
+      headerLabel={t("Reset.headerLabel")}
+      backButtonLabel={t("back-to-login")}
       backButtonHref="/auth/login"
     >
       <Form {...form}>
@@ -59,7 +60,7 @@ export const ResetForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{t("email")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -80,7 +81,7 @@ export const ResetForm = () => {
             type="submit"
             className="w-full bg-cyan-500/60 hover:bg-cyan-400/70"
           >
-            Send reset email
+            {t("Reset.button")}
           </Button>
         </form>
       </Form>

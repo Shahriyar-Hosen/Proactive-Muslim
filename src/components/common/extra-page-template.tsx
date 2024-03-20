@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
@@ -20,9 +21,11 @@ export const ExtraPageTemplate: FC<IExtraPageTemplate> = ({
   btn1Text,
   btn2Link,
   btn2Text,
-}) => (
-  <main>
-    <div className="flex flex-col justify-center items-center h-[80vh]">
+}) => {
+  const t = useTranslations("Extra-Page");
+
+  return (
+    <main className="flex flex-col justify-center items-center w-full h-[80vh]">
       <Image
         src={img}
         alt={title}
@@ -34,23 +37,22 @@ export const ExtraPageTemplate: FC<IExtraPageTemplate> = ({
         {title}
       </h1>
       <p className="text-slate-500 dark:text-slate-300 text-center text-lg md:text-xl lg:text-2xl mb-8">
-        {des ||
-          "We&lsquo;re working hard to improve the user experience. Stay tuned!"}
+        {des || t("des")}
       </p>
       <div className="flex space-x-4">
         <Link
           href={btn1Link || "/"}
           className="bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-6 rounded dark:bg-slate-700 dark:hover:bg-slate-600"
         >
-          {btn1Text || "Contact Us"}
+          {btn1Text || t("btn1")}
         </Link>
         <Link
           href={btn2Link || "/"}
           className="border-2 border-slate-800 text-slate-300 font-bold py-3 px-6 rounded dark:text-slate-300 dark:border-sl3text-slate-300"
         >
-          {btn2Text || "Reload"}
+          {btn2Text || t("btn2")}
         </Link>
       </div>
-    </div>
-  </main>
-);
+    </main>
+  );
+};

@@ -1,8 +1,7 @@
-import { ComingSoon } from "@/components/common";
-import { Maintenance } from "@/components/common/maintenance";
+import { redirect } from "next/navigation";
 
 const SettingsPage = () => {
-  return <ComingSoon />;
+  return redirect("/coming-soon");
 };
 
 export default SettingsPage;

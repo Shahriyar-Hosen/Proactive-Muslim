@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 
 import { CardWrapper } from "@/components/auth/card-wrapper";
 import { FormError } from "@/components/form/form-error";
@@ -19,8 +18,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { NewPasswordSchema } from "@/lib/schemas";
+import { INewPasswordSchema, NewPasswordSchema } from "@/lib/schemas";
 import { newPassword } from "@/server/actions/new-password";
+import { useTranslations } from "next-intl";
 
 export const NewPasswordForm = () => {
   const searchParams = useSearchParams();
@@ -30,14 +30,16 @@ export const NewPasswordForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof NewPasswordSchema>>({
+  const t = useTranslations("Auth");
+
+  const form = useForm<INewPasswordSchema>({
     resolver: zodResolver(NewPasswordSchema),
     defaultValues: {
       password: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof NewPasswordSchema>) => {
+  const onSubmit = (values: INewPasswordSchema) => {
     setError("");
     setSuccess("");
 
@@ -51,8 +53,8 @@ export const NewPasswordForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Enter a new password"
-      backButtonLabel="Back to login"
+      headerLabel={t("NewPassword.headerLabel")}
+      backButtonLabel={t("back-to-login")}
       backButtonHref="/auth/login"
     >
       <Form {...form}>
@@ -63,7 +65,7 @@ export const NewPasswordForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>{t("password")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -84,7 +86,7 @@ export const NewPasswordForm = () => {
             type="submit"
             className="w-full bg-cyan-500/60 hover:bg-cyan-400/70"
           >
-            Reset password
+            {t("NewPassword.button")}
           </Button>
         </form>
       </Form>

@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 
 import { FormError } from "@/components/form/form-error";
 import { FormSuccess } from "@/components/form/form-success";
@@ -29,7 +28,7 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { UserSchema } from "@/lib/schemas";
+import { IUserSchema, UserSchema } from "@/lib/schemas";
 import { userProfile } from "@/server/actions/user-profile";
 import { UserRole } from "@prisma/client";
 
@@ -41,7 +40,7 @@ const SettingsPage = () => {
   const { update } = useSession();
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof UserSchema>>({
+  const form = useForm<IUserSchema>({
     resolver: zodResolver(UserSchema),
     defaultValues: {
       password: undefined,
@@ -53,7 +52,7 @@ const SettingsPage = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof UserSchema>) => {
+  const onSubmit = (values: IUserSchema) => {
     startTransition(() => {
       userProfile(values)
         .then((data) => {
