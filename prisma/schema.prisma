@@ -32,6 +32,9 @@ model User {
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
   Salat                 Salat?
+  Dua                   Dua?
+  Zikir                 Zikir?
+  QuranRecitation       QuranRecitation?
 }
 
 model Account {
@@ -112,9 +115,58 @@ model Salat {
   name         String
   time         Salah
   priority     Priority
-  complete     Boolean
-  jamat        Boolean?
-  firstTakbeer Boolean?
+  complete     Boolean  @default(false)
+  jamat        Boolean? @default(false)
+  firstTakbeer Boolean? @default(false)
+
+  @@unique([userId])
+}
+
+model Dua {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String  @db.ObjectId
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  dua         String
+  translation String
+  description String?
+  hadith      String?
+  ayat        String?
+  time        Salah?
+  complete    Boolean @default(false)
+  beforeSalah String?
+  afterSalah  String?
+
+  @@unique([userId])
+}
+
+model Zikir {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String  @db.ObjectId
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  zikir       String
+  translation String
+  description String?
+  hadith      String?
+  ayat        String?
+  time        Salah?
+  complete    Boolean @default(false)
+  beforeSalah String?
+  afterSalah  String?
+
+  @@unique([userId])
+}
+
+model QuranRecitation {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String  @db.ObjectId
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  verse       String?
+  page        String?
+  para        String?
+  beforeSalah String?
+  afterSalah  String?
 
   @@unique([userId])
 }
