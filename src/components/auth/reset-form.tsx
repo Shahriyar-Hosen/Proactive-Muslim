@@ -19,11 +19,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { IResetSchema, ResetSchema } from "@/lib/schemas";
 import { reset } from "@/server/actions/reset";
+import { useTranslations } from "next-intl";
 
 export const ResetForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("Auth");
 
   const form = useForm<IResetSchema>({
     resolver: zodResolver(ResetSchema),
@@ -46,8 +48,8 @@ export const ResetForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Forgot your password?"
-      backButtonLabel="Back to login"
+      headerLabel={t("Reset.headerLabel")}
+      backButtonLabel={t("Reset.backButtonLabel")}
       backButtonHref="/auth/login"
     >
       <Form {...form}>
@@ -58,7 +60,7 @@ export const ResetForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{t("email")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -79,7 +81,7 @@ export const ResetForm = () => {
             type="submit"
             className="w-full bg-cyan-500/60 hover:bg-cyan-400/70"
           >
-            Send reset email
+            {t("Reset.button")}
           </Button>
         </form>
       </Form>

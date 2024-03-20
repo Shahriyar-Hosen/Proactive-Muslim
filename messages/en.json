@@ -34,6 +34,11 @@
       "2fa-placeholder": "123456",
       "2fa-button": "Confirm"
     },
+    "Reset": {
+      "headerLabel": "Forgot your password?",
+      "backButtonLabel": "Back to login",
+      "button": "Send reset email"
+    },
     "Error": {
       "Email already in use": "Email already in use with different provider!"
     }
