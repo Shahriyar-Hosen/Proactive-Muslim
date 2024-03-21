@@ -15,3 +15,8 @@ declare interface ParamsLocale {
 declare interface IChildren {
   children: React.ReactNode;
 }
+declare interface Data<T> {
+  success?: string;
+  error?: string;
+  data?: T;
+}
