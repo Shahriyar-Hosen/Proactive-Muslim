@@ -2,7 +2,6 @@ import { NextPage } from "next";
 import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
 
-import { LoginButton } from "@/components/auth/login-button";
 import { APIsCheck } from "@/components/test/APIsCheck";
 import { Counter } from "@/components/test/Counter";
 import { Button } from "@/components/ui/button";
@@ -41,13 +40,6 @@ const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
         <Button variant={"outline"}>outline</Button>
         <Button variant={"secondary"}>secondary</Button>
         <p className="text-white text-lg">A simple authentication service</p>
-        <div>
-          <LoginButton asChild>
-            <Button variant="secondary" size="lg">
-              User Auth Dashboard
-            </Button>
-          </LoginButton>
-        </div>
       </div>
       <Counter />
     </main>
