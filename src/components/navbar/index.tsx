@@ -11,7 +11,7 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed w-screen bg-slate-800/50 dark:bg-slate-950/50 z-50">
+    <div className="fixed w-screen bg-background dark:bg-slate-950/50 shadow-2xl shadow-slate-950/50 z-50">
       <div className="mx-auto max-w-7xl px-2 md:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between md:justify-start">
           <MobileMenuButton open={open} setOpen={setOpen} />

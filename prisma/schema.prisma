@@ -31,6 +31,10 @@ model User {
   accounts              Account[]
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
+  Salat                 Salat?
+  Dua                   Dua?
+  Zikir                 Zikir?
+  QuranRecitation       QuranRecitation?
 }
 
 model Account {
@@ -80,10 +84,100 @@ model TwoFactorToken {
 }
 
 model TwoFactorConfirmation {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
   userId String @db.ObjectId
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
+}
+
+enum Salah {
+  Fajr
+  Zuhr
+  Asr
+  Maghrib
+  Isha
+  Witr
+}
+
+enum Priority {
+  Farz
+  Wajib
+  Sunnah
+  Nafal
+  Janazah
+}
+
+type Internationalisation {
+  en String
+  bn String
+}
+
+model Salat {
+  id            String               @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String               @db.ObjectId
+  user          User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name          Internationalisation
+  time          Salah
+  priority      Priority
+  complete      Boolean              @default(false)
+  jamat         Boolean?             @default(false)
+  firstTakbeer  Boolean?             @default(false)
+  concentration Int?
+
+  @@unique([userId])
+}
+
+type ArabicAndIntl {
+  arabic      String
+  translation Internationalisation
+}
+
+model Dua {
+  id          String                @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String                @db.ObjectId
+  user        User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        Internationalisation
+  dua         ArabicAndIntl
+  hadith      ArabicAndIntl?
+  ayat        ArabicAndIntl?
+  description Internationalisation?
+  time        Salah?
+  complete    Boolean               @default(false)
+  beforeSalah Boolean?
+  afterSalah  Boolean?
+
+  @@unique([userId])
+}
+
+model Zikir {
+  id          String                @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String                @db.ObjectId
+  user        User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        Internationalisation
+  zikir       ArabicAndIntl
+  hadith      ArabicAndIntl?
+  ayat        ArabicAndIntl?
+  description Internationalisation?
+  time        Salah?
+  complete    Boolean               @default(false)
+  beforeSalah Boolean?
+  afterSalah  Boolean?
+
+  @@unique([userId])
+}
+
+model QuranRecitation {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String   @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  line        String?
+  ayat        String?
+  page        String?
+  para        String?
+  notes       String?
+  beforeSalah Boolean?
+  afterSalah  Boolean?
 
   @@unique([userId])
 }
