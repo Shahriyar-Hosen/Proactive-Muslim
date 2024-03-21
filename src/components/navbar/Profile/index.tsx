@@ -58,7 +58,7 @@ export const Profile: FC = () => {
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent className={menuBgStyles}>
                     {subMenu.map(({ title, ...subOthers }, i) => (
-                      <>
+                      <div key={i}>
                         {title === "More..." && (
                           <DropdownMenuSeparator
                             key={i}
@@ -66,7 +66,7 @@ export const Profile: FC = () => {
                           />
                         )}
                         <DropdownItem key={i} title={title} {...subOthers} />
-                      </>
+                      </div>
                     ))}
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
@@ -78,13 +78,13 @@ export const Profile: FC = () => {
         </DropdownMenuGroup>
         <DropdownMenuSeparator className="bg-slate-600" />
         <DropdownMenuGroup>
-          {group3.map(({ title, ...others }) => (
-            <>
+          {group3.map(({ title, ...others }, i) => (
+            <div key={i}>
               {title === "Log out" && (
                 <DropdownMenuSeparator className="bg-slate-600" />
               )}
               <DropdownItem key={title} title={title} {...others} />
-            </>
+            </div>
           ))}
 
           <LogoutButton>
