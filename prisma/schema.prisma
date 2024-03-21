@@ -17,6 +17,33 @@ enum Gender {
   Female
 }
 
+enum Salah {
+  Fajr
+  Zuhr
+  Asr
+  Maghrib
+  Isha
+  Witr
+}
+
+enum Priority {
+  Farz
+  Wajib
+  Sunnah
+  Nafal
+  Janazah
+}
+
+type Internationalisation {
+  en String
+  bn String
+}
+
+type ArabicAndIntl {
+  arabic      String
+  translation Internationalisation
+}
+
 model User {
   id                    String                 @id @default(auto()) @map("_id") @db.ObjectId
   name                  String?
@@ -91,28 +118,6 @@ model TwoFactorConfirmation {
   @@unique([userId])
 }
 
-enum Salah {
-  Fajr
-  Zuhr
-  Asr
-  Maghrib
-  Isha
-  Witr
-}
-
-enum Priority {
-  Farz
-  Wajib
-  Sunnah
-  Nafal
-  Janazah
-}
-
-type Internationalisation {
-  en String
-  bn String
-}
-
 model Salat {
   id            String               @id @default(auto()) @map("_id") @db.ObjectId
   userId        String               @db.ObjectId
@@ -126,11 +131,6 @@ model Salat {
   concentration Int?
 
   @@unique([userId])
-}
-
-type ArabicAndIntl {
-  arabic      String
-  translation Internationalisation
 }
 
 model Dua {

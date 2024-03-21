@@ -71,6 +71,7 @@ export const userProfile = async (values: IUserSchema) => {
       email: updatedUser.email,
       role: updatedUser.role,
       gender: updatedUser.gender || undefined,
+      phone: updatedUser.phone || undefined,
       isTwoFactorEnabled: updatedUser.isTwoFactorEnabled,
     },
   });

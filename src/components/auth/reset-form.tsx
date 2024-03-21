@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { IResetSchema, ResetSchema } from "@/lib/schemas";
-import { reset } from "@/server/actions/reset";
+import { reset } from "@/server/actions/auth/reset";
 import { useTranslations } from "next-intl";
 
 export const ResetForm = () => {

@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { IRegisterSchema, RegisterSchema } from "@/lib/schemas";
-import { register } from "@/server/actions/register";
+import { register } from "@/server/actions/auth/register";
 import { useTranslations } from "next-intl";
 
 export const RegisterForm = () => {

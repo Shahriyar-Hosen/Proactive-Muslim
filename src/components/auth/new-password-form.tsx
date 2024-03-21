@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { INewPasswordSchema, NewPasswordSchema } from "@/lib/schemas";
-import { newPassword } from "@/server/actions/new-password";
+import { newPassword } from "@/server/actions/auth/new-password";
 import { useTranslations } from "next-intl";
 
 export const NewPasswordForm = () => {

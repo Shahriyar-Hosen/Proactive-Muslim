@@ -7,7 +7,7 @@ import { BeatLoader } from "react-spinners";
 import { CardWrapper } from "@/components/auth/card-wrapper";
 import { FormError } from "@/components/form/form-error";
 import { FormSuccess } from "@/components/form/form-success";
-import { newVerification } from "@/server/actions/new-verification";
+import { newVerification } from "@/server/actions/auth/new-verification";
 import { useTranslations } from "next-intl";
 
 export const NewVerificationForm = () => {

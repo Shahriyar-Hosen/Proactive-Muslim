@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { ILoginSchema, LoginSchema } from "@/lib/schemas";
-import { login } from "@/server/actions/login";
+import { login } from "@/server/actions/auth/login";
 import { useTranslations } from "next-intl";
 
 export const LoginForm = () => {

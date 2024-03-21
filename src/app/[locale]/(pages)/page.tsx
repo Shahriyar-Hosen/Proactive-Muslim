@@ -2,9 +2,9 @@ import { NextPage } from "next";
 import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
 
-import { Counter } from "@/components/Counter";
 import { LoginButton } from "@/components/auth/login-button";
-import { LanguageSwitcher } from "@/components/lang/LocaleSwitcher";
+import { APIsCheck } from "@/components/test/APIsCheck";
+import { Counter } from "@/components/test/Counter";
 import { Button } from "@/components/ui/button";
 
 const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
@@ -14,8 +14,9 @@ const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
   const t = useTranslations("HomePage");
 
   return (
-    <main className="flex flex-col justify-center items-center h-screen gap-5 relative">
-      <LanguageSwitcher />
+    <main className="flex flex-col justify-center items-center gap-5 relative">
+      <APIsCheck />
+
       <section className="space-y-5">
         <h1 className="text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
           {t("title")}
@@ -33,7 +34,7 @@ const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
         <h1 className="text-6xl font-semibold text-primary drop-shadow-md">
           🔐 Auth
         </h1>
-        <Button>Test</Button>
+
         <Button variant={"destructive"}>destructive</Button>
         <Button variant={"ghost"}>ghost</Button>
         <Button variant={"link"}>link</Button>

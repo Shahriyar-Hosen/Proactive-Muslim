@@ -6,7 +6,7 @@ import { RoleGate } from "@/components/auth/role-gate";
 import { FormSuccess } from "@/components/form/form-success";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { admin } from "@/server/actions/admin";
+import { admin } from "@/server/actions/auth/admin";
 import { UserRole } from "@prisma/client";
 
 const AdminPage = () => {

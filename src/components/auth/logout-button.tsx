@@ -1,6 +1,6 @@
 "use client";
 
-import { logout } from "@/server/actions/logout";
+import { logout } from "@/server/actions/auth/logout";
 import { FC } from "react";
 
 export const LogoutButton: FC<IChildren> = ({ children }) => {
