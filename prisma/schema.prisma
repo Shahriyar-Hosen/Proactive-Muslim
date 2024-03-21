@@ -122,6 +122,7 @@ model Salat {
   id            String               @id @default(auto()) @map("_id") @db.ObjectId
   userId        String               @db.ObjectId
   user          User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date          DateTime             @default(now())
   name          Internationalisation
   time          Salah
   priority      Priority
