@@ -6,9 +6,10 @@ const locales = ["en", "bn"];
 
 export default getRequestConfig(async ({ locale }) => {
   // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale as any)) notFound();
+  const baseLocale = new Intl.Locale(locale).baseName;
+  if (!locales.includes(baseLocale)) notFound();
 
   return {
-    messages: (await import(`../messages/${locale}.json`)).default,
+    messages: (await import(`../messages/${baseLocale}.json`)).default,
   };
 });
