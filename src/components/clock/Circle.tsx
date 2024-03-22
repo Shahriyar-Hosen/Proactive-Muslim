@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { CSSProperties, FC } from "react";
-import { center } from "./three-rounded-clock";
 
 interface ICircle {
   title: "Hours" | "Minutes" | "Seconds";
@@ -15,10 +14,7 @@ const circle =
 
 export const Circle: FC<ICircle> = ({ clr, offset, dot, time, title }) => (
   <div
-    className={cn(
-      "circle circle-container relative w-[150px] h-[150px]",
-      center
-    )}
+    className="relative w-[80px] h-[80px] flex justify-center items-center"
     style={
       {
         "--clr": clr,
@@ -27,26 +23,26 @@ export const Circle: FC<ICircle> = ({ clr, offset, dot, time, title }) => (
   >
     {/* Dots */}
     <div
-      className="dots absolute w-full h-full z-10 flex justify-center before:absolute before:-top-[3px] before:w-[15px] before:h-[15px] before:bg-[--clr] before:rounded-[50%]"
+      className="dots absolute w-full h-full z-10 flex justify-center before:absolute before:-top-0 before:w-[10px] before:h-[10px] before:bg-[--clr] before:rounded-[50%]"
       style={{ transform: `rotateZ(${dot}deg)` }}
     />
 
     {/* svg circle */}
-    <svg className="clock-svg rotate-[270deg] relative w-[150px] h-[150px]">
-      <circle cx="70" cy="70" r="70" className={circle} />
+    <svg className="clock-svg rotate-[270deg] relative w-[80px] h-[80px]">
+      <circle cx="35" cy="35" r="35" className={circle} />
       <circle
-        cx="70"
-        cy="70"
-        r="70"
+        cx="35"
+        cy="35"
+        r="35"
         id="hh"
         className={cn(circle, "stroke")}
-        style={{ strokeDashoffset: offset, stroke: clr, strokeDasharray: 440 }}
+        style={{ strokeDashoffset: offset, stroke: clr, strokeDasharray: 220 }}
       />
     </svg>
-    <div id="hours" className="absolute">
-      <div className="text-center space-y-1">
-        <h1 className="font-medium text-3xl">{time}</h1>
-        <p className="text-xs font-light uppercase text-slate-300">{title}</p>
+    <div className="absolute">
+      <div className="text-center">
+        <h1 className="text-lg font-bold">{time}</h1>
+        <p className="text-[10px] font-light">{title}</p>
       </div>
     </div>
   </div>

@@ -1,12 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Circle } from "./Circle";
 import "./Clock-2.css";
-
-export const center = "flex justify-center items-center";
 
 const ThreeRoundedClock = () => {
   const now = new Date();
@@ -19,18 +16,18 @@ const ThreeRoundedClock = () => {
   const [seconds, setSeconds] = useState(ss);
   const [amPm, setAmPm] = useState(hours >= 12 ? "PM" : "AM");
 
-  const [hOffset, setHOffset] = useState(440 - (440 * hh) / 12);
-  const [mOffset, setMOffset] = useState(440 - (440 * mm) / 60);
-  const [sOffset, setSOffset] = useState(440 - (440 * ss) / 60);
+  const [hOffset, setHOffset] = useState(220 - (220 * hh) / 12);
+  const [mOffset, setMOffset] = useState(220 - (220 * mm) / 60);
+  const [sOffset, setSOffset] = useState(220 - (220 * ss) / 60);
 
   const [hrDot, setHrDot] = useState(hh * 30);
   const [minDot, setMinDot] = useState(mm * 6);
   const [secDot, setSecDot] = useState(ss * 6);
 
   const animated = (h: number, m: number, s: number) => {
-    setHOffset(440 - (440 * h) / 12);
-    setMOffset(440 - (440 * m) / 60);
-    setSOffset(440 - (440 * s) / 60);
+    setHOffset(220 - (220 * h) / 12);
+    setMOffset(220 - (220 * m) / 60);
+    setSOffset(220 - (220 * s) / 60);
 
     setHrDot(h * 30);
     setMinDot(m * 6);
@@ -67,10 +64,8 @@ const ThreeRoundedClock = () => {
   }, []);
 
   return (
-    <section
-      className={cn(center, "py-10 font-thin gap-10 text-foreground flex-wrap")}
-    >
-      <div id="time" className="flex gap-10 flex-wrap text-foreground">
+    <section className="font-thin text-foreground flex justify-center items-center gap-2.5 flex-wrap">
+      <div className="flex gap-2.5 flex-wrap justify-center items-center text-foreground">
         <Circle
           title="Hours"
           clr="#ff2972"
@@ -93,7 +88,7 @@ const ThreeRoundedClock = () => {
           time={seconds}
         />
       </div>
-      <div className="relative text-xs translate-x-[-20px]">
+      <div>
         <p className="text-start font-medium text-base">{amPm}</p>
       </div>
     </section>
