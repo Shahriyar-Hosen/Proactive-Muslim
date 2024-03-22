@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { Circle } from "./Circle";
 import "./Clock-2.css";
 
+export const center = "flex justify-center items-center";
+
 const ThreeRoundedClock = () => {
   const now = new Date();
   let hh = now.getHours();
@@ -64,8 +66,6 @@ const ThreeRoundedClock = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const center = "flex justify-center items-center";
-
   return (
     <section
       className={cn(center, "py-10 font-thin gap-10 text-foreground flex-wrap")}
@@ -93,8 +93,8 @@ const ThreeRoundedClock = () => {
           time={seconds}
         />
       </div>
-      <div className="ap">
-        <div id="ampm">{amPm}</div>
+      <div className="relative text-xs translate-x-[-20px]">
+        <p className="text-start font-medium text-base">{amPm}</p>
       </div>
     </section>
   );

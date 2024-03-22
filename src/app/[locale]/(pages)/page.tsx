@@ -7,8 +7,6 @@ const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
   // Enable static rendering
   unstable_setRequestLocale(locale);
 
-  const t = useTranslations("HomePage");
-
   return (
     <main className="space-y-5">
       <Clock />
