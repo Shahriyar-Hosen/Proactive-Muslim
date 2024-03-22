@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Circle } from "./Circle";
-import "./Clock-2.css";
 
 const ThreeRoundedClock = () => {
   const now = new Date();
@@ -95,7 +94,7 @@ const ThreeRoundedClock = () => {
   );
 };
 
-export const Clock = dynamic(() => Promise.resolve(ThreeRoundedClock), {
+export const ThreeRounded = dynamic(() => Promise.resolve(ThreeRoundedClock), {
   ssr: false,
   loading: () => <h1>loading...</h1>,
 });

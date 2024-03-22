@@ -57,3 +57,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+.dots::before {
+  box-shadow: 0 0 20px var(--clr), 0 0 40px var(--clr), 0 0 60px var(--clr),
+    0 0 80px var(--clr);
+}

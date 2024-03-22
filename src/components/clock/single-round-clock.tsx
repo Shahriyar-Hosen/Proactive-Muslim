@@ -1,6 +1,7 @@
 "use client";
 
-import { memo, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { CSSProperties, memo, useEffect, useState } from "react";
 import "./clock.css";
 
 export const SingleRoundClock = memo(() => {
@@ -62,20 +63,20 @@ export const SingleRoundClock = memo(() => {
   }, []);
 
   return (
-    <section className="ml-5 main-clock">
+    <section className="ml-5 flex justify-center items-center">
       <section id="time">
         <div
           className="circle"
           style={
             {
               "--clr": "#ff2972",
-            } as React.CSSProperties
+            } as CSSProperties
           }
         >
           <div
             className="dots sec_dot"
             style={{ transform: `rotateZ(${secDot}deg)` }}
-          ></div>
+          />
           <svg>
             <circle
               cx="120"
@@ -83,7 +84,7 @@ export const SingleRoundClock = memo(() => {
               r="120"
               id="ss"
               style={{ strokeDashoffset: sOffset }}
-            ></circle>
+            />
           </svg>
         </div>
         <div
@@ -91,13 +92,13 @@ export const SingleRoundClock = memo(() => {
           style={
             {
               "--clr": "#fee800",
-            } as React.CSSProperties
+            } as CSSProperties
           }
         >
           <div
             className="dots min_dot"
             style={{ transform: `rotateZ(${minDot}deg)` }}
-          ></div>
+          />
           <svg>
             <circle
               cx="100"
@@ -105,7 +106,7 @@ export const SingleRoundClock = memo(() => {
               r="100"
               id="mm"
               style={{ strokeDashoffset: mOffset }}
-            ></circle>
+            />
           </svg>
         </div>
         <div
@@ -113,13 +114,13 @@ export const SingleRoundClock = memo(() => {
           style={
             {
               "--clr": "#04fc43",
-            } as React.CSSProperties
+            } as CSSProperties
           }
         >
           <div
             className="dots hr_dot"
             style={{ transform: `rotateZ(${hrDot}deg)` }}
-          ></div>
+          />
           <svg>
             <circle
               cx="80"
@@ -127,21 +128,21 @@ export const SingleRoundClock = memo(() => {
               r="80"
               id="hh"
               style={{ strokeDashoffset: hOffset }}
-            ></circle>
+            />
           </svg>
         </div>
         <div className="timeBx">
-          <div id="hours" style={{ "--c": "#04fc43" } as React.CSSProperties}>
+          <div id="hours" style={{ "--c": "#04fc43" } as CSSProperties}>
             {hours}
           </div>
-          <div id="minutes" style={{ "--c": "#fee800" } as React.CSSProperties}>
+          <div id="minutes" style={{ "--c": "#fee800" } as CSSProperties}>
             {minutes}
           </div>
-          <div id="seconds" style={{ "--c": "#ff2972" } as React.CSSProperties}>
+          <div id="seconds" style={{ "--c": "#ff2972" } as CSSProperties}>
             {seconds}
           </div>
           <div className="ap">
-            <div id="ampm" style={{ "--c": "#fff" } as React.CSSProperties}>
+            <div id="ampm" style={{ "--c": "#fff" } as CSSProperties}>
               {amPm}
             </div>
           </div>
@@ -152,3 +153,8 @@ export const SingleRoundClock = memo(() => {
 });
 
 SingleRoundClock.displayName = "Clock";
+
+export const SingleRound = dynamic(() => Promise.resolve(SingleRoundClock), {
+  ssr: false,
+  loading: () => <h1>loading...</h1>,
+});

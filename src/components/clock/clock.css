@@ -1,11 +1,4 @@
-/* .main-clock {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #0f172a;
-}
-
-#time {
+/* #time {
   position: relative;
   width: 250px;
   height: 250px;
