@@ -63,12 +63,14 @@ const ThreeRoundedClock = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const center = "flex justify-center items-center";
+
   return (
     <section
-      className={cn(center, "py-10 font-thin gap-10 text-primary-foreground")}
+      className={cn(center, "py-10 font-thin gap-10 text-foreground flex-wrap")}
     >
-      <div id="time" className="">
+      <div id="time" className="flex gap-10 flex-wrap text-foreground">
         <Circle
           title="Hours"
           clr="#ff2972"
