@@ -64,7 +64,7 @@ const ThreeRoundedClock = () => {
   }, []);
 
   return (
-    <section className="py-20 font-thin flex justify-center items-center gap-10 text-white">
+    <section className="py-10 font-thin flex justify-center items-center gap-10 text-white">
       <div id="time" className="">
         <Circle
           title="Hours"

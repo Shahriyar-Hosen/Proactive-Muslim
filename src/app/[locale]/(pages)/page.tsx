@@ -1,5 +1,3 @@
-// import { ThreeRoundedClock } from "@/components/clock/three-rounded-clock";
-// import ThreeRoundedClock from "@/components/clock/three-rounded-clock";
 import { Clock } from "@/components/clock/three-rounded-clock";
 import { NextPage } from "next";
 import { useTranslations } from "next-intl";
@@ -13,8 +11,8 @@ const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
 
   return (
     <main className="space-y-5">
-      <h1>test</h1>
       <Clock />
+      <h1>test</h1>
     </main>
   );
 };
