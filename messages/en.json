@@ -1,7 +1,11 @@
 {
-  "Index": {
-    "title": "Hello world!",
-    "name": "Salat"
+  "Clock": {
+    "time": "{count, plural,  =0 {0#} =1 {0#} =2 {0#} =3 {0#} =4 {0#} =5 {0#} =6 {0#} =7 {0#} =8 {0#} =9 {0#} other {#}}",
+    "Hours": "Hours",
+    "Minutes": "Minutes",
+    "Seconds": "Seconds",
+    "am": "AM",
+    "pm": "PM"
   },
   "HomePage": {
     "page-label": "Home",
