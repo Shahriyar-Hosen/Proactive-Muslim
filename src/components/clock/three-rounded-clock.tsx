@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Circle } from "./Circle";
@@ -62,9 +63,11 @@ const ThreeRoundedClock = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  const center = "flex justify-center items-center";
   return (
-    <section className="py-10 font-thin flex justify-center items-center gap-10 text-white">
+    <section
+      className={cn(center, "py-10 font-thin gap-10 text-primary-foreground")}
+    >
       <div id="time" className="">
         <Circle
           title="Hours"
