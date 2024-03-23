@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { Skeleton } from "../ui/skeleton";
 import { Circle } from "./Circle";
 
 const ThreeRoundedClock = () => {
@@ -11,6 +12,8 @@ const ThreeRoundedClock = () => {
   const mm = now.getMinutes();
   const ss = now.getSeconds();
 
+  // Convert to 12-hour format
+  hh = hh % 12 || 12;
   const [hours, setHours] = useState(hh);
   const [minutes, setMinutes] = useState(mm);
   const [seconds, setSeconds] = useState(ss);
@@ -95,7 +98,18 @@ const ThreeRoundedClock = () => {
   );
 };
 
+export const ThreeRoundedClockSkeleton = () => (
+  <div className="flex justify-center items-center gap-2 sm:gap-2.5">
+    <div className="flex justify-center items-center space-x-5">
+      <Skeleton className="w-[65px] h-[65px] rounded-full bg-slate-800 ring-4 ring-pink-600/50" />
+      <Skeleton className="w-[65px] h-[65px] rounded-full bg-slate-800 ring-4 ring-yellow-500/50" />
+      <Skeleton className="w-[65px] h-[65px] rounded-full bg-slate-800 ring-4 ring-green-500/50" />
+    </div>
+    <Skeleton className="w-10 h-5" />
+  </div>
+);
+
 export const ThreeRounded = dynamic(() => Promise.resolve(ThreeRoundedClock), {
   ssr: false,
-  loading: () => <h1>loading...</h1>,
+  loading: ThreeRoundedClockSkeleton,
 });
