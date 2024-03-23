@@ -8,7 +8,7 @@ const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
 
   return (
     <main className="">
-      <Clock.three />
+      <Clock.single />
       <h1>test</h1>
     </main>
   );

@@ -1,4 +1,4 @@
-/* #time {
+#time {
   position: relative;
   width: 250px;
   height: 250px;
@@ -111,4 +111,4 @@
   transform: translateY(-15px);
   font-size: 0.5em;
   right: 56px;
-} */
+}
