@@ -23,3 +23,5 @@ declare interface Data<T> {
   error?: string;
   data?: T;
 }
+
+declare type Salah = "Fajr" | "Zuhr" | "Asr" | "Maghrib" | "Isha" | "Witr";
