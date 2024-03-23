@@ -2,16 +2,15 @@
 
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
+import { unstable_setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, useEffect } from "react";
 
-type Props = {
-  error: Error;
-  reset(): void;
-};
-
-const Error: FC<Props> = ({ error, reset }) => {
+type Props = { error: Error; reset(): void } & ParamsLocale;
+const Error: FC<Props> = ({ error, reset, params: { locale } }) => {
+  // Enable static rendering
+  unstable_setRequestLocale(locale);
   const t = useTranslations("Error");
 
   useEffect(() => {
@@ -26,7 +25,7 @@ const Error: FC<Props> = ({ error, reset }) => {
           {t("title")}
         </p>
 
-        <Link href="/" title={t("title")}>
+        <Link href="/" onClick={reset} title={t("title")}>
           <Button className="flex items-center space-x-2 mt-12 rounded">
             <svg
               xmlns="http://www.w3.org/2000/svg"
