@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { CSSProperties, FC } from "react";
 
-interface ICircle {
+interface IThreeRoundedCircle {
   title: "Hours" | "Minutes" | "Seconds";
   clr: string;
   dot: number;
@@ -13,7 +13,13 @@ interface ICircle {
 const circle =
   "circle clock-svg-circle w-full h-full fill-transparent stroke-[4px] stroke-[#191919] translate-x-[5px] translate-y-[5px]";
 
-export const Circle: FC<ICircle> = ({ clr, offset, dot, time, title }) => {
+export const ThreeRoundedCircle: FC<IThreeRoundedCircle> = ({
+  clr,
+  offset,
+  dot,
+  time,
+  title,
+}) => {
   const t = useTranslations("Clock");
 
   return (

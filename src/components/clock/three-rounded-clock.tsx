@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { Circle } from ".";
+import { ThreeRoundedCircle } from "./ThreeRoundedCircle";
 
 const ThreeRoundedClock = () => {
   const now = new Date();
@@ -72,21 +72,21 @@ const ThreeRoundedClock = () => {
   return (
     <section className="font-thin text-foreground flex justify-center items-center gap-2 sm:gap-2.5">
       <div className="flex gap-1 sm:gap-2.5 flex-wrap justify-center items-center text-foreground">
-        <Circle
+        <ThreeRoundedCircle
           title="Hours"
           clr="#ff2972"
           dot={hrDot}
           offset={hOffset}
           time={hours}
         />
-        <Circle
+        <ThreeRoundedCircle
           title="Minutes"
           clr="#fee800"
           dot={minDot}
           offset={mOffset}
           time={minutes}
         />
-        <Circle
+        <ThreeRoundedCircle
           title="Seconds"
           clr="#04fc43"
           dot={secDot}

@@ -1,4 +1,4 @@
-import { SingleRoundSkeleton } from "@/components/clock";
+import { SingleRoundSkeleton } from "@/components/clock/single-round-clock";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const Loading = () => {
