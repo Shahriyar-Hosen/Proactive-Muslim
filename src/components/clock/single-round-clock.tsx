@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { CSSProperties, memo, useEffect, useState } from "react";
+import { Skeleton } from "../ui/skeleton";
 import "./clock.css";
 
 export const SingleRoundClock = memo(() => {
@@ -10,6 +11,8 @@ export const SingleRoundClock = memo(() => {
   const mm = now.getMinutes();
   const ss = now.getSeconds();
 
+  // Convert to 12-hour format
+  hh = hh % 12 || 12;
   const [hours, setHours] = useState(hh);
   const [minutes, setMinutes] = useState(mm);
   const [seconds, setSeconds] = useState(ss);
@@ -154,7 +157,13 @@ export const SingleRoundClock = memo(() => {
 
 SingleRoundClock.displayName = "Clock";
 
+export const SingleRoundSkeleton = () => (
+  <div className="flex justify-center items-center">
+    <Skeleton className="w-[250px] h-[250px] rounded-full" />
+  </div>
+);
+
 export const SingleRound = dynamic(() => Promise.resolve(SingleRoundClock), {
   ssr: false,
-  loading: () => <h1>loading...</h1>,
+  loading: SingleRoundSkeleton,
 });

@@ -3,8 +3,9 @@
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { Skeleton } from "../ui/skeleton";
-import { Circle } from "./Circle";
+
+import { Skeleton } from "@/components/ui/skeleton";
+import { Circle } from ".";
 
 const ThreeRoundedClock = () => {
   const now = new Date();

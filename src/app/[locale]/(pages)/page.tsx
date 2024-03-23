@@ -7,7 +7,7 @@ const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
   unstable_setRequestLocale(locale);
 
   return (
-    <main className="">
+    <main>
       <Clock.single />
       <h1>test</h1>
     </main>
