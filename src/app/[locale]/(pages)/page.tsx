@@ -1,15 +1,11 @@
 import { Clock } from "@/components/clock";
 import { ComingSoonBox } from "@/components/common/coming-soon-box";
-import { Skeleton } from "@/components/ui/skeleton";
 import { NextPage } from "next";
-import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
-import { Ultra } from "next/font/google";
 
 const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
   // Enable static rendering
   unstable_setRequestLocale(locale);
-  const t = useTranslations("Extra-Page");
 
   return (
     <main>
