@@ -7,10 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC, useEffect } from "react";
 
-type Props = { error: Error; reset(): void } & ParamsLocale;
-const Error: FC<Props> = ({ error, reset, params: { locale } }) => {
-  // Enable static rendering
-  unstable_setRequestLocale(locale);
+type Props = { error: Error; reset(): void };
+const Error: FC<Props> = ({ error, reset }) => {
   const t = useTranslations("Error");
 
   useEffect(() => {
