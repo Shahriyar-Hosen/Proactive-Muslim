@@ -9,8 +9,66 @@
   },
   "HomePage": {
     "page-label": "Home",
-    "title": "Home Page!",
-    "description": "This is a basic example that demonstrates the usage of <code>next-intl</code> with the Next.js App Router. Try changing the locale in the top right corner and see how the content changes."
+    "salat": {
+      "card-label": "It's {salat} {priority} salah information",
+      "completed": "Completed",
+      "completed-label": "completed salah?",
+      "jamat": "Jamat",
+      "jamat-label": "The Salat with the Jamaat",
+      "firstTakbeer": "First Takbeer",
+      "firstTakbeer-label": "Salat with the first Takbeer",
+      "concentration": "Concentration",
+      "concentration-label": "Salat with how concentrated!",
+      "rakats": "Rakats",
+      "btn-text": "Save Salat info",
+      "name": {
+        "Fajr": "Fajr",
+        "Zuhr": "Zuhr",
+        "Asr": "Asr",
+        "Maghrib": "Maghrib",
+        "Isha": "Isha",
+        "Witr": "Witr",
+        "Jumuah": "Jumuah",
+        "Janazah": "Janazah",
+        "Taraweeh": "Taraweeh",
+        "Qaza": "Qaza",
+        "Tahajjud": "Tahajjud",
+        "Ishraq": "Ishraq",
+        "Chasht": "Chasht",
+        "Awabeen": "Awabeen",
+        "Tasbeeh": "Tasbeeh",
+        "Yadain": "Yadain",
+        "Tawbah": "Tawbah",
+        "Istika": "Istika",
+        "Istikhara": "Istikhara",
+        "Hajat": "Hajat",
+        "Musafir": "Musafir",
+        "Shukr": "Shukr",
+        "Tahiyatul_Azu": "Tahiyatul Azu",
+        "Dukhulul_Masjid": "Dukhulul Masjid",
+        "Jama_Binas_Salatain": "Jama Binas Salatain",
+        "Kusuf": "Kusuf",
+        "Khusuf": "Khusuf",
+        "Maryaz": "Maryaz",
+        "Khaoof": "Khaoof",
+        "Jamaah": "Jamaah",
+        "Extra_Nafal": "Extra Nafal"
+      },
+      "time": {
+        "Fajr": "Fajr",
+        "Zuhr": "Zuhr",
+        "Asr": "Asr",
+        "Maghrib": "Maghrib",
+        "Isha": "Isha"
+      },
+      "priority": {
+        "Farz": "Farz",
+        "Wajib": "Wajib",
+        "Sunnah": "Sunnah",
+        "Nafal": "Nafal",
+        "Janazah": "Janazah"
+      }
+    }
   },
   "ProfilePage": {
     "page-label": "💻 Profile Information",
