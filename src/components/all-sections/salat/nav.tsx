@@ -5,21 +5,21 @@ import { Dispatch, FC, SetStateAction } from "react";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
-import { navItems } from "./navItems";
+import { salatTime } from "./data";
 
 interface ISalatNav {
-  selected: Salah;
-  setSelectedSalat: Dispatch<SetStateAction<Salah>>;
+  selected: SalahTime;
+  setSelectedSalat: Dispatch<SetStateAction<SalahTime>>;
 }
 
 export const SalatNav: FC<ISalatNav> = ({ selected, setSelectedSalat }) => {
-  const t = useTranslations("HomePage.salat.name");
+  const t = useTranslations("HomePage.salat.time");
 
   return (
     <div className="relative">
       <ScrollArea className="w-full max-w-[600px] sm:max-w-fit mx-auto">
         <div className={cn("mb-4 flex items-center")}>
-          {navItems.map(({ label }) => (
+          {salatTime.map((label) => (
             <div
               key={label}
               onClick={() => setSelectedSalat(label)}

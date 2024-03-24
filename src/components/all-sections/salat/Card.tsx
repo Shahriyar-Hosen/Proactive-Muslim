@@ -18,7 +18,7 @@ import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 
 interface ISalatCard {
-  name: Salah;
+  name: SalahTime;
   priority: Priority;
 }
 

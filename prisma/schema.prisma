@@ -17,13 +17,47 @@ enum Gender {
   Female
 }
 
-enum Salah {
+enum SalahName {
   Fajr
   Zuhr
   Asr
   Maghrib
   Isha
   Witr
+  Jumuah
+  Janazah
+  Taraweeh
+  Qaza
+  Tahajjud
+  Ishraq
+  Chasht
+  Awabeen
+  Tasbeeh
+  Yadain
+  Tawbah
+  Istika
+  Istikhara
+  Hajat
+  Musafir
+  Shukr
+  Tahiyatul_Azu
+  Dukhulul_Masjid
+  Jama_Binas_Salatain
+  Kusuf
+  Khusuf
+  Maryaz
+  Khaoof
+  Jamaah
+  Extra_Nafal
+}
+
+enum SalahTime {
+  Fajr
+  Zuhr
+  Asr
+  Maghrib
+  Isha
+  Others
 }
 
 enum Priority {
@@ -119,16 +153,17 @@ model TwoFactorConfirmation {
 }
 
 model Salat {
-  id            String               @id @default(auto()) @map("_id") @db.ObjectId
-  userId        String               @db.ObjectId
-  user          User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
-  date          DateTime             @default(now())
-  name          Internationalisation
-  time          Salah
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String    @db.ObjectId
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date          DateTime  @default(now())
+  name          SalahName
+  time          SalahTime
   priority      Priority
-  complete      Boolean              @default(false)
-  jamat         Boolean?             @default(false)
-  firstTakbeer  Boolean?             @default(false)
+  rakats        Int?
+  complete      Boolean   @default(false)
+  jamat         Boolean?  @default(false)
+  firstTakbeer  Boolean?  @default(false)
   concentration Int?
 
   @@unique([userId])
@@ -143,7 +178,7 @@ model Dua {
   hadith      ArabicAndIntl?
   ayat        ArabicAndIntl?
   description Internationalisation?
-  time        Salah?
+  time        SalahTime?
   complete    Boolean               @default(false)
   beforeSalah Boolean?
   afterSalah  Boolean?
@@ -160,7 +195,7 @@ model Zikir {
   hadith      ArabicAndIntl?
   ayat        ArabicAndIntl?
   description Internationalisation?
-  time        Salah?
+  time        SalahTime?
   complete    Boolean               @default(false)
   beforeSalah Boolean?
   afterSalah  Boolean?

@@ -5,7 +5,7 @@ import { SalatCard } from "./Card";
 import { SalatNav } from "./nav";
 
 export const Salat: FC = () => {
-  const [selectedSalat, setSelectedSalat] = useState<Salah>("Fajr");
+  const [selectedSalat, setSelectedSalat] = useState<SalahTime>("Fajr");
   // TODO: Will update with prayer times
 
   return (
