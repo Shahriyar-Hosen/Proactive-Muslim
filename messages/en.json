@@ -10,12 +10,27 @@
   "HomePage": {
     "page-label": "Home",
     "salat": {
-      "nav": {
-        "fajr": "Fajr",
-        "zuhr": "Zuhr",
-        "asr": "Asr",
-        "maghrib": "Maghrib",
-        "isha": "Isha"
+      "card-label": "It's {salat} {priority} salah information",
+      "completed": "Completed",
+      "completed-label": "completed salah?",
+      "jamat": "Jamat",
+      "jamat-label": "The Salat with the Jamaat",
+      "firstTakbeer": "First Takbeer",
+      "firstTakbeer-label": "Salat with the first Takbeer",
+      "name": {
+        "Fajr": "Fajr",
+        "Zuhr": "Zuhr",
+        "Asr": "Asr",
+        "Maghrib": "Maghrib",
+        "Isha": "Isha",
+        "Witr": "Witr"
+      },
+      "priority": {
+        "Farz": "Farz",
+        "Wajib": "Wajib",
+        "Sunnah": "Sunnah",
+        "Nafal": "Nafal",
+        "Janazah": "Janazah"
       }
     }
   },

@@ -10,13 +10,28 @@
   "HomePage": {
     "page-label": "হোম",
     "salat": {
-      "nav": {
-        "fajr": "ফজর",
-        "asr": "আসর",
-        "zuhr": "যোহর",
-        "maghrib": "মাগরিব",
-        "isha": "ইশা"
-      }
+      "card-label": "এটি {salat} এর {priority} নামাজের তথ্য",
+      "priority": {
+        "Farz": "ফরজ",
+        "Janazah": "জানাযা",
+        "Nafal": "নফল",
+        "Sunnah": "সুন্নাহ",
+        "Wajib": "ওয়াজিব"
+      },
+      "name": {
+        "Fajr": "ফজর",
+        "Zuhr": "আসর",
+        "Asr": "যোহর",
+        "Maghrib": "মাগরিব",
+        "Isha": "ইশা",
+        "Witr": "বিতর"
+      },
+      "completed": "নামাজ আদায়",
+      "completed-label": "নামাজ আদায় করা",
+      "firstTakbeer": "প্রথম তাকবীর",
+      "firstTakbeer-label": "প্রথম তাকবীরের সাথে নামাজ আদায়",
+      "jamat": "জামাত",
+      "jamat-label": "জামাতের সাথে নামাজ আদায়"
     }
   },
   "ProfilePage": {

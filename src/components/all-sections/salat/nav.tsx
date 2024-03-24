@@ -13,13 +13,13 @@ interface ISalatNav {
 }
 
 export const SalatNav: FC<ISalatNav> = ({ selected, setSelectedSalat }) => {
-  const t = useTranslations("HomePage.salat");
+  const t = useTranslations("HomePage.salat.name");
 
   return (
     <div className="relative">
       <ScrollArea className="max-w-[600px] lg:max-w-fit mx-auto">
         <div className={cn("mb-4 flex items-center")}>
-          {navItems.map(({ name, label }) => (
+          {navItems.map(({ label }) => (
             <div
               key={label}
               onClick={() => setSelectedSalat(label)}
@@ -30,7 +30,7 @@ export const SalatNav: FC<ISalatNav> = ({ selected, setSelectedSalat }) => {
                   : "text-muted-foreground"
               )}
             >
-              {t(name)}
+              {t(label)}
             </div>
           ))}
         </div>

@@ -25,3 +25,8 @@ declare interface Data<T> {
 }
 
 declare type Salah = "Fajr" | "Zuhr" | "Asr" | "Maghrib" | "Isha" | "Witr";
+declare type Priority = "Farz" | "Wajib" | "Sunnah" | "Nafal" | "Janazah";
+declare type I18nSalah = MessageKeys<
+  { Fajr: string; Zuhr: string; Asr: string; Maghrib: string; Isha: string },
+  Salah
+>;
