@@ -17,6 +17,9 @@
       "jamat-label": "The Salat with the Jamaat",
       "firstTakbeer": "First Takbeer",
       "firstTakbeer-label": "Salat with the first Takbeer",
+      "concentration": "Concentration",
+      "concentration-label": "Salat with how concentrated!",
+      "btn-text": "Save Salat info",
       "name": {
         "Fajr": "Fajr",
         "Zuhr": "Zuhr",

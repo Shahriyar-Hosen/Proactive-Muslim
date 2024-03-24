@@ -24,9 +24,9 @@ export const SalatNav: FC<ISalatNav> = ({ selected, setSelectedSalat }) => {
               key={label}
               onClick={() => setSelectedSalat(label)}
               className={cn(
-                "flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-secondary hover:bg-slate-800/30 cursor-pointer",
+                "flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary hover:bg-slate-800/30 cursor-pointer",
                 selected === label
-                  ? "bg-slate-800/80 font-medium text-secondary"
+                  ? "bg-slate-800/80 font-medium text-primary hover:bg-slate-800/90"
                   : "text-muted-foreground"
               )}
             >
