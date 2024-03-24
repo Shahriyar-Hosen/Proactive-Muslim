@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
@@ -30,7 +31,7 @@ export const SalatCard: FC<ISalatCard> = ({ priority, name }) => {
   // TODO: add concentration slider
 
   return (
-    <Card className="w-full max-w-[300px]  lg:w-fit mx-auto">
+    <Card className="w-full max-w-[290px]  lg:w-fit mx-auto">
       <CardContent className="p-0">
         <CardHeader className="p-5">
           <CardTitle className="text-primary/95">{salatPriority}</CardTitle>
@@ -86,11 +87,25 @@ export const SalatCard: FC<ISalatCard> = ({ priority, name }) => {
                   {t("concentration-label", { salat: salatName })}
                 </span>
               </Label>
-              <div className="w-14 h-8 border border-slate-600 flex justify-center items-center rounded-md">
+              <div className="w-14 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-400">
                 50
               </div>
             </div>
             <Slider defaultValue={[10]} max={100} step={1} />
+          </div>
+          <div className="flex items-center justify-between space-x-2">
+            <Label
+              htmlFor="rakats"
+              className="flex flex-col space-y-2 text-primary/90"
+            >
+              <span>{t("rakats")}</span>
+            </Label>
+            <Input
+              id="rakats"
+              defaultValue={2}
+              disabled
+              className="w-10 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-400 px-1 py-0 text-center"
+            />
           </div>
         </CardContent>
         <CardFooter>

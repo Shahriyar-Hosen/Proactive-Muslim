@@ -17,7 +17,7 @@ export const SalatNav: FC<ISalatNav> = ({ selected, setSelectedSalat }) => {
 
   return (
     <div className="relative">
-      <ScrollArea className="max-w-[600px] lg:max-w-fit mx-auto">
+      <ScrollArea className="w-full max-w-[600px] sm:max-w-fit mx-auto">
         <div className={cn("mb-4 flex items-center")}>
           {navItems.map(({ label }) => (
             <div
