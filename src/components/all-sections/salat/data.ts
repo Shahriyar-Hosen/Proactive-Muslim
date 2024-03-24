@@ -15,6 +15,7 @@ export const salatTime: I18nSalah[] = [
   "Asr",
   "Maghrib",
   "Isha",
+  "Others",
 ];
 
 export const allSalat: SalatData[] = [

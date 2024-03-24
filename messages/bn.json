@@ -56,7 +56,8 @@
         "Zuhr": "আসর",
         "Asr": "যোহর",
         "Maghrib": "মাগরিব",
-        "Isha": "ইশা"
+        "Isha": "ইশা",
+        "Others": "অন্যান্য"
       },
       "completed": "নামাজ আদায়",
       "completed-label": "নামাজ আদায় করা",
