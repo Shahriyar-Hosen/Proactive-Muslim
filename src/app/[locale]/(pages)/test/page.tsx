@@ -17,19 +17,6 @@ const AdminPage: NextPage<ParamsLocale> = ({ params: { locale } }) => {
     <main className="flex flex-col justify-center items-center gap-5 relative">
       <APIsCheck />
 
-      <section className="space-y-5">
-        <h1 className="text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-          {t("title")}
-        </h1>
-        <p className="max-w-[590px]">
-          {t.rich("description", {
-            code: (chunks) => (
-              <code className="font-mono text-cyan-400">{chunks}</code>
-            ),
-          })}
-        </p>
-      </section>
-
       <div className="space-y-6 text-center">
         <h1 className="text-6xl font-semibold text-primary drop-shadow-md">
           🔐 Auth
