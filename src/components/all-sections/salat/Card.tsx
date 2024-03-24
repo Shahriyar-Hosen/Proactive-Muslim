@@ -26,6 +26,8 @@ export const SalatCard: FC<ISalatCard> = ({ priority, name }) => {
   const salatName = t(`name.${name}`);
   const salatPriority = t(`priority.${priority}`);
 
+  // TODO: add concentration slider
+
   return (
     <Card className="w-full max-w-[300px]  lg:w-fit mx-auto">
       <CardContent className="p-0">
