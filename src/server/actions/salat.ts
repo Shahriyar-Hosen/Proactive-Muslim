@@ -26,18 +26,12 @@ export const setSalat = async (values: any): Promise<Data<Salat>> => {
     });
 
     if (salat) {
-      const updateData = {
-        name: {
-          ...salat.name,
-          bn: "Bangle Name",
-        },
-      };
       salat = await db.salat.update({
         where: {
           id: salat.id,
         },
         data: {
-          ...updateData,
+          name: "Extra_Nafal",
         },
       });
       return { success: "Salat Update!(S:43) ✅", data: salat };
@@ -46,10 +40,7 @@ export const setSalat = async (values: any): Promise<Data<Salat>> => {
         data: {
           date: today,
           userId: user.id,
-          name: {
-            en: "English Name",
-            bn: "English Name",
-          },
+          name: "Tahajjud",
           time: "Asr",
           priority: "Farz",
           complete: false,
