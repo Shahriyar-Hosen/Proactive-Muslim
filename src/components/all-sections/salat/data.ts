@@ -1,4 +1,4 @@
-interface SalatData {
+export interface SalatData {
   name: SalahName;
   time: SalahTime;
   priority: Priority;
