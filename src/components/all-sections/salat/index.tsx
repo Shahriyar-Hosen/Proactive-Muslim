@@ -5,25 +5,24 @@ import { SalatCard } from "./Card";
 import { SalatData, allSalat } from "./data";
 import { SalatNav } from "./nav";
 
+const currentTime = new Date().getHours();
+const prayerTime =
+  (currentTime >= 4 && currentTime < 11 && "Fajr") ||
+  (currentTime >= 11 && currentTime < 15 && "Zuhr") ||
+  (currentTime >= 15 && currentTime <= 17 && "Asr") ||
+  (currentTime >= 17 && currentTime <= 19 && "Maghrib") ||
+  "Isha";
+
 export const Salat: FC = () => {
-  const [selectedSalat, setSelectedSalat] = useState<SalahTime>("Fajr");
-  // TODO: Will update with prayer times
+  const [selectedSalat, setSelectedSalat] = useState<SalahTime>(prayerTime);
 
   const allFilter = ({ time, name }: SalatData) => {
-    // Get today's date
-    const today = new Date();
-    // Subtract three days from today's date
-    // const threeDaysAgo = new Date(today);
-    // threeDaysAgo.setDate(today.getDate() - 3);
-
-    const day = today.toDateString().slice(0, 3);
-
-    if (time === "Zuhr" && day !== "Fri") {
-      return time === selectedSalat && name === "Zuhr";
-    } else if (time === "Zuhr" && day === "Fri") {
-      return time === selectedSalat && name === "Jumuah";
+    if (time === "Zuhr") {
+      const today = new Date();
+      const day = today.toDateString().slice(0, 3);
+      const selectSalah = day === "Fri" ? "Jumuah" : "Zuhr";
+      return time === selectedSalat && name === selectSalah;
     }
-
     return time === selectedSalat;
   };
 
@@ -32,7 +31,6 @@ export const Salat: FC = () => {
       <SalatNav selected={selectedSalat} setSelectedSalat={setSelectedSalat} />
       <section
         id="salat-section"
-        // className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5 place-content-center place-items-center"
         className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto"
       >
         {allSalat.filter(allFilter).map((salat, i) => (
