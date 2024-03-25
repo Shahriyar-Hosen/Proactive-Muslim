@@ -48,7 +48,8 @@ enum SalahName {
   Maryaz
   Khaoof
   Jamaah
-  Extra_Nafal
+  Nafal
+  Sunnah
 }
 
 enum SalahTime {
@@ -165,6 +166,8 @@ model Salat {
   jamat         Boolean?  @default(false)
   firstTakbeer  Boolean?  @default(false)
   concentration Int?
+  before        Boolean?
+  after         Boolean?
 
   @@unique([userId])
 }

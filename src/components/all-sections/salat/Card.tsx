@@ -27,6 +27,8 @@ export const SalatCard: FC<SalatData> = ({
   rakats,
   jamat,
   firstTakbeer,
+  after,
+  before,
 }) => {
   const [updateConcentration, setUpdateConcentration] = useState(concentration);
   const [updateJamat, setUpdateJamat] = useState(jamat);
@@ -39,15 +41,24 @@ export const SalatCard: FC<SalatData> = ({
 
   const salatName = t(`name.${name}`);
   const salatPriority = t(`priority.${priority}`);
+  const salatTime = t(`time.${time}`);
+
   // TODO: add concentration slider
 
   return (
     <Card className="w-full max-w-[290px]  lg:w-fit mx-auto">
       <CardContent className="p-0">
-        <CardHeader className="p-5">
-          <CardTitle className="text-primary/95">{salatPriority}</CardTitle>
-          <CardDescription>
-            {t("card-label", { salat: salatName, priority: salatPriority })}
+        <CardHeader className="p-5 space-y-2">
+          <CardTitle className="text-primary/95 text-center">
+            {(priority === "Farz" && salatName) ||
+              t("card-title", { priority: salatPriority, name: salatName })}
+          </CardTitle>
+          <CardDescription className="text-center">
+            {t("card-label", {
+              salatTime: name === "Witr" ? salatName : salatTime,
+              priority: salatPriority,
+              option: (before && "before") || (after && "after") || "other",
+            })}
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6">
@@ -57,9 +68,6 @@ export const SalatCard: FC<SalatData> = ({
               className="flex flex-col space-y-1 text-primary/90"
             >
               <span>{t("completed")}</span>
-              {/* <span className="font-normal leading-snug text-muted-foreground">
-                {t("completed-label", { salat: salatName })}
-              </span> */}
             </Label>
             <Switch id="completed" defaultChecked={complete} />
           </div>
@@ -133,11 +141,7 @@ export const SalatCard: FC<SalatData> = ({
             <Input
               id="rakats"
               defaultValue={rakats}
-              disabled={
-                priority === "Farz" ||
-                priority === "Wajib" ||
-                priority === "Janazah"
-              }
+              disabled={priority === "Farz" || priority === "Janazah"}
               className="w-10 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-400 px-1 py-0 text-center"
             />
           </div>

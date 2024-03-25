@@ -53,4 +53,5 @@ declare type SalahName =
   | "Maryaz"
   | "Khaoof"
   | "Jamaah"
-  | "Extra_Nafal";
+  | "Sunnah"
+  | "Nafal";

@@ -31,7 +31,7 @@ export const setSalat = async (values: any): Promise<Data<Salat>> => {
           id: salat.id,
         },
         data: {
-          name: "Extra_Nafal",
+          name: "Nafal",
         },
       });
       return { success: "Salat Update!(S:43) ✅", data: salat };
