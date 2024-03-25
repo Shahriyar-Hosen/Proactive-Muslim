@@ -59,7 +59,8 @@
         "Zuhr": "Zuhr",
         "Asr": "Asr",
         "Maghrib": "Maghrib",
-        "Isha": "Isha"
+        "Isha": "Isha",
+        "Others": "Others"
       },
       "priority": {
         "Farz": "Farz",
