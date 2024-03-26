@@ -35,6 +35,8 @@ export const SalatCard: FC<SalatData> = ({
   const [updateFirstTakbeer, setUpdateFirstTakbeer] = useState(firstTakbeer);
   const t = useTranslations("HomePage.salat");
 
+  // kono value change holei dabd te call hobe ar jonne akti defaultData Store lagbe
+
   useEffect(() => {
     updateFirstTakbeer && setUpdateJamat(true);
   }, [updateFirstTakbeer]);
@@ -42,8 +44,6 @@ export const SalatCard: FC<SalatData> = ({
   const salatName = t(`name.${name}`);
   const salatPriority = t(`priority.${priority}`);
   const salatTime = t(`time.${time}`);
-
-  // TODO: add concentration slider
 
   return (
     <Card className="w-full max-w-[290px]  lg:w-fit mx-auto">

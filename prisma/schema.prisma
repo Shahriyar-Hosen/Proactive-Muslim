@@ -93,10 +93,10 @@ model User {
   accounts              Account[]
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
-  Salat                 Salat?
-  Dua                   Dua?
-  Zikir                 Zikir?
-  QuranRecitation       QuranRecitation?
+  Salat                 Salat[]
+  Dua                   Dua[]
+  Zikir                 Zikir[]
+  QuranRecitation       QuranRecitation[]
 }
 
 model Account {
@@ -168,8 +168,6 @@ model Salat {
   concentration Int?
   before        Boolean?
   after         Boolean?
-
-  @@unique([userId])
 }
 
 model Dua {
@@ -185,8 +183,6 @@ model Dua {
   complete    Boolean               @default(false)
   beforeSalah Boolean?
   afterSalah  Boolean?
-
-  @@unique([userId])
 }
 
 model Zikir {
@@ -202,8 +198,6 @@ model Zikir {
   complete    Boolean               @default(false)
   beforeSalah Boolean?
   afterSalah  Boolean?
-
-  @@unique([userId])
 }
 
 model QuranRecitation {
@@ -217,6 +211,4 @@ model QuranRecitation {
   notes       String?
   beforeSalah Boolean?
   afterSalah  Boolean?
-
-  @@unique([userId])
 }

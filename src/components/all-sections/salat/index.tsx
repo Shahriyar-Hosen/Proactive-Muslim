@@ -1,6 +1,8 @@
 "use client";
 
-import { FC, useState } from "react";
+import { DatePicker } from "@/components/DatePicker";
+import { getSalat } from "@/server/actions/salat";
+import { FC, useEffect, useState } from "react";
 import { SalatCard } from "./Card";
 import { SalatData, allSalat } from "./data";
 import { SalatNav } from "./nav";
@@ -10,11 +12,22 @@ const prayerTime =
   (currentTime >= 4 && currentTime < 11 && "Fajr") ||
   (currentTime >= 11 && currentTime < 15 && "Zuhr") ||
   (currentTime >= 15 && currentTime <= 17 && "Asr") ||
-  (currentTime >= 17 && currentTime <= 19 && "Maghrib") ||
+  (currentTime >= 17 && currentTime <= 18 && "Maghrib") ||
   "Isha";
 
 export const Salat: FC = () => {
   const [selectedSalat, setSelectedSalat] = useState<SalahTime>(prayerTime);
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    const specificDate = new Date(date as Date);
+    const salats = getSalat(specificDate)
+      .then((data) =>
+        console.log("🚀 ~ useEffect ~ salats:", { data: data.data })
+      )
+      .catch((error) => console.log({ error }));
+  }, [date]);
 
   const allFilter = ({ time, name }: SalatData) => {
     if (time === "Zuhr") {
@@ -28,6 +41,9 @@ export const Salat: FC = () => {
 
   return (
     <section id="salat" className="space-y-5">
+      <div className="w-fit mx-auto">
+        <DatePicker date={date} setDate={setDate} />
+      </div>
       <SalatNav selected={selectedSalat} setSelectedSalat={setSelectedSalat} />
       <section
         id="salat-section"

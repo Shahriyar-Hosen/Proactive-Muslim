@@ -1,6 +1,19 @@
 import { Gender, UserRole } from "@prisma/client";
 import * as z from "zod";
 
+export const SalatSchema = z.object({
+  name: z.optional(z.string()),
+  time: z.optional(z.string()),
+  priority: z.optional(z.string()),
+  complete: z.optional(z.boolean()),
+  rakats: z.optional(z.number()),
+  jamat: z.optional(z.boolean()),
+  firstTakbeer: z.optional(z.boolean()),
+  concentration: z.optional(z.boolean()),
+  before: z.optional(z.boolean()),
+  after: z.optional(z.boolean()),
+});
+
 export const UserSchema = z
   .object({
     name: z.optional(z.string()),
@@ -72,6 +85,7 @@ export const RegisterSchema = z.object({
 });
 
 export type IUserSchema = z.infer<typeof UserSchema>;
+export type ISalatSchema = z.infer<typeof SalatSchema>;
 export type INewPasswordSchema = z.infer<typeof NewPasswordSchema>;
 export type IResetSchema = z.infer<typeof ResetSchema>;
 export type ILoginSchema = z.infer<typeof LoginSchema>;
