@@ -10,9 +10,9 @@
   "HomePage": {
     "page-label": "Home",
     "salat": {
-      "card-label": "It's {salat} {priority} salah information",
+      "card-title": "{name} {priority}",
+      "card-label": "{salatTime} {option, select, before {before} after {after} other {}} {priority} salah information",
       "completed": "Completed",
-      "completed-label": "completed salah?",
       "jamat": "Jamat",
       "jamat-label": "The Salat with the Jamaat",
       "firstTakbeer": "First Takbeer",
@@ -52,7 +52,8 @@
         "Maryaz": "Maryaz",
         "Khaoof": "Khaoof",
         "Jamaah": "Jamaah",
-        "Extra_Nafal": "Extra Nafal"
+        "Sunnah": "Sunnah",
+        "Nafal": "Nafal"
       },
       "time": {
         "Fajr": "Fajr",
