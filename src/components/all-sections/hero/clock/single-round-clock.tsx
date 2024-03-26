@@ -13,7 +13,7 @@ interface ITimeBx {
   dot?: boolean;
 }
 
-const TimeBx: FC<ITimeBx> = ({ c, time, dot }) => (
+const TimeBx: FC<ITimeBx> = memo(({ c, time, dot }) => (
   <div
     className="text-[var(--c)] single-rounded-clock-text-shadow"
     style={{ "--c": c } as CSSProperties}
@@ -21,7 +21,7 @@ const TimeBx: FC<ITimeBx> = ({ c, time, dot }) => (
     {time}
     {dot && <span>:</span>}
   </div>
-);
+));
 
 export const SingleRoundClock = memo(() => {
   const t = useTranslations("Clock");
@@ -139,4 +139,5 @@ export const SingleRound = dynamic(() => Promise.resolve(SingleRoundClock), {
   loading: SingleRoundSkeleton,
 });
 
+TimeBx.displayName = "TimeBx";
 SingleRoundClock.displayName = "Clock";

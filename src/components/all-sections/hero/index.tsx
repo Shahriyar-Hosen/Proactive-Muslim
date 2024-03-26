@@ -1,8 +1,9 @@
+import { memo } from "react";
+
 import { ComingSoonBox } from "@/components/common";
-import { FC } from "react";
 import { Clock } from "./clock";
 
-export const Hero: FC = () => (
+export const Hero = memo(() => (
   <section
     id="hero"
     className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-self-center justify-items-center place-items-center place-content-center"
@@ -13,4 +14,6 @@ export const Hero: FC = () => (
     <ComingSoonBox className="h-[250px]" />
     <ComingSoonBox className="h-[250px]" />
   </section>
-);
+));
+
+Hero.displayName = "Hero";
