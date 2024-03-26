@@ -22,9 +22,9 @@ export const APIsCheck: FC = () => {
       <h1 className="text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl pb-5">
         APIsCheck
       </h1>
-      <form action={() => createOrUpdateSalat(user?.id!)}>
-        <Button type="submit">Create Salah</Button>
-      </form>
+      {/* <form action={() => createOrUpdateSalat(user?.id!)}> */}
+      <Button type="submit">Create Salah</Button>
+      {/* </form> */}
     </section>
   );
 };
