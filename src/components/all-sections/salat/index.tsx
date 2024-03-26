@@ -18,7 +18,6 @@ const prayerTime =
 export const Salat: FC = () => {
   const [selectedSalat, setSelectedSalat] = useState<SalahTime>(prayerTime);
   const [date, setDate] = useState<Date | undefined>(new Date());
-  const [data, setData] = useState();
 
   useEffect(() => {
     const specificDate = new Date(date as Date);
@@ -39,8 +38,6 @@ export const Salat: FC = () => {
     return time === selectedSalat;
   };
 
-  const salats = allSalat.filter(allFilter);
-
   return (
     <section id="salat" className="space-y-5">
       <div className="w-fit mx-auto">
@@ -51,7 +48,7 @@ export const Salat: FC = () => {
         id="salat-section"
         className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto"
       >
-        {salats.map((salat, i) => (
+        {allSalat.filter(allFilter).map((salat, i) => (
           <SalatCard key={i} {...salat} />
         ))}
       </section>

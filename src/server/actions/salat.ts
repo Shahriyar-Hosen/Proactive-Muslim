@@ -20,14 +20,13 @@ export const createManySalat = async (data: Salat[]) => {
     const createMany = await db.salat.createMany({
       data: data,
     });
-    return { success: "Salat Added!(S:58) ✅", data: createMany };
+    return { success: "Salat Added!(S:23) ✅", data: createMany };
   } catch (error) {
-    return { error: "Something want Wrong!(S:61) ❌" };
+    return { error: "Something want Wrong!(S:25) ❌" };
   }
 };
 
-// values Salat
-export const setSalat = async ({
+export const createOrUpdateSalat = async ({
   name,
   time,
   priority,
@@ -37,7 +36,7 @@ export const setSalat = async ({
   const user = await currentUser();
 
   if (!user?.id) {
-    return { error: "User not logged in!(S:12)" };
+    return { error: "User not logged in!(S:39)" };
   }
 
   const date = new Date(dateValue);
@@ -70,17 +69,17 @@ export const setSalat = async ({
         },
       });
 
-      return { success: "Salat Added!(S:58) ✅", data: create };
+      return { success: "Salat Added!(S:72) ✅", data: create };
     } else {
       const update = await db.salat.update({
         where: { id: salat.id },
         data: { ...others },
       });
 
-      return { success: "Salat Added!(S:58) ✅", data: update };
+      return { success: "Salat Added!(S:79) ✅", data: update };
     }
   } catch (error) {
-    return { error: "Something want Wrong!(S:61) ❌" };
+    return { error: "Something want Wrong!(S:82) ❌" };
   }
 };
 
@@ -89,7 +88,7 @@ export const getSalat = async (filterDate: Date): Promise<Data<Salat[]>> => {
     const user = await currentUser();
 
     if (!user?.id) {
-      return { error: "User not logged in!(S:62)" };
+      return { error: "User not logged in!(S:91)" };
     }
 
     const date = new Date(filterDate);
@@ -106,8 +105,8 @@ export const getSalat = async (filterDate: Date): Promise<Data<Salat[]>> => {
       },
     });
 
-    return { success: "Salat Added!(S:74) ✅", data: salats };
+    return { success: "Salat Added!(S:108) ✅", data: salats };
   } catch (error) {
-    return { error: "Something want Wrong!(S:76) ❌" };
+    return { error: "Something want Wrong!(S:110) ❌" };
   }
 };

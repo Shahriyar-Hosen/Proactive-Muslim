@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
-import { setSalat } from "@/server/actions/salat";
+import { createOrUpdateSalat } from "@/server/actions/salat";
 
 export const SalatCard: FC<ISalat> = (props) => {
   const [data, setData] = useState<ISalat>(props);
@@ -34,6 +34,8 @@ export const SalatCard: FC<ISalat> = (props) => {
     after,
     before,
   } = data || {};
+
+  // TODO: Get Salat Data
 
   const updateComplete = (checked: boolean) => {
     setData((prv) => ({ ...prv, complete: checked }));
@@ -57,7 +59,7 @@ export const SalatCard: FC<ISalat> = (props) => {
 
   const handleSubmit = async () => {
     setLoading(true);
-    await setSalat(data)
+    await createOrUpdateSalat(data)
       .then((data) => {
         setLoading(false);
         setData(data?.data!);
