@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { FC, useEffect, useState } from "react";
+import { FC, memo, useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,9 +18,11 @@ import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { createOrUpdateSalat } from "@/server/actions/salat";
 
-export const SalatCard: FC<ISalat> = (props) => {
-  const [data, setData] = useState<ISalat>(props);
+export const SalatCard: FC<ISalat> = memo((salat) => {
+  const [data, setData] = useState<ISalat>(salat);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => setData(salat), [salat]);
 
   const {
     name,
@@ -59,10 +61,13 @@ export const SalatCard: FC<ISalat> = (props) => {
 
   const handleSubmit = async () => {
     setLoading(true);
-    await createOrUpdateSalat(data)
+    const { id, userId, ...salatUpdateData } = data || {};
+    await createOrUpdateSalat(salatUpdateData)
       .then((data) => {
         setLoading(false);
-        setData(data?.data!);
+        if (data?.data) {
+          setData(data.data);
+        }
       })
       .catch((err) => {
         setLoading(false);
@@ -152,7 +157,7 @@ export const SalatCard: FC<ISalat> = (props) => {
                   {t("concentration-label", { salat: salatName })}
                 </span>
               </Label>
-              <div className="w-14 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-400">
+              <div className="w-14 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-300">
                 {concentration}
               </div>
             </div>
@@ -175,7 +180,7 @@ export const SalatCard: FC<ISalat> = (props) => {
               value={rakats || 0}
               onChange={(e) => updateRakats(Number(e.target.value))}
               disabled={priority === "Farz" || priority === "Janazah"}
-              className="w-10 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-400 px-1 py-0 text-center"
+              className="w-10 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-300 px-1 py-0 text-center"
             />
           </div>
         </CardContent>
@@ -184,7 +189,7 @@ export const SalatCard: FC<ISalat> = (props) => {
             type="submit"
             variant="default"
             onClick={handleSubmit}
-            disabled={loading || props === data}
+            disabled={loading || salat === data}
             className="w-full bg-primary/60 hover:bg-primary/70 disabled:opacity-40"
           >
             {t("btn-text")}
@@ -193,4 +198,6 @@ export const SalatCard: FC<ISalat> = (props) => {
       </CardContent>
     </Card>
   );
-};
+});
+
+SalatCard.displayName = "SalatCard";

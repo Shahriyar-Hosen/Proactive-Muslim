@@ -79,6 +79,7 @@ export const createOrUpdateSalat = async ({
       return { success: "Salat Added!(S:79) ✅", data: update };
     }
   } catch (error) {
+    console.log("🚀 ~ error:", error);
     return { error: "Something want Wrong!(S:82) ❌" };
   }
 };
@@ -107,6 +108,7 @@ export const getSalat = async (filterDate: Date): Promise<Data<Salat[]>> => {
 
     return { success: "Salat Added!(S:108) ✅", data: salats };
   } catch (error) {
+    console.log("🚀 ~ getSalat ~ error:", error);
     return { error: "Something want Wrong!(S:110) ❌" };
   }
 };
