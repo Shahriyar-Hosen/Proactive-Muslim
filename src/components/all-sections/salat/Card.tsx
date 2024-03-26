@@ -35,8 +35,6 @@ export const SalatCard: FC<ISalat> = (props) => {
     before,
   } = data || {};
 
-  // kono value change holei data te call hobe ar jonne akti defaultData Store lagbe
-
   const updateComplete = (checked: boolean) => {
     setData((prv) => ({ ...prv, complete: checked }));
   };
@@ -76,7 +74,6 @@ export const SalatCard: FC<ISalat> = (props) => {
   const salatTime = t(`time.${time}`);
 
   return (
-    // <form onSubmit={handleSubmit}>
     <Card className="w-full max-w-[290px]  lg:w-fit mx-auto">
       <CardContent className="p-0">
         <CardHeader className="p-5 space-y-2">
@@ -102,7 +99,6 @@ export const SalatCard: FC<ISalat> = (props) => {
             </Label>
             <Switch
               id="completed"
-              // defaultChecked={complete}
               checked={complete}
               onCheckedChange={(checked) => updateComplete(checked)}
             />
@@ -137,7 +133,6 @@ export const SalatCard: FC<ISalat> = (props) => {
                 </Label>
                 <Switch
                   id="firstTakbeer"
-                  // defaultChecked={firstTakbeer}
                   checked={firstTakbeer || false}
                   onCheckedChange={(checked) => updateFirstTakbeer(checked)}
                 />
@@ -195,6 +190,5 @@ export const SalatCard: FC<ISalat> = (props) => {
         </CardFooter>
       </CardContent>
     </Card>
-    // </form>
   );
 };
