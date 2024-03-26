@@ -1,17 +1,68 @@
-import { Gender, UserRole } from "@prisma/client";
+import {
+  Gender,
+  Priority,
+  SalahName,
+  SalahTime,
+  UserRole,
+} from "@prisma/client";
 import * as z from "zod";
 
-export const SalatSchema = z.object({
-  name: z.optional(z.string()),
-  time: z.optional(z.string()),
-  priority: z.optional(z.string()),
+export const SalatUpdateSchema = z.object({
+  date: z.date(),
+  name: z.enum([
+    SalahName.Fajr,
+    SalahName.Zuhr,
+    SalahName.Asr,
+    SalahName.Maghrib,
+    SalahName.Isha,
+    SalahName.Witr,
+    SalahName.Jumuah,
+    SalahName.Janazah,
+    SalahName.Taraweeh,
+    SalahName.Qaza,
+    SalahName.Tahajjud,
+    SalahName.Ishraq,
+    SalahName.Chasht,
+    SalahName.Awabeen,
+    SalahName.Tasbeeh,
+    SalahName.Yadain,
+    SalahName.Tawbah,
+    SalahName.Istika,
+    SalahName.Istikhara,
+    SalahName.Hajat,
+    SalahName.Musafir,
+    SalahName.Shukr,
+    SalahName.Tahiyatul_Azu,
+    SalahName.Dukhulul_Masjid,
+    SalahName.Jama_Binas_Salatain,
+    SalahName.Kusuf,
+    SalahName.Khusuf,
+    SalahName.Maryaz,
+    SalahName.Khaoof,
+    SalahName.Jamaah,
+  ]),
+  time: z.enum([
+    SalahTime.Fajr,
+    SalahTime.Zuhr,
+    SalahTime.Asr,
+    SalahTime.Maghrib,
+    SalahTime.Isha,
+    SalahTime.Others,
+  ]),
+  priority: z.enum([
+    Priority.Farz,
+    Priority.Wajib,
+    Priority.Sunnah,
+    Priority.Nafal,
+    Priority.Janazah,
+  ]),
   complete: z.optional(z.boolean()),
-  rakats: z.optional(z.number()),
-  jamat: z.optional(z.boolean()),
-  firstTakbeer: z.optional(z.boolean()),
-  concentration: z.optional(z.boolean()),
-  before: z.optional(z.boolean()),
-  after: z.optional(z.boolean()),
+  rakats: z.optional(z.number().nullable()),
+  jamat: z.optional(z.boolean().nullable()),
+  firstTakbeer: z.optional(z.boolean().nullable()),
+  concentration: z.optional(z.number().nullable()),
+  before: z.optional(z.boolean().nullable()),
+  after: z.optional(z.boolean().nullable()),
 });
 
 export const UserSchema = z
@@ -85,7 +136,7 @@ export const RegisterSchema = z.object({
 });
 
 export type IUserSchema = z.infer<typeof UserSchema>;
-export type ISalatSchema = z.infer<typeof SalatSchema>;
+export type ISalatSchema = z.infer<typeof SalatUpdateSchema>;
 export type INewPasswordSchema = z.infer<typeof NewPasswordSchema>;
 export type IResetSchema = z.infer<typeof ResetSchema>;
 export type ILoginSchema = z.infer<typeof LoginSchema>;

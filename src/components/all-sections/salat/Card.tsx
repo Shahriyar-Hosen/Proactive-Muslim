@@ -16,36 +16,67 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
-import { SalatData } from "./data";
+import { setSalat } from "@/server/actions/salat";
 
-export const SalatCard: FC<SalatData> = ({
-  name,
-  priority,
-  time,
-  complete,
-  concentration,
-  rakats,
-  jamat,
-  firstTakbeer,
-  after,
-  before,
-}) => {
-  const [updateConcentration, setUpdateConcentration] = useState(concentration);
-  const [updateJamat, setUpdateJamat] = useState(jamat);
-  const [updateFirstTakbeer, setUpdateFirstTakbeer] = useState(firstTakbeer);
-  const t = useTranslations("HomePage.salat");
+export const SalatCard: FC<ISalat> = (props) => {
+  const [data, setData] = useState<ISalat>(props);
+  const [loading, setLoading] = useState(false);
 
-  // kono value change holei dabd te call hobe ar jonne akti defaultData Store lagbe
+  const {
+    name,
+    priority,
+    time,
+    complete,
+    concentration,
+    rakats,
+    jamat,
+    firstTakbeer,
+    after,
+    before,
+  } = data || {};
+
+  // kono value change holei data te call hobe ar jonne akti defaultData Store lagbe
+
+  const updateComplete = (checked: boolean) => {
+    setData((prv) => ({ ...prv, complete: checked }));
+  };
+  const updateJamat = (checked: boolean) => {
+    setData((prv) => ({ ...prv, jamat: checked }));
+  };
+  const updateFirstTakbeer = (checked: boolean) => {
+    setData((prv) => ({ ...prv, firstTakbeer: checked }));
+  };
+  const updateConcentration = (value: number) => {
+    setData((prv) => ({ ...prv, concentration: value }));
+  };
+  const updateRakats = (value: number) => {
+    setData((prv) => ({ ...prv, rakats: value }));
+  };
 
   useEffect(() => {
-    updateFirstTakbeer && setUpdateJamat(true);
-  }, [updateFirstTakbeer]);
+    firstTakbeer && updateJamat(true);
+  }, [firstTakbeer]);
 
+  const handleSubmit = async () => {
+    setLoading(true);
+    await setSalat(data)
+      .then((data) => {
+        setLoading(false);
+        setData(data?.data!);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
+  };
+
+  const t = useTranslations("HomePage.salat");
   const salatName = t(`name.${name}`);
   const salatPriority = t(`priority.${priority}`);
   const salatTime = t(`time.${time}`);
 
   return (
+    // <form onSubmit={handleSubmit}>
     <Card className="w-full max-w-[290px]  lg:w-fit mx-auto">
       <CardContent className="p-0">
         <CardHeader className="p-5 space-y-2">
@@ -69,7 +100,12 @@ export const SalatCard: FC<SalatData> = ({
             >
               <span>{t("completed")}</span>
             </Label>
-            <Switch id="completed" defaultChecked={complete} />
+            <Switch
+              id="completed"
+              // defaultChecked={complete}
+              checked={complete}
+              onCheckedChange={(checked) => updateComplete(checked)}
+            />
           </div>
           {priority === "Farz" && (
             <>
@@ -85,9 +121,8 @@ export const SalatCard: FC<SalatData> = ({
                 </Label>
                 <Switch
                   id="jamat"
-                  defaultChecked={updateJamat}
-                  checked={updateJamat}
-                  onCheckedChange={(checked) => setUpdateJamat(checked)}
+                  checked={jamat || false}
+                  onCheckedChange={(checked) => updateJamat(checked)}
                 />
               </div>
               <div className="flex items-center justify-between space-x-2">
@@ -102,9 +137,9 @@ export const SalatCard: FC<SalatData> = ({
                 </Label>
                 <Switch
                   id="firstTakbeer"
-                  defaultChecked={updateFirstTakbeer}
-                  checked={updateFirstTakbeer}
-                  onCheckedChange={(checked) => setUpdateFirstTakbeer(checked)}
+                  // defaultChecked={firstTakbeer}
+                  checked={firstTakbeer || false}
+                  onCheckedChange={(checked) => updateFirstTakbeer(checked)}
                 />
               </div>
             </>
@@ -121,14 +156,14 @@ export const SalatCard: FC<SalatData> = ({
                 </span>
               </Label>
               <div className="w-14 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-400">
-                {updateConcentration}
+                {concentration}
               </div>
             </div>
             <Slider
-              defaultValue={[updateConcentration || 0]}
               max={100}
               step={1}
-              onValueChange={(value) => setUpdateConcentration(value[0])}
+              value={[concentration || 0]}
+              onValueChange={(value) => updateConcentration(value[0])}
             />
           </div>
           <div className="flex items-center justify-between space-x-2">
@@ -140,7 +175,8 @@ export const SalatCard: FC<SalatData> = ({
             </Label>
             <Input
               id="rakats"
-              defaultValue={rakats}
+              value={rakats || 0}
+              onChange={(e) => updateRakats(Number(e.target.value))}
               disabled={priority === "Farz" || priority === "Janazah"}
               className="w-10 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-400 px-1 py-0 text-center"
             />
@@ -148,13 +184,17 @@ export const SalatCard: FC<SalatData> = ({
         </CardContent>
         <CardFooter>
           <Button
+            type="submit"
             variant="default"
-            className="w-full bg-primary/60 hover:bg-primary/70"
+            onClick={handleSubmit}
+            disabled={loading || props === data}
+            className="w-full bg-primary/60 hover:bg-primary/70 disabled:opacity-40"
           >
             {t("btn-text")}
           </Button>
         </CardFooter>
       </CardContent>
     </Card>
+    // </form>
   );
 };

@@ -4,7 +4,7 @@ import { DatePicker } from "@/components/DatePicker";
 import { getSalat } from "@/server/actions/salat";
 import { FC, useEffect, useState } from "react";
 import { SalatCard } from "./Card";
-import { SalatData, allSalat } from "./data";
+import { allSalat } from "./data";
 import { SalatNav } from "./nav";
 
 const currentTime = new Date().getHours();
@@ -29,7 +29,7 @@ export const Salat: FC = () => {
       .catch((error) => console.log({ error }));
   }, [date]);
 
-  const allFilter = ({ time, name }: SalatData) => {
+  const allFilter = ({ time, name }: ISalat) => {
     if (time === "Zuhr") {
       const today = new Date();
       const day = today.toDateString().slice(0, 3);
@@ -38,6 +38,8 @@ export const Salat: FC = () => {
     }
     return time === selectedSalat;
   };
+
+  const salats = allSalat.filter(allFilter);
 
   return (
     <section id="salat" className="space-y-5">
@@ -49,7 +51,7 @@ export const Salat: FC = () => {
         id="salat-section"
         className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto"
       >
-        {allSalat.filter(allFilter).map((salat, i) => (
+        {salats.map((salat, i) => (
           <SalatCard key={i} {...salat} />
         ))}
       </section>

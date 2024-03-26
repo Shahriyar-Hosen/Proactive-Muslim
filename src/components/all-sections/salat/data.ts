@@ -1,16 +1,3 @@
-export interface SalatData {
-  name: SalahName;
-  time: SalahTime;
-  priority: Priority;
-  complete: boolean;
-  rakats?: number;
-  jamat?: boolean;
-  firstTakbeer?: boolean;
-  concentration?: number;
-  before?: boolean;
-  after?: boolean;
-}
-
 export const salatTime: I18nSalah[] = [
   "Fajr",
   "Zuhr",
@@ -20,7 +7,7 @@ export const salatTime: I18nSalah[] = [
   "Others",
 ];
 
-export const allSalat: SalatData[] = [
+export const allSalat: ISalat[] = [
   {
     name: "Fajr",
     time: "Fajr",
@@ -30,6 +17,9 @@ export const allSalat: SalatData[] = [
     jamat: false,
     firstTakbeer: false,
     concentration: 0,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
   {
     name: "Fajr",
@@ -39,6 +29,9 @@ export const allSalat: SalatData[] = [
     complete: false,
     concentration: 0,
     before: true,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
   {
     name: "Zuhr",
@@ -48,6 +41,9 @@ export const allSalat: SalatData[] = [
     complete: false,
     concentration: 0,
     before: true,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
   {
     name: "Zuhr",
@@ -58,6 +54,9 @@ export const allSalat: SalatData[] = [
     jamat: false,
     firstTakbeer: false,
     concentration: 0,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
   {
     name: "Zuhr",
@@ -67,6 +66,9 @@ export const allSalat: SalatData[] = [
     complete: false,
     concentration: 0,
     after: true,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
   {
     name: "Jumuah",
@@ -76,6 +78,9 @@ export const allSalat: SalatData[] = [
     complete: false,
     concentration: 0,
     before: true,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
   {
     name: "Jumuah",
@@ -84,6 +89,9 @@ export const allSalat: SalatData[] = [
     rakats: 2,
     complete: false,
     concentration: 0,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
   {
     name: "Jumuah",
@@ -93,6 +101,9 @@ export const allSalat: SalatData[] = [
     complete: false,
     concentration: 0,
     after: true,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
   {
     name: "Asr",
@@ -102,6 +113,9 @@ export const allSalat: SalatData[] = [
     complete: false,
     concentration: 0,
     before: true,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
   {
     name: "Asr",
@@ -112,6 +126,9 @@ export const allSalat: SalatData[] = [
     concentration: 0,
     jamat: false,
     firstTakbeer: false,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
   {
     name: "Maghrib",
@@ -122,6 +139,9 @@ export const allSalat: SalatData[] = [
     concentration: 0,
     jamat: false,
     firstTakbeer: false,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
   {
     name: "Maghrib",
@@ -132,6 +152,9 @@ export const allSalat: SalatData[] = [
     concentration: 0,
     jamat: false,
     firstTakbeer: false,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
   {
     name: "Isha",
@@ -142,6 +165,9 @@ export const allSalat: SalatData[] = [
     concentration: 0,
     jamat: false,
     firstTakbeer: false,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
   {
     name: "Isha",
@@ -151,6 +177,9 @@ export const allSalat: SalatData[] = [
     complete: false,
     concentration: 0,
     after: true,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
   {
     name: "Witr",
@@ -159,5 +188,8 @@ export const allSalat: SalatData[] = [
     rakats: 3,
     complete: false,
     concentration: 0,
+    id: "",
+    userId: "",
+    date: new Date(),
   },
 ];
