@@ -86,7 +86,7 @@ export const SalatCard: FC<{ salat: ISalat; selectedDate: Date }> = memo(
         <CardContent className="p-0">
           <CardHeader className="p-5 space-y-2">
             <CardTitle className="text-primary/95 text-center">
-              {(priority === "Farz" && salatName) ||
+              {((priority === "Farz" || name === "Witr") && salatName) ||
                 t("card-title", { priority: salatPriority, name: salatName })}
             </CardTitle>
             <CardDescription className="text-center">
@@ -148,7 +148,7 @@ export const SalatCard: FC<{ salat: ISalat; selectedDate: Date }> = memo(
               </>
             )}
             <div className="space-y-3.5">
-              <div className="flex items-center justify-between space-x-2">
+              <div className="flex items-center justify-between space-x-5">
                 <Label
                   htmlFor="concentration"
                   className="flex flex-col space-y-2 text-primary/90"
@@ -158,7 +158,7 @@ export const SalatCard: FC<{ salat: ISalat; selectedDate: Date }> = memo(
                     {t("concentration-label", { salat: salatName })}
                   </span>
                 </Label>
-                <div className="w-14 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-300">
+                <div className="w-10 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-300">
                   {concentration}
                 </div>
               </div>
