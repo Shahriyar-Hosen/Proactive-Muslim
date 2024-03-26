@@ -48,8 +48,6 @@ enum SalahName {
   Maryaz
   Khaoof
   Jamaah
-  Nafal
-  Sunnah
 }
 
 enum SalahTime {
@@ -93,10 +91,10 @@ model User {
   accounts              Account[]
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
-  Salat                 Salat?
-  Dua                   Dua?
-  Zikir                 Zikir?
-  QuranRecitation       QuranRecitation?
+  Salat                 Salat[]
+  Dua                   Dua[]
+  Zikir                 Zikir[]
+  QuranRecitation       QuranRecitation[]
 }
 
 model Account {
@@ -163,13 +161,11 @@ model Salat {
   priority      Priority
   rakats        Int?
   complete      Boolean   @default(false)
-  jamat         Boolean?  @default(false)
-  firstTakbeer  Boolean?  @default(false)
+  jamat         Boolean?
+  firstTakbeer  Boolean?
   concentration Int?
   before        Boolean?
   after         Boolean?
-
-  @@unique([userId])
 }
 
 model Dua {
@@ -185,8 +181,6 @@ model Dua {
   complete    Boolean               @default(false)
   beforeSalah Boolean?
   afterSalah  Boolean?
-
-  @@unique([userId])
 }
 
 model Zikir {
@@ -202,8 +196,6 @@ model Zikir {
   complete    Boolean               @default(false)
   beforeSalah Boolean?
   afterSalah  Boolean?
-
-  @@unique([userId])
 }
 
 model QuranRecitation {
@@ -217,6 +209,4 @@ model QuranRecitation {
   notes       String?
   beforeSalah Boolean?
   afterSalah  Boolean?
-
-  @@unique([userId])
 }

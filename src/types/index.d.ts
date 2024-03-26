@@ -16,13 +16,19 @@ declare interface Data<T> {
 }
 
 declare type Priority = "Farz" | "Wajib" | "Sunnah" | "Nafal" | "Janazah";
-declare type SalahTime = "Fajr" | "Zuhr" | "Asr" | "Maghrib" | "Isha";
+declare type SalahTime =
+  | "Fajr"
+  | "Zuhr"
+  | "Asr"
+  | "Maghrib"
+  | "Isha"
+  | "Others";
 declare type I18nSalah = MessageKeys<
   { Fajr: string; Zuhr: string; Asr: string; Maghrib: string; Isha: string },
   SalahTime
 >;
 
-declare type SalahName =
+declare type ISalahName =
   | "Fajr"
   | "Zuhr"
   | "Asr"
@@ -52,6 +58,20 @@ declare type SalahName =
   | "Khusuf"
   | "Maryaz"
   | "Khaoof"
-  | "Jamaah"
-  | "Sunnah"
-  | "Nafal";
+  | "Jamaah";
+
+declare interface ISalat {
+  id: string;
+  userId: string;
+  date: Date;
+  name: ISalahName;
+  time: SalahTime;
+  priority: Priority;
+  complete: boolean;
+  rakats?: number | null;
+  jamat?: boolean | null;
+  firstTakbeer?: boolean | null;
+  concentration?: number | null;
+  before?: boolean | null;
+  after?: boolean | null;
+}

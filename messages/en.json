@@ -11,7 +11,7 @@
     "page-label": "Home",
     "salat": {
       "card-title": "{name} {priority}",
-      "card-label": "{salatTime} {option, select, before {before} after {after} other { Unknown}} {priority} salah information",
+      "card-label": "{salatTime} {option, select, before {before} after {after} other {}} {priority} salah information",
       "completed": "Completed",
       "jamat": "Jamat",
       "jamat-label": "The Salat with the Jamaat",
