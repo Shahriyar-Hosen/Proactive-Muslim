@@ -30,7 +30,7 @@ export const createOrUpdateSalat = async ({
   name,
   time,
   priority,
-  date: dateValue,
+  date: selectedDate,
   ...others
 }: ISalatSchema): Promise<Data<ISalat>> => {
   const user = await currentUser();
@@ -39,9 +39,9 @@ export const createOrUpdateSalat = async ({
     return { error: "User not logged in!(S:39)" };
   }
 
-  const date = new Date(dateValue);
+  const date = new Date(selectedDate);
   date.setHours(0, 0, 0, 0); // Set hours to beginning of the day
-  const endOfDate = new Date(date.getTime() + 24 * 60 * 60 * 1000);
+  const endOfDate = new Date(date.getTime() + 24 * 60 * 60 * 1000); // End of the day
 
   try {
     const salat = await db.salat.findFirst({
@@ -52,7 +52,7 @@ export const createOrUpdateSalat = async ({
         priority: priority,
         date: {
           gte: date,
-          lt: endOfDate, // End of the day
+          lt: endOfDate,
         },
       },
     });
@@ -97,7 +97,7 @@ export const getSalat = async (
 
     const date = new Date(filterDate);
     date.setHours(0, 0, 0, 0); // Set hours to beginning of the day
-    const endOfDate = new Date(date.getTime() + 24 * 60 * 60 * 1000);
+    const endOfDate = new Date(date.getTime() + 24 * 60 * 60 * 1000); // End of the day
 
     const salats = await db.salat.findMany({
       where: {
@@ -105,7 +105,7 @@ export const getSalat = async (
         time: selectedSalatTime,
         date: {
           gte: date,
-          lt: endOfDate, // End of the day
+          lt: endOfDate,
         },
       },
     });
