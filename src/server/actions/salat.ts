@@ -84,7 +84,10 @@ export const createOrUpdateSalat = async ({
   }
 };
 
-export const getSalat = async (filterDate: Date): Promise<Data<Salat[]>> => {
+export const getSalat = async (
+  filterDate: Date,
+  selectedSalatTime: SalahTime
+): Promise<Data<Salat[]>> => {
   try {
     const user = await currentUser();
 
@@ -99,6 +102,7 @@ export const getSalat = async (filterDate: Date): Promise<Data<Salat[]>> => {
     const salats = await db.salat.findMany({
       where: {
         userId: user.id,
+        time: selectedSalatTime,
         date: {
           gte: date,
           lt: endOfDate, // End of the day

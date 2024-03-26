@@ -25,20 +25,20 @@ const allFilter = ({ time, name }: ISalat, selectedSalat: SalahTime) => {
   return time === selectedSalat;
 };
 
-const replaceMatchingElements = (arr1: ISalat[], arr2?: ISalat[]) => {
-  const newArray = arr1.map((obj1) => {
+const replaceMatchingElements = (defaultData: ISalat[], dbData?: ISalat[]) => {
+  const result = defaultData.map((defaultSalat) => {
     const matchingObj =
-      arr2 &&
-      arr2.find(
-        (obj2) =>
-          obj1.name === obj2.name &&
-          obj1.time === obj2.time &&
-          obj1.priority === obj2.priority
+      dbData &&
+      dbData.find(
+        (dbSalat) =>
+          defaultSalat.name === dbSalat.name &&
+          defaultSalat.time === dbSalat.time &&
+          defaultSalat.priority === dbSalat.priority
       );
-    return matchingObj ? { ...matchingObj } : obj1;
+    return matchingObj ? { ...matchingObj } : defaultSalat;
   });
 
-  return newArray;
+  return result;
 };
 
 export const Salats: FC = memo(() => {
@@ -56,7 +56,7 @@ export const Salats: FC = memo(() => {
       allFilter(data, selectedSalatTime)
     );
 
-    getSalat(specificDate)
+    getSalat(specificDate, selectedSalatTime)
       .then((data) => {
         if (data.data) {
           const dbData = data.data;
@@ -66,8 +66,6 @@ export const Salats: FC = memo(() => {
       })
       .catch((error) => console.log({ error: error.error }));
   }, [date, selectedSalatTime]);
-
-  console.log("🚀 ~ constSalat:FC=memo ~ result:", salats);
 
   return (
     <section id="salat" className="space-y-5">
@@ -83,7 +81,8 @@ export const Salats: FC = memo(() => {
         className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto"
       >
         {salats.map((salat, i) => (
-          <SalatCard key={i} {...salat} />
+          // <SalatCard key={i} {...salat} />
+          <SalatCard key={i} salat={salat} selectedDate={date!} />
         ))}
       </section>
     </section>
