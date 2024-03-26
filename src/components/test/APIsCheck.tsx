@@ -2,20 +2,11 @@
 
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { createOrUpdateSalat } from "@/server/actions/salat";
-import { FC } from "react";
+import { FC, memo } from "react";
 import { Button } from "../ui/button";
 
-export const APIsCheck: FC = () => {
+export const APIsCheck = memo(() => {
   const user = useCurrentUser();
-
-  const test = async () => {
-    console.log("click Create Salah Button");
-    if (user?.id) {
-      console.log("🚀 ~ test ~ id:", user.id);
-      // const salah = await createSalah(user?.id);
-      // console.log("🚀 ~ test ~ salah:", salah);
-    }
-  };
 
   return (
     <section className="flex flex-col justify-center items-center gap-5 my-10">
@@ -27,4 +18,6 @@ export const APIsCheck: FC = () => {
       {/* </form> */}
     </section>
   );
-};
+});
+
+APIsCheck.displayName = "APIsCheck";
