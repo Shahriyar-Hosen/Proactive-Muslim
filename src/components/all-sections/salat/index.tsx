@@ -40,20 +40,16 @@ export const Salats: FC = memo(() => {
 
   return (
     <section id="salat" className="space-y-5">
-      <div className="w-fit mx-auto">
-        {/* <DatePicker date={date} setDate={setDate} /> */}
-      </div>
       <SalatNav
         selected={selectedSalatTime}
         setSelectedSalat={setSelectedSalatTime}
       />
       <section
-        id="salat-section"
+        id="salat-card-section"
         className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto"
       >
         {salats.map((salat, i) => (
           <SalatCard key={i} {...salat} />
-          // <SalatCard key={i} salat={salat} selectedDate={date!} />
         ))}
       </section>
     </section>
