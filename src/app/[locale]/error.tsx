@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
-import { unstable_setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, useEffect } from "react";
@@ -11,9 +10,7 @@ type Props = { error: Error; reset(): void };
 const Error: FC<Props> = ({ error, reset }) => {
   const t = useTranslations("Error");
 
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
+  useEffect(() => console.error(error), [error]);
 
   return (
     <main className="w-full h-screen flex flex-col items-center justify-center">

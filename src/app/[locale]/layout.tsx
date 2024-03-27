@@ -4,12 +4,12 @@ import { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { Inter } from "next/font/google";
+import { FC } from "react";
 
 import { auth } from "@/auth";
 import Providers from "@/components/providers";
 import { Toaster } from "@/components/ui/sonner";
 import { locales } from "@/config";
-import { FC } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 

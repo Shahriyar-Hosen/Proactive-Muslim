@@ -22,8 +22,7 @@ export const Salats: FC = memo(() => {
   );
 
   useEffect(() => {
-    const specificDate = new Date(date as Date);
-
+    const specificDate = new Date(date);
     const salatsDefault = allSalat.filter((data) =>
       salatAllFilters(data, selectedSalatTime)
     );
