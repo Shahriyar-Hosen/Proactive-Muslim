@@ -1,10 +1,10 @@
 import { useTranslations } from "next-intl";
-import { FC } from "react";
+import { FC, memo } from "react";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 
-export const ComingSoonBox: FC<IClassName> = ({ className }) => {
+export const ComingSoonBox: FC<IClassName> = memo(({ className }) => {
   const t = useTranslations("Extra-Page");
 
   return (
@@ -19,4 +19,6 @@ export const ComingSoonBox: FC<IClassName> = ({ className }) => {
       </h1>
     </Skeleton>
   );
-};
+});
+
+ComingSoonBox.displayName = "ComingSoonBox";

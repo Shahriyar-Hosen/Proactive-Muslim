@@ -2,6 +2,7 @@ import { memo } from "react";
 
 import { ComingSoonBox } from "@/components/common";
 import { Clock } from "./clock";
+import { HeroInfoBox1 } from "./HeroInfoBox1";
 
 export const Hero = memo(() => (
   <section
@@ -11,7 +12,9 @@ export const Hero = memo(() => (
     <div className="md:col-span-2 lg:col-span-1 max-w-[250px]">
       <Clock.single />
     </div>
-    <ComingSoonBox className="h-[250px]" />
+
+    <HeroInfoBox1 />
+
     <ComingSoonBox className="h-[250px]" />
   </section>
 ));

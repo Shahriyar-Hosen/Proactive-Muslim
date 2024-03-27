@@ -3,7 +3,7 @@
 import { getSalat } from "@/server/actions/salat";
 import { FC, memo, useEffect, useState } from "react";
 
-import { DatePicker } from "@/components/DatePicker";
+import { useStoreContext } from "@/hooks/use-store-context";
 import {
   prayerTime,
   replaceMatchingElements,
@@ -14,9 +14,9 @@ import { allSalat } from "./data";
 import { SalatNav } from "./nav";
 
 export const Salats: FC = memo(() => {
+  const { date } = useStoreContext();
   const [selectedSalatTime, setSelectedSalatTime] =
     useState<SalahTime>(prayerTime);
-  const [date, setDate] = useState<Date | undefined>(new Date());
   const [salats, setSalats] = useState<ISalat[]>(
     allSalat.filter((data) => salatAllFilters(data, selectedSalatTime))
   );
@@ -42,7 +42,7 @@ export const Salats: FC = memo(() => {
   return (
     <section id="salat" className="space-y-5">
       <div className="w-fit mx-auto">
-        <DatePicker date={date} setDate={setDate} />
+        {/* <DatePicker date={date} setDate={setDate} /> */}
       </div>
       <SalatNav
         selected={selectedSalatTime}
@@ -53,8 +53,8 @@ export const Salats: FC = memo(() => {
         className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto"
       >
         {salats.map((salat, i) => (
-          // <SalatCard key={i} {...salat} />
-          <SalatCard key={i} salat={salat} selectedDate={date!} />
+          <SalatCard key={i} {...salat} />
+          // <SalatCard key={i} salat={salat} selectedDate={date!} />
         ))}
       </section>
     </section>

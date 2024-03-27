@@ -16,11 +16,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
+import { useStoreContext } from "@/hooks/use-store-context";
 import { createOrUpdateSalat } from "@/server/actions/salat";
 
-// export const SalatCard: FC<ISalat> = memo((salat) => {
-export const SalatCard: FC<{ salat: ISalat; selectedDate: Date }> = memo(
-  ({ salat, selectedDate }) => {
+export const SalatCard: FC<ISalat> = memo(
+  // export const SalatCard: FC<{ salat: ISalat; selectedDate: Date }> = memo(
+  (salat) => {
+    // ({ salat, selectedDate }) => {
+    const { date } = useStoreContext();
     const [data, setData] = useState<ISalat>(salat);
     const [loading, setLoading] = useState(false);
 
@@ -62,7 +65,7 @@ export const SalatCard: FC<{ salat: ISalat; selectedDate: Date }> = memo(
     const handleSubmit = async () => {
       setLoading(true);
       const { id, userId, ...salatUpdateData } = data || {};
-      salatUpdateData.date = selectedDate;
+      salatUpdateData.date = date;
       await createOrUpdateSalat(salatUpdateData)
         .then((data) => {
           setLoading(false);

@@ -1,3 +1,4 @@
+import { ContextProvider } from "@/lib/Context/ContextProvider";
 import { ReduxProviders } from "@/redux/Providers";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { FC } from "react";
@@ -11,7 +12,9 @@ const Providers: FC<IProviderProps> = ({ children, locale }) => {
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <ReduxProviders>{children}</ReduxProviders>
+      <ReduxProviders>
+        <ContextProvider>{children}</ContextProvider>
+      </ReduxProviders>
     </NextIntlClientProvider>
   );
 };
