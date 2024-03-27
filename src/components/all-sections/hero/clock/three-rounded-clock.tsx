@@ -2,12 +2,12 @@
 
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { ThreeRoundedCircle } from "./ThreeRoundedCircle";
 
-const ThreeRoundedClock = () => {
+const ThreeRoundedClock = memo(() => {
   const now = new Date();
   let hh = now.getHours();
   const mm = now.getMinutes();
@@ -97,7 +97,7 @@ const ThreeRoundedClock = () => {
       <p className="text-start font-medium text-base">{t(amPm)}</p>
     </section>
   );
-};
+});
 
 export const ThreeRoundedClockSkeleton = () => (
   <div className="flex justify-center items-center gap-2 sm:gap-2.5">
@@ -114,3 +114,5 @@ export const ThreeRounded = dynamic(() => Promise.resolve(ThreeRoundedClock), {
   ssr: false,
   loading: ThreeRoundedClockSkeleton,
 });
+
+ThreeRoundedClock.displayName = "ThreeRoundedClock";

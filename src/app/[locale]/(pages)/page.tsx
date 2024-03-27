@@ -1,8 +1,9 @@
 import { Hero, Salats } from "@/components/all-sections";
 import { NextPage } from "next";
 import { unstable_setRequestLocale } from "next-intl/server";
+import { memo } from "react";
 
-const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
+const Home: NextPage<ParamsLocale> = memo(({ params: { locale } }) => {
   // Enable static rendering
   unstable_setRequestLocale(locale);
 
@@ -12,6 +13,7 @@ const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
       <Salats />
     </main>
   );
-};
+});
 
+Home.displayName = "Home";
 export default Home;

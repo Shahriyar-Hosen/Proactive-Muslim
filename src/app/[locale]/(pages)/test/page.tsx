@@ -1,17 +1,15 @@
 import { NextPage } from "next";
-import { useTranslations } from "next-intl";
-import { unstable_setRequestLocale } from "next-intl/server";
 
-import { APIsCheck } from "@/components/test/APIsCheck";
 import { Admin } from "@/components/test/Admin";
 import { Counter } from "@/components/test/Counter";
 import { Button } from "@/components/ui/button";
+import { APIsCheck } from "@/components/test/APIsCheck";
 
 const AdminPage: NextPage<ParamsLocale> = ({ params: { locale } }) => {
   // Enable static rendering
-  unstable_setRequestLocale(locale);
+  // unstable_setRequestLocale(locale);
 
-  const t = useTranslations("HomePage");
+  // const t = useTranslations("HomePage");
 
   return (
     <main className="flex flex-col justify-center items-center gap-5 relative">

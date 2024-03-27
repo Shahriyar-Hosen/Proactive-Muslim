@@ -2,7 +2,7 @@
 
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
-import { Dispatch, FC, SetStateAction } from "react";
+import { FC, memo } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -15,10 +15,10 @@ import { cn } from "@/lib/utils";
 
 interface IDatePicker {
   date: Date | undefined;
-  setDate: Dispatch<SetStateAction<Date | undefined>>;
+  setDate: (date: Date | undefined) => void;
 }
 
-export const DatePicker: FC<IDatePicker> = ({ date, setDate }) => {
+export const DatePicker: FC<IDatePicker> = memo(({ date, setDate }) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -43,4 +43,6 @@ export const DatePicker: FC<IDatePicker> = ({ date, setDate }) => {
       </PopoverContent>
     </Popover>
   );
-};
+});
+
+DatePicker.displayName = "DatePicker";

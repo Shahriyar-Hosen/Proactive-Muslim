@@ -8,8 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { admin } from "@/server/actions/auth/admin";
 import { UserRole } from "@prisma/client";
+import { memo } from "react";
 
-export const Admin = () => {
+export const Admin = memo(() => {
   const onServerActionClick = () => {
     admin().then((data) => {
       if (data.error) {
@@ -53,4 +54,6 @@ export const Admin = () => {
       </CardContent>
     </Card>
   );
-};
+});
+
+Admin.displayName = "Admin";
