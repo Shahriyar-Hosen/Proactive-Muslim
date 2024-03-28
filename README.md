@@ -8,15 +8,15 @@ Asr
 Maghrib
 Isha
 Witr
-Jumuah -->
-<!-- Janazah -->
-<!-- Taraweeh -->
+Jumuah
+Janazah
+Taraweeh -->
 Qaza
-<!-- Tahajjud -->
-<!-- Ishraq -->
-<!-- Chasht -->
-<!-- Awabeen -->
-<!-- Tasbeeh -->
+<!-- Tahajjud
+Ishraq
+Chasht
+Awabeen
+Tasbeeh -->
 Yadain
 Tawbah
 Istika
