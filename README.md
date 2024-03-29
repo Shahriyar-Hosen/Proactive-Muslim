@@ -18,17 +18,17 @@ Chasht
 Awabeen
 Tasbeeh -->
 Yadain
-Tawbah
+<!-- Tawbah
 Istika
 Istikhara
-Hajat
+Hajat -->
 Musafir
-Shukr
+<!-- Shukr
 Tahiyatul_Azu
-Dukhulul_Masjid
+Dukhulul_Masjid -->
 Jama_Binas_Salatain
-Kusuf
-Khusuf
+<!-- Kusuf
+Khusuf -->
 Maryaz
 Khaoof
 Jamaah
