@@ -4,9 +4,10 @@ import { useTranslations } from "next-intl";
 import { Dispatch, FC, SetStateAction } from "react";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useStoreContext } from "@/hooks/use-store-context";
 import { cn, isJumuahDay } from "@/lib/utils";
 import { salatTime } from "./data";
-import { useStoreContext } from "@/hooks/use-store-context";
 
 interface ISalatNav {
   selected: SalahTime;
