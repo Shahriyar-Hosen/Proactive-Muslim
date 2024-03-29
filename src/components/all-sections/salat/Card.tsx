@@ -90,15 +90,22 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
       <CardContent className="p-0">
         <CardHeader className="p-5 space-y-2">
           <CardTitle className="text-primary/95 text-center">
-            {((priority === "Farz" || name === "Witr") && salatName) ||
+            {((priority === "Farz" ||
+              name === "Witr" ||
+              priority === "Nafal") &&
+              salatName) ||
               t("card-title", { priority: salatPriority, name: salatName })}
           </CardTitle>
           <CardDescription className="text-center">
-            {t("card-label", {
-              salatTime: name === "Witr" ? salatName : salatTime,
-              priority: salatPriority,
-              option: (before && "before") || (after && "after") || "other",
-            })}
+            {priority !== "Nafal" &&
+              t("card-label", {
+                salatTime: name === "Witr" ? salatName : salatTime,
+                priority: salatPriority,
+                option:
+                  (priority === "Sunnah" && before && "before") ||
+                  (after && "after") ||
+                  "other",
+              })}
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6">
