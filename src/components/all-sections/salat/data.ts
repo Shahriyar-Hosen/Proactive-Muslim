@@ -7,7 +7,19 @@ export const salatTime: I18nSalah[] = [
   "Others",
 ];
 
-export const allSalat: ISalat[] = [
+const fajr: ISalat[] = [
+  {
+    name: "Tahajjud",
+    time: "Fajr",
+    priority: "Nafal",
+    rakats: 8,
+    complete: false,
+    concentration: 0,
+    before: true,
+    id: "",
+    userId: "",
+    date: new Date(),
+  },
   {
     name: "Fajr",
     time: "Fajr",
@@ -33,6 +45,33 @@ export const allSalat: ISalat[] = [
     userId: "",
     date: new Date(),
   },
+  {
+    name: "Ishraq",
+    time: "Fajr",
+    priority: "Nafal",
+    rakats: 4,
+    complete: false,
+    concentration: 0,
+    before: true,
+    id: "",
+    userId: "",
+    date: new Date(),
+  },
+  {
+    name: "Chasht",
+    time: "Fajr",
+    priority: "Nafal",
+    rakats: 4,
+    complete: false,
+    concentration: 0,
+    before: true,
+    id: "",
+    userId: "",
+    date: new Date(),
+  },
+];
+
+const zuhr: ISalat[] = [
   {
     name: "Zuhr",
     time: "Zuhr",
@@ -105,6 +144,9 @@ export const allSalat: ISalat[] = [
     userId: "",
     date: new Date(),
   },
+];
+
+const asr: ISalat[] = [
   {
     name: "Asr",
     time: "Asr",
@@ -130,6 +172,9 @@ export const allSalat: ISalat[] = [
     userId: "",
     date: new Date(),
   },
+];
+
+const maghrib: ISalat[] = [
   {
     name: "Maghrib",
     time: "Maghrib",
@@ -150,12 +195,24 @@ export const allSalat: ISalat[] = [
     rakats: 2,
     complete: false,
     concentration: 0,
-    jamat: false,
-    firstTakbeer: false,
     id: "",
     userId: "",
     date: new Date(),
   },
+  {
+    name: "Awabeen",
+    time: "Maghrib",
+    priority: "Nafal",
+    rakats: 6,
+    complete: false,
+    concentration: 0,
+    id: "",
+    userId: "",
+    date: new Date(),
+  },
+];
+
+const isha: ISalat[] = [
   {
     name: "Isha",
     time: "Isha",
@@ -174,6 +231,18 @@ export const allSalat: ISalat[] = [
     time: "Isha",
     priority: "Sunnah",
     rakats: 2,
+    complete: false,
+    concentration: 0,
+    after: true,
+    id: "",
+    userId: "",
+    date: new Date(),
+  },
+  {
+    name: "Taraweeh",
+    time: "Isha",
+    priority: "Sunnah",
+    rakats: 20,
     complete: false,
     concentration: 0,
     after: true,
@@ -192,4 +261,74 @@ export const allSalat: ISalat[] = [
     userId: "",
     date: new Date(),
   },
+];
+
+const others: ISalat[] = [
+  {
+    name: "Janazah",
+    time: "Others",
+    priority: "Janazah",
+    rakats: 0,
+    complete: false,
+    jamat: false,
+    firstTakbeer: false,
+    concentration: 0,
+    id: "",
+    userId: "",
+    date: new Date(),
+  },
+  {
+    name: "Tasbeeh",
+    time: "Others",
+    priority: "Nafal",
+    rakats: 4,
+    complete: false,
+    concentration: 0,
+    id: "",
+    userId: "",
+    date: new Date(),
+  },
+  {
+    name: "Tawbah",
+    time: "Others",
+    priority: "Nafal",
+    rakats: 2,
+    complete: false,
+    concentration: 0,
+    id: "",
+    userId: "",
+    date: new Date(),
+  },
+  {
+    name: "Kusuf",
+    time: "Others",
+    priority: "Nafal",
+    rakats: 2,
+    complete: false,
+    concentration: 0,
+    id: "",
+    userId: "",
+    date: new Date(),
+  },
+  {
+    name: "Khusuf",
+    time: "Others",
+    priority: "Nafal",
+    rakats: 2,
+    complete: false,
+    concentration: 0,
+    id: "",
+    userId: "",
+    date: new Date(),
+  },
+];
+
+export const allSalat: ISalat[] = [
+  ...fajr,
+  ...zuhr,
+  ...asr,
+  ...maghrib,
+  ...asr,
+  ...isha,
+  ...others,
 ];
