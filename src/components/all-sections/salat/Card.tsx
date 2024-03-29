@@ -98,6 +98,7 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
           </CardTitle>
           <CardDescription className="text-center">
             {priority !== "Nafal" &&
+              priority !== "Janazah" &&
               t("card-label", {
                 salatTime: name === "Witr" ? salatName : salatTime,
                 priority: salatPriority,
