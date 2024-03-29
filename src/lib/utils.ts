@@ -28,15 +28,23 @@ export const prayerTime =
   (currentTime >= 17 && currentTime <= 18 && "Maghrib") ||
   "Isha";
 
+export const isJumuahDay = (date: Date) => {
+  const today = new Date(date);
+  const day = today.toDateString().slice(0, 3);
+  const isJumuah = day === "Fri";
+  return isJumuah;
+};
+
 export const salatAllFilters = (
-  { time, name }: ISalat,
-  selectedSalat: SalahTime
+  { time, name, priority }: ISalat,
+  selectedSalat: SalahTime,
+  date: Date
 ) => {
   if (time === "Zuhr") {
-    const today = new Date();
-    const day = today.toDateString().slice(0, 3);
-    const selectSalah = day === "Fri" ? "Jumuah" : "Zuhr";
-    return time === selectedSalat && name === selectSalah;
+    const selectSalah = isJumuahDay(date) ? "Jumuah" : "Zuhr";
+    return (
+      time === selectedSalat && (name === selectSalah || priority === "Nafal")
+    );
   }
   return time === selectedSalat;
 };

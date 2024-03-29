@@ -57,7 +57,7 @@
       },
       "time": {
         "Fajr": "Fajr",
-        "Zuhr": "Zuhr",
+        "Zuhr": "{option, select, jumuah {Jumuah} other {Zuhr}}",
         "Asr": "Asr",
         "Maghrib": "Maghrib",
         "Isha": "Isha",
