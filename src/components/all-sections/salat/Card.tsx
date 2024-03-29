@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { useStoreContext } from "@/hooks/use-store-context";
+import { isJumuahDay } from "@/lib/utils";
 import { createOrUpdateSalat } from "@/server/actions/salat";
 
 export const SalatCard: FC<ISalat> = memo((salat) => {
@@ -80,7 +81,9 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
   const t = useTranslations("HomePage.salat");
   const salatName = t(`name.${name}`);
   const salatPriority = t(`priority.${priority}`);
-  const salatTime = t(`time.${time}`);
+  const salatTime = t(`time.${time}`, {
+    option: time === "Zuhr" && isJumuahDay(date) && "jumuah",
+  });
 
   return (
     <Card className="w-full max-w-[290px]  lg:w-fit mx-auto">

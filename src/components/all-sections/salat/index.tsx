@@ -18,13 +18,13 @@ export const Salats: FC = memo(() => {
   const [selectedSalatTime, setSelectedSalatTime] =
     useState<SalahTime>(prayerTime);
   const [salats, setSalats] = useState<ISalat[]>(
-    allSalat.filter((data) => salatAllFilters(data, selectedSalatTime))
+    allSalat.filter((data) => salatAllFilters(data, selectedSalatTime, date))
   );
 
   useEffect(() => {
     const specificDate = new Date(date);
     const salatsDefault = allSalat.filter((data) =>
-      salatAllFilters(data, selectedSalatTime)
+      salatAllFilters(data, selectedSalatTime, date)
     );
 
     getSalat(specificDate, selectedSalatTime)

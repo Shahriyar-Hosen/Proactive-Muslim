@@ -4,8 +4,9 @@ import { useTranslations } from "next-intl";
 import { Dispatch, FC, SetStateAction } from "react";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { cn } from "@/lib/utils";
+import { cn, isJumuahDay } from "@/lib/utils";
 import { salatTime } from "./data";
+import { useStoreContext } from "@/hooks/use-store-context";
 
 interface ISalatNav {
   selected: SalahTime;
@@ -13,8 +14,8 @@ interface ISalatNav {
 }
 
 export const SalatNav: FC<ISalatNav> = ({ selected, setSelectedSalat }) => {
+  const { date } = useStoreContext();
   const t = useTranslations("HomePage.salat.time");
-
   return (
     <div className="relative">
       <ScrollArea className="w-full max-w-[600px] sm:max-w-fit mx-auto">
@@ -30,7 +31,9 @@ export const SalatNav: FC<ISalatNav> = ({ selected, setSelectedSalat }) => {
                   : "text-muted-foreground"
               )}
             >
-              {t(label)}
+              {t(label, {
+                option: label === "Zuhr" && isJumuahDay(date) && "jumuah",
+              })}
             </div>
           ))}
         </div>
