@@ -1,10 +1,10 @@
 "use client";
 
 import { format } from "date-fns";
+import { bn, enUS } from "date-fns/locale";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { FC, memo } from "react";
 
-import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
@@ -12,6 +12,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { useLocale } from "next-intl";
 
 interface IDatePicker {
   date: Date | undefined;
@@ -19,19 +20,24 @@ interface IDatePicker {
 }
 
 export const DatePicker: FC<IDatePicker> = memo(({ date, setDate }) => {
+  const locale = useLocale() as ILocale;
+
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button
-          variant={"outline"}
+        <div
           className={cn(
-            "w-fit justify-start text-left font-normal border-slate-600 hover:bg-slate-800/50 hover:text-primary-foreground",
+            "w-fit flex justify-center items-center text-center font-sans text-lg md:text-xl lg:text-2xl text-slate-300 hover:cursor-pointer",
             !date && "text-muted-foreground"
           )}
         >
-          <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
-        </Button>
+          {date ? (
+            format(date, "PPPP", { locale: locale === "bn" ? bn : enUS })
+          ) : (
+            <span>Pick a date</span>
+          )}
+          <CalendarIcon className="ml-2 h-6 w-6" />
+        </div>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
         <Calendar
