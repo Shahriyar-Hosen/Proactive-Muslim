@@ -72,21 +72,6 @@ const CustomizedTooltip: FC<ICustomizedTooltip> = memo(
   }
 );
 
-const ChartRadar: FC<IChartRadar> = ({
-  data,
-  width,
-  height,
-  cx,
-  cy,
-  outer,
-}) => (
-  <ResponsiveContainer
-    width={400}
-    height={400}
-    className="max-w-[300px] max-h-[300px] sm:max-w-full sm:max-h-full"
-  ></ResponsiveContainer>
-);
-
 export const RadarChartCompo = memo(() => {
   // const resData = useAppSelector((state) => state.filter.avg);
   const [data, setData] = useState(defaultData);
