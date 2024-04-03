@@ -85,7 +85,7 @@ const ChartRadar: FC<IChartRadar> = ({
     height={400}
     className="max-w-[300px] max-h-[300px] sm:max-w-full sm:max-h-full"
   >
-    <RadarChart cx={cx} cy={cy} data={data} width={width} height={height} />
+    <RadarChart cx={cx} cy={cy} data={data} width={width} />
   </ResponsiveContainer>
 );
 
