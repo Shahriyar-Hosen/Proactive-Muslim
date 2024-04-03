@@ -84,9 +84,7 @@ const ChartRadar: FC<IChartRadar> = ({
     width={400}
     height={400}
     className="max-w-[300px] max-h-[300px] sm:max-w-full sm:max-h-full"
-  >
-    <RadarChart cx={cx} cy={cy} data={data} width={width} />
-  </ResponsiveContainer>
+  ></ResponsiveContainer>
 );
 
 export const RadarChartCompo = memo(() => {
