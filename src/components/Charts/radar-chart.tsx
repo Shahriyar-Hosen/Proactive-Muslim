@@ -93,9 +93,7 @@ const ChartRadar: FC<IChartRadar> = ({
       height={height}
       outerRadius={outer}
       className="bg-slate-800/[0.5] backdrop-blur-sm rounded-xl w-[200px] lg:w-[380px] h-full shadow-inner"
-    >
-      <Tooltip content={<CustomizedTooltip />} />
-    </RadarChart>
+    ></RadarChart>
   </ResponsiveContainer>
 );
 
