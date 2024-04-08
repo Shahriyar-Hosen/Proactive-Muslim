@@ -95,7 +95,6 @@ const ChartRadar: FC<IChartRadar> = ({
       className="bg-slate-800/[0.5] backdrop-blur-sm rounded-xl w-[200px] lg:w-[380px] h-full shadow-inner"
     >
       <Tooltip content={<CustomizedTooltip />} />
-      <PolarGrid />
     </RadarChart>
   </ResponsiveContainer>
 );
