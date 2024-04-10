@@ -97,7 +97,6 @@ const ChartRadar: FC<IChartRadar> = ({
       <Tooltip content={<CustomizedTooltip />} />
       <PolarGrid />
       <PolarAngleAxis dataKey="namaz" stroke="#e2e8f0" fill="#0eca2d" />
-      <PolarRadiusAxis stroke="#f6d860" fill="#0eca2d" />
     </RadarChart>
   </ResponsiveContainer>
 );
