@@ -57,9 +57,29 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
       setData((prv) => ({ ...prv, concentration: 100 }));
     }
   }, []);
-  const updateRakats = useCallback((value: number) => {
-    setData((prv) => ({ ...prv, rakats: value }));
-  }, []);
+  const updateRakats = useCallback(
+    (value: number) => {
+      const updateRakats = (value: number) =>
+        setData((prv) => ({ ...prv, rakats: value }));
+
+      // Conditional update
+      name === "Taraweeh"
+        ? value <= 20
+          ? updateRakats(value)
+          : updateRakats(20)
+        : updateRakats(value);
+      // if (name === "Taraweeh") {
+      //   if (value <= 20) {
+      //     updateRakats(value);
+      //   } else {
+      //     updateRakats(20);
+      //   }
+      // } else {
+      //   updateRakats(value);
+      // }
+    },
+    [name]
+  );
 
   useEffect(() => {
     firstTakbeer && updateJamat(true);
@@ -174,9 +194,6 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
                   {t("concentration-label", { salat: salatName })}
                 </span>
               </Label>
-              {/* <div className="w-10 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-300">
-                {concentration}
-              </div> */}
               <Input
                 id={`concentration-${name}-${priority}-${time}`}
                 value={concentration || 0}
