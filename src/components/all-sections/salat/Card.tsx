@@ -51,7 +51,11 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
     setData((prv) => ({ ...prv, firstTakbeer: checked }));
   }, []);
   const updateConcentration = useCallback((value: number) => {
-    setData((prv) => ({ ...prv, concentration: value }));
+    if (value <= 100) {
+      setData((prv) => ({ ...prv, concentration: value }));
+    } else {
+      setData((prv) => ({ ...prv, concentration: 100 }));
+    }
   }, []);
   const updateRakats = useCallback((value: number) => {
     setData((prv) => ({ ...prv, rakats: value }));
@@ -162,7 +166,7 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
           <div className="space-y-3.5">
             <div className="flex items-center justify-between space-x-5">
               <Label
-                htmlFor="concentration"
+                htmlFor={`concentration-${name}-${priority}-${time}`}
                 className="flex flex-col space-y-2 text-primary/90"
               >
                 <span>{t("concentration")}</span>
@@ -170,9 +174,15 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
                   {t("concentration-label", { salat: salatName })}
                 </span>
               </Label>
-              <div className="w-10 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-300">
+              {/* <div className="w-10 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-300">
                 {concentration}
-              </div>
+              </div> */}
+              <Input
+                id={`concentration-${name}-${priority}-${time}`}
+                value={concentration || 0}
+                onChange={(e) => updateConcentration(Number(e.target.value))}
+                className="w-10 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-300 px-1 py-0 text-center"
+              />
             </div>
             <Slider
               max={100}
@@ -183,13 +193,13 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
           </div>
           <div className="flex items-center justify-between space-x-2">
             <Label
-              htmlFor="rakats"
+              htmlFor={`rakats-${name}-${priority}-${time}`}
               className="flex flex-col space-y-2 text-primary/90"
             >
               <span>{t("rakats")}</span>
             </Label>
             <Input
-              id="rakats"
+              id={`rakats-${name}-${priority}-${time}`}
               value={rakats || 0}
               onChange={(e) => updateRakats(Number(e.target.value))}
               disabled={priority === "Farz" || priority === "Janazah"}
