@@ -54,22 +54,14 @@ export const Salats: FC = memo(() => {
         ))}
       </div>
 
-      {/* <div> */}
-      {/* <Suspense
-          fallback={
-            <>
-              <h1>Loading</h1>
-            </>
-          }
-        > */}
-      {/* <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2.5"> */}
-      <div className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto">
-        <BarChart />
-        <RadarChartCompo />
-        <RadialChart />
+      <div>
+        <h1>Salat Analysis</h1>
+        <div className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto">
+          <BarChart />
+          <RadarChartCompo />
+          <RadialChart />
+        </div>
       </div>
-      {/* </Suspense> */}
-      {/* </div> */}
     </section>
   );
 });
