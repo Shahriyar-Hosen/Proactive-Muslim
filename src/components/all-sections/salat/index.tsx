@@ -12,6 +12,8 @@ import {
 import { SalatCard } from "./Card";
 import { allSalat } from "./data";
 import { SalatNav } from "./nav";
+import { CardsMetric } from "@/components/Charts/metric";
+import { BarChart } from "@/components/Charts";
 
 export const Salats: FC = memo(() => {
   const { date } = useStoreContext();
@@ -44,14 +46,18 @@ export const Salats: FC = memo(() => {
         selected={selectedSalatTime}
         setSelectedSalat={setSelectedSalatTime}
       />
-      <section
+      <div
         id="salat-card-section"
         className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto"
       >
         {salats.map((salat, i) => (
           <SalatCard key={i} {...salat} />
         ))}
-      </section>
+      </div>
+
+      <div>
+        <BarChart />
+      </div>
     </section>
   );
 });
