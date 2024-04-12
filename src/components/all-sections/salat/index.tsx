@@ -1,8 +1,9 @@
 "use client";
 
 import { getSalat } from "@/server/actions/salat";
-import { FC, memo, useEffect, useState } from "react";
+import { FC, Suspense, memo, useEffect, useState } from "react";
 
+import { BarChart } from "@/components/Charts";
 import { useStoreContext } from "@/hooks/use-store-context";
 import {
   prayerTime,
@@ -12,8 +13,6 @@ import {
 import { SalatCard } from "./Card";
 import { allSalat } from "./data";
 import { SalatNav } from "./nav";
-import { CardsMetric } from "@/components/Charts/metric";
-import { BarChart } from "@/components/Charts";
 
 export const Salats: FC = memo(() => {
   const { date } = useStoreContext();
@@ -56,7 +55,15 @@ export const Salats: FC = memo(() => {
       </div>
 
       <div>
-        <BarChart />
+        <Suspense
+          fallback={
+            <>
+              <h1>Loading</h1>
+            </>
+          }
+        >
+          <BarChart />
+        </Suspense>
       </div>
     </section>
   );
