@@ -98,13 +98,7 @@ const ChartRadar: FC<IChartRadar> = ({
       <PolarGrid />
       <PolarAngleAxis dataKey="namaz" stroke="#e2e8f0" fill="#0eca2d" />
       <PolarRadiusAxis stroke="#f6d860" fill="#0eca2d" />
-      <Radar
-        name="namaz"
-        dataKey="count"
-        stroke="#00fbff"
-        fill="#24ff48"
-        fillOpacity={0.5}
-      />
+      <Radar name="namaz" dataKey="count" stroke="#00fbff" fill="#24ff48" />
     </RadarChart>
   </ResponsiveContainer>
 );
