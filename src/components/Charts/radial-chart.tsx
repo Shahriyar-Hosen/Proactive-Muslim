@@ -1,5 +1,6 @@
 "use client";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import dynamic from "next/dynamic";
 import { CSSProperties, FC } from "react";
 import {
@@ -8,7 +9,6 @@ import {
   RadialBarChart,
   ResponsiveContainer,
 } from "recharts";
-import { Skeleton } from "../ui/skeleton";
 
 const data = [
   {

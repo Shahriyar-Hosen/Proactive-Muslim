@@ -120,28 +120,33 @@ export const RadarChartCompo = memo(() => {
   // }, [resData]); RadarChart
 
   return (
-    <>
-      <div className="">
-        <ChartRadar
-          data={data}
-          width={400}
-          height={400}
-          cx={190}
-          cy={205}
-          outer={125}
+    <ResponsiveContainer
+      width={400}
+      height={400}
+      className="max-w-[300px] max-h-[300px] sm:max-w-full sm:max-h-full"
+    >
+      <RadarChart
+        cx={190}
+        cy={205}
+        data={data}
+        width={400}
+        height={400}
+        outerRadius={125}
+        className="bg-slate-800/[0.5] backdrop-blur-sm rounded-xl w-[200px] lg:w-[380px] h-full shadow-inner"
+      >
+        <Tooltip content={<CustomizedTooltip />} />
+        <PolarGrid />
+        <PolarAngleAxis dataKey="namaz" stroke="#e2e8f0" fill="#0eca2d" />
+        <PolarRadiusAxis stroke="#f6d860" fill="#0eca2d" />
+        <Radar
+          name="namaz"
+          dataKey="count"
+          stroke="#00fbff"
+          fill="#24ff48"
+          fillOpacity={0.5}
         />
-      </div>
-      {/* <div className="block sm:hidden">
-        <ChartRadar
-          cx={142}
-          cy={150}
-          outer={90}
-          data={data}
-          width={300}
-          height={280}
-        />
-      </div> */}
-    </>
+      </RadarChart>
+    </ResponsiveContainer>
   );
 });
 
