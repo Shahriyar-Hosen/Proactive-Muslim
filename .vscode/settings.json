@@ -41,7 +41,8 @@
         "Wajib",
         "Witr",
         "Yadain",
-        "Zuhr"
+        "Zuhr",
+        "মাগরিব"
     ],
     "i18n-ally.localesPaths": [
         "messages",
