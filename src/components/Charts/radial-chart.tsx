@@ -9,7 +9,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Skeleton } from "../ui/skeleton";
-// import "./styles.css";
 
 const data = [
   {
