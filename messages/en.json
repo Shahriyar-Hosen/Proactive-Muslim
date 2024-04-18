@@ -9,6 +9,11 @@
   },
   "HomePage": {
     "page-label": "Home",
+    "analysis": {
+      "title": "Salat <highlight>Analysis</highlight>",
+      "date": "Date",
+      "button": "More Analysis"
+    },
     "salat": {
       "card-title": "{name} {priority}",
       "card-label": "{salatTime} {option, select, before {before} after {after} other {}} {priority} salah information",
