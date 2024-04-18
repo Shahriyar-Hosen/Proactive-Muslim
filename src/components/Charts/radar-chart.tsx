@@ -1,3 +1,5 @@
+import { Skeleton } from "@/components/ui/skeleton";
+import dynamic from "next/dynamic";
 import { FC, memo, useState } from "react";
 import {
   PolarAngleAxis,
@@ -37,17 +39,6 @@ interface ICustomizedTooltip {
   payload?: any[];
   label?: string;
 }
-interface IChartRadar {
-  width: number;
-  height: number;
-  cx: number;
-  cy: number;
-  outer: number;
-  data: {
-    namaz: string;
-    count: number;
-  }[];
-}
 
 const CustomizedTooltip: FC<ICustomizedTooltip> = memo(
   ({ active, payload, label }) => {
@@ -72,7 +63,7 @@ const CustomizedTooltip: FC<ICustomizedTooltip> = memo(
   }
 );
 
-export const RadarChartCompo = memo(() => {
+const RadarChartComponent = memo(() => {
   // const resData = useAppSelector((state) => state.filter.avg);
   const [data, setData] = useState(defaultData);
 
@@ -113,5 +104,19 @@ export const RadarChartCompo = memo(() => {
   );
 });
 
-RadarChartCompo.displayName = "Calculate";
+RadarChartComponent.displayName = "RadarChart";
 CustomizedTooltip.displayName = "CustomizedTooltip";
+
+export const RadarChartSkeleton = () => (
+  <div className="flex justify-center items-center">
+    <Skeleton className="w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] rounded-xl" />
+  </div>
+);
+
+export const RadarChartCompo = dynamic(
+  () => Promise.resolve(RadarChartComponent),
+  {
+    ssr: false,
+    loading: RadarChartSkeleton,
+  }
+);
