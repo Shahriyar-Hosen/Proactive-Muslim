@@ -1,9 +1,9 @@
 "use client";
 
 import { getSalat } from "@/server/actions/salat";
-import { FC, Suspense, memo, useEffect, useState } from "react";
+import { FC, memo, useEffect, useState } from "react";
 
-import { BarChart } from "@/components/Charts";
+import { BarChart, RadarChartCompo, RadialChart } from "@/components/Charts";
 import { useStoreContext } from "@/hooks/use-store-context";
 import {
   prayerTime,
@@ -54,17 +54,22 @@ export const Salats: FC = memo(() => {
         ))}
       </div>
 
-      <div>
-        <Suspense
+      {/* <div> */}
+      {/* <Suspense
           fallback={
             <>
               <h1>Loading</h1>
             </>
           }
-        >
-          <BarChart />
-        </Suspense>
+        > */}
+      {/* <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2.5"> */}
+      <div className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto">
+        <BarChart />
+        <RadarChartCompo />
+        <RadialChart />
       </div>
+      {/* </Suspense> */}
+      {/* </div> */}
     </section>
   );
 });

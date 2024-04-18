@@ -3,7 +3,8 @@
 import { pastDays } from "@/lib/utils";
 import { scaleOrdinal } from "d3-scale";
 import { schemePaired } from "d3-scale-chromatic";
-import { memo, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { memo, useState } from "react";
 import {
   Bar,
   CartesianGrid,
@@ -15,6 +16,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { Skeleton } from "../ui/skeleton";
 
 const colors = scaleOrdinal(schemePaired).range();
 
@@ -56,9 +58,9 @@ const CustomizedTooltip = memo(
             </h3>
           </div>
           <div className="">
-            <p className="text-primary">নামাজ - {payload[0].value}</p>
-            <p className="text-accent">জামাত - {payload[1].value}</p>
-            <p className="text-[#c9bc00]">তাকবীরে উলা - {payload[2].value}</p>
+            <p className="text-primary">নামাজ - {payload[0]?.value}</p>
+            <p className="text-accent">জামাত - {payload[1]?.value}</p>
+            <p className="text-[#c9bc00]">তাকবীরে উলা - {payload[2]?.value}</p>
           </div>
         </div>
       );
@@ -68,7 +70,7 @@ const CustomizedTooltip = memo(
   }
 );
 
-export const BarChart = memo(() => {
+export const BarChartCompo = memo(() => {
   // const { fullGraph: resData, day } = useAppSelector((state) => state.filter);
 
   //   const prvDays = pastDays(day);
@@ -90,69 +92,77 @@ export const BarChart = memo(() => {
   //   }, [resData]);
 
   return (
-    <div className="max-w-[400px]" style={{ width: "100%", height: 400 }}>
-      <ResponsiveContainer>
-        <ComposedChart
-          width={400}
-          height={400}
-          data={chartData}
-          margin={{
-            top: 20,
-            right: 20,
-            bottom: 30,
-            left: -20,
+    <ResponsiveContainer
+      width={400}
+      height={400}
+      className="max-w-[300px] max-h-[300px] sm:max-w-full sm:max-h-full"
+    >
+      <ComposedChart
+        width={400}
+        height={400}
+        data={chartData}
+        margin={{
+          top: 20,
+          right: 20,
+          bottom: 30,
+          left: -20,
+        }}
+        className="bg-slate-800/[0.5] backdrop-blur-sm rounded-xl"
+      >
+        <CartesianGrid stroke="#e2e8f0" strokeDasharray="0.5 5" />
+
+        <XAxis
+          className="text-slate-200"
+          dataKey="day"
+          label={{
+            value: "তারিখ",
+            position: "insideBottom",
+            offset: -15,
+            fill: "#0eca2d",
           }}
-          className="bg-slate-800/[0.5] backdrop-blur-sm rounded-xl"
+          scale="band"
+          stroke="#e2e8f0"
+        />
+
+        <YAxis stroke="#e2e8f0" type="number" domain={[0, 6]} tickCount={7} />
+
+        <Tooltip content={<CustomizedTooltip />} />
+
+        <Bar
+          dataKey="Namaz"
+          fill="#0eca2d"
+          shape={<TriangleBar />}
+          label={{ position: "top" }}
         >
-          <CartesianGrid stroke="#e2e8f0" strokeDasharray="0.5 5" />
+          {chartData.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={colors[(index + 4) % 7]} />
+          ))}
+        </Bar>
 
-          <XAxis
-            className="text-slate-200"
-            dataKey="day"
-            label={{
-              value: "তারিখ",
-              position: "insideBottom",
-              offset: -15,
-              fill: "#0eca2d",
-            }}
-            scale="band"
-            stroke="#e2e8f0"
-          />
+        <Line
+          type="monotone"
+          dataKey="4.Takbire_Ula"
+          stroke="#00fbff"
+          fill="#ff6161"
+        />
 
-          <YAxis stroke="#e2e8f0" type="number" domain={[0, 6]} tickCount={7} />
-
-          <Tooltip content={<CustomizedTooltip />} />
-
-          <Bar
-            dataKey="Namaz"
-            fill="#0eca2d"
-            shape={<TriangleBar />}
-            label={{ position: "top" }}
-          >
-            {chartData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={colors[(index + 4) % 7]} />
-            ))}
-          </Bar>
-
-          <Line
-            type="monotone"
-            dataKey="Takbire_Ula"
-            stroke="#00fbff"
-            fill="#ff6161"
-          />
-
-          <Line
-            type="monotone"
-            dataKey="Jamat"
-            stroke="#33a02c"
-            fill="#daadff"
-          />
-        </ComposedChart>
-      </ResponsiveContainer>
-    </div>
+        <Line type="monotone" dataKey="Jamat" stroke="#33a02c" fill="#daadff" />
+      </ComposedChart>
+    </ResponsiveContainer>
   );
 });
 
 TriangleBar.displayName = "TriangleBar";
 CustomizedTooltip.displayName = "CustomizedTooltip";
-BarChart.displayName = "BarChart";
+BarChartCompo.displayName = "BarChart";
+
+export const BarChartSkeleton = () => (
+  <div className="flex justify-center items-center rounded-lg">
+    <Skeleton className="w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] rounded-xl" />
+  </div>
+);
+
+export const BarChart = dynamic(() => Promise.resolve(BarChartCompo), {
+  ssr: false,
+  loading: BarChartSkeleton,
+});

@@ -71,3 +71,20 @@
 .single-rounded-clock-text-shadow {
   text-shadow: 0 0 3px var(--c), 0 0 20px var(--c);
 }
+
+.recharts-default-legend {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.recharts-default-legend li {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.recharts-radial-bar-background path {
+  fill: #c0c2c910;
+}

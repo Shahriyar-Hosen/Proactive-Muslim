@@ -88,7 +88,6 @@ export const pastDays = (day: number, reversFormat?: boolean) => {
     if (reversFormat) {
       return reversFormatDate;
     } else {
-      console.log("🚀 ~ prvDays ~ formatDate:", formatDate);
       return formatDate;
     }
   });
