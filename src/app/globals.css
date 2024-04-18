@@ -58,6 +58,7 @@
   }
 }
 
+/* Clock */
 .dots::before {
   box-shadow: 0 0 20px var(--clr), 0 0 40px var(--clr), 0 0 60px var(--clr),
     0 0 80px var(--clr);
@@ -72,6 +73,7 @@
   text-shadow: 0 0 3px var(--c), 0 0 20px var(--c);
 }
 
+/* Chart Style */
 .recharts-default-legend {
   display: flex !important;
   flex-wrap: wrap;
