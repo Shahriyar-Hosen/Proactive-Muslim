@@ -31,7 +31,7 @@
     "@radix-ui/react-slider": "^1.1.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
-    "@reduxjs/toolkit": "^2.2.1",
+    "@reduxjs/toolkit": "^2.2.3",
     "@types/bcryptjs": "^2.4.6",
     "@types/d3-scale": "^4.0.8",
     "@types/d3-scale-chromatic": "^3.0.3",
