@@ -54,8 +54,10 @@ export const Salats: FC = memo(() => {
         ))}
       </div>
 
-      <div>
-        <h1>Salat Analysis</h1>
+      <div className="space-y-8 pt-10">
+        <h1 className="text-5xl text-center font-medium">
+          Salat <span className="text-primary">Analysis</span>
+        </h1>
         <div className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto">
           <BarChart />
           <RadarChartCompo />

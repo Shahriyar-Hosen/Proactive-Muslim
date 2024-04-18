@@ -71,7 +71,7 @@ const RadialChartCompo: FC = () => {
           // clockWise
           label={{ position: "insideStart", fill: "#000" }}
           background
-          dataKey="pv"
+          dataKey="uv"
         />
         <Legend
           iconSize={10}
