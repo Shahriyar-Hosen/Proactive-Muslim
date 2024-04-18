@@ -11,6 +11,7 @@ import {
   replaceMatchingElements,
   salatAllFilters,
 } from "@/lib/utils";
+import { get7DaySalat } from "@/server/actions/analysis/salat";
 import { useTranslations } from "next-intl";
 import { SalatCard } from "./Card";
 import { allSalat } from "./data";
@@ -43,6 +44,22 @@ export const Salats: FC = memo(() => {
       .catch((error) => console.log({ error: error.error }));
   }, [date, selectedSalatTime]);
 
+  useEffect(() => {
+    const test = async () => {
+      try {
+        const salat = await get7DaySalat();
+        console.log("🚀 ~ test ~ salat:", salat);
+        return salat;
+      } catch (error) {
+        console.log("🚀 ~ useEffect ~ error:", error);
+      }
+    };
+
+    const data = test();
+
+    console.log({ data });
+  }, []);
+
   return (
     <section id="salat" className="space-y-5">
       <SalatNav
@@ -67,9 +84,9 @@ export const Salats: FC = memo(() => {
           })}
         </h1>
         <div className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto">
-          <BarChart />
+          {/* <BarChart />
           <RadarChartCompo />
-          <RadialChart />
+          <RadialChart /> */}
         </div>
         <div className="flex justify-center items-center">
           <Button>{t("button")}</Button>
