@@ -4,12 +4,14 @@ import { getSalat } from "@/server/actions/salat";
 import { FC, memo, useEffect, useState } from "react";
 
 import { BarChart, RadarChartCompo, RadialChart } from "@/components/Charts";
+import { Button } from "@/components/ui/button";
 import { useStoreContext } from "@/hooks/use-store-context";
 import {
   prayerTime,
   replaceMatchingElements,
   salatAllFilters,
 } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 import { SalatCard } from "./Card";
 import { allSalat } from "./data";
 import { SalatNav } from "./nav";
@@ -21,6 +23,8 @@ export const Salats: FC = memo(() => {
   const [salats, setSalats] = useState<ISalat[]>(
     allSalat.filter((data) => salatAllFilters(data, selectedSalatTime, date))
   );
+
+  const t = useTranslations("HomePage.analysis");
 
   useEffect(() => {
     const specificDate = new Date(date);
@@ -54,14 +58,21 @@ export const Salats: FC = memo(() => {
         ))}
       </div>
 
-      <div className="space-y-8 pt-10">
-        <h1 className="text-5xl text-center font-medium">
-          Salat <span className="text-primary">Analysis</span>
+      <div className="space-y-5 lg:space-y-8 pt-5 lg:pt-10">
+        <h1 className="text-2xl md:text-3xl xl:text-5xl text-center font-medium">
+          {t.rich("title", {
+            highlight: (chunks) => (
+              <span className="text-primary">{chunks}</span>
+            ),
+          })}
         </h1>
         <div className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto">
           <BarChart />
           <RadarChartCompo />
           <RadialChart />
+        </div>
+        <div className="flex justify-center items-center">
+          <Button>{t("button")}</Button>
         </div>
       </div>
     </section>

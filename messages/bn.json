@@ -70,6 +70,11 @@
       "concentration-label": "নামাজ কতটুকু খুশু-খুজু সহিত আদায় করতে পেরেছেন!",
       "btn-text": "নামাজের তথ্য সংরক্ষণ করুন",
       "rakats": "রাকাত"
+    },
+    "analysis": {
+      "title": "নামাজের <highlight>বিশ্লেষণ</highlight>",
+      "date": "তারিখ",
+      "button": "আরো বিশ্লেষণ"
     }
   },
   "ProfilePage": {

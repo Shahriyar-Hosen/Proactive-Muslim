@@ -3,6 +3,7 @@
 import { pastDays } from "@/lib/utils";
 import { scaleOrdinal } from "d3-scale";
 import { schemePaired } from "d3-scale-chromatic";
+import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { memo, useState } from "react";
 import {
@@ -71,25 +72,17 @@ const CustomizedTooltip = memo(
 );
 
 export const BarChartCompo = memo(() => {
-  // const { fullGraph: resData, day } = useAppSelector((state) => state.filter);
-
-  //   const prvDays = pastDays(day);
   const prvDays = pastDays(7);
+  const t = useTranslations("HomePage.analysis");
 
   const [chartData, setChartData] = useState(
     prvDays.reverse().map((date) => ({
       day: date.slice(0, 2),
-      Takbire_Ula: 0,
-      Namaz: 0,
-      Jamat: 0,
+      Namaz: 5,
+      Jamat: 4,
+      Takbire_Ula: 3,
     }))
   );
-
-  //   useEffect(() => {
-  //     if (resData.length !== 0) {
-  //       setChartData(resData);
-  //     }
-  //   }, [resData]);
 
   return (
     <ResponsiveContainer
@@ -115,7 +108,7 @@ export const BarChartCompo = memo(() => {
           className="text-slate-200"
           dataKey="day"
           label={{
-            value: "তারিখ",
+            value: t("date"),
             position: "insideBottom",
             offset: -15,
             fill: "#0eca2d",
@@ -141,7 +134,7 @@ export const BarChartCompo = memo(() => {
 
         <Line
           type="monotone"
-          dataKey="4.Takbire_Ula"
+          dataKey="Takbire_Ula"
           stroke="#00fbff"
           fill="#ff6161"
         />

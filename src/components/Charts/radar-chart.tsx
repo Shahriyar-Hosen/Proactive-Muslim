@@ -1,4 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { FC, memo, useState } from "react";
 import {
@@ -10,29 +11,6 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
-
-const defaultData = [
-  {
-    namaz: "ফজর",
-    count: 7,
-  },
-  {
-    namaz: "যোহর",
-    count: 7,
-  },
-  {
-    namaz: "আসর",
-    count: 7,
-  },
-  {
-    namaz: "মাগরিব",
-    count: 7,
-  },
-  {
-    namaz: "এশা",
-    count: 7,
-  },
-];
 
 interface ICustomizedTooltip {
   active?: boolean;
@@ -64,14 +42,33 @@ const CustomizedTooltip: FC<ICustomizedTooltip> = memo(
 );
 
 const RadarChartComponent = memo(() => {
-  // const resData = useAppSelector((state) => state.filter.avg);
-  const [data, setData] = useState(defaultData);
+  const t = useTranslations("HomePage.salat.time");
+  const defaultData = [
+    {
+      namaz: t("Fajr"),
+      count: 7,
+    },
+    {
+      namaz: t("Zuhr", {
+        option: "zuhr",
+      }),
+      count: 7,
+    },
+    {
+      namaz: t("Asr"),
+      count: 7,
+    },
+    {
+      namaz: t("Maghrib"),
+      count: 7,
+    },
+    {
+      namaz: t("Isha"),
+      count: 7,
+    },
+  ];
 
-  // useEffect(() => {
-  //   if (resData.length !== 0) {
-  //     setData(resData);
-  //   }
-  // }, [resData]); RadarChart
+  const [data, setData] = useState(defaultData);
 
   return (
     <ResponsiveContainer
