@@ -52,7 +52,7 @@ export const get7DaySalatBarChart = async () => {
     const prvSalatCount = async (index: number) => {
       const date = prvDays[index];
       const getPrvDay = new Date(date);
-      getPrvDay.setHours(0, 0, 0, 0); // Set hours to beginning of the day
+      getPrvDay.setHours(0, 0, 0, 0);
 
       const salat = await db.salat.count({
         where: {
