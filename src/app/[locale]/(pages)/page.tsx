@@ -1,4 +1,4 @@
-import { Hero, Salats } from "@/components/all-sections";
+import { Hero, SalatsSection } from "@/components/all-sections";
 import { NextPage } from "next";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { memo } from "react";
@@ -10,7 +10,7 @@ const Home: NextPage<ParamsLocale> = memo(({ params: { locale } }) => {
   return (
     <main className="space-y-20 my-10">
       <Hero />
-      <Salats />
+      <SalatsSection />
     </main>
   );
 });

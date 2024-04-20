@@ -1,9 +1,8 @@
 "use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import { CSSProperties, FC, useState } from "react";
+import { CSSProperties, FC } from "react";
 import {
   Legend,
   RadialBar,
@@ -16,41 +15,7 @@ const style: CSSProperties = {
   marginTop: -45,
 };
 
-const RadialChartCompo: FC = () => {
-  const t = useTranslations("HomePage.salat.time");
-
-  const defaultData = [
-    {
-      name: t("Fajr"),
-      count: 120,
-      fill: "#8dd1e1",
-    },
-    {
-      name: t("Zuhr", {
-        option: "zuhr",
-      }),
-      count: 60,
-      fill: "#82ca9d",
-    },
-    {
-      name: t("Asr"),
-      count: 70,
-      fill: "#a4de6c",
-    },
-    {
-      name: t("Maghrib"),
-      count: 80,
-      fill: "#d0ed57",
-    },
-    {
-      name: t("Isha"),
-      count: 110,
-      fill: "#ffc658",
-    },
-  ];
-
-  const [data, setData] = useState(defaultData);
-
+const RadialChartCompo: FC<{ data: IChartData[] }> = ({ data }) => {
   return (
     <ResponsiveContainer
       width={400}
@@ -58,8 +23,6 @@ const RadialChartCompo: FC = () => {
       className="max-w-[300px] max-h-[320px] sm:max-w-full sm:max-h-full"
     >
       <RadialBarChart
-        width={400}
-        height={400}
         cx={200}
         cy={180}
         innerRadius={30}
@@ -69,8 +32,6 @@ const RadialChartCompo: FC = () => {
         className="bg-slate-800/[0.5] backdrop-blur-sm rounded-xl"
       >
         <RadialBar
-          // minAngle={15}
-          // clockWise
           label={{ position: "insideStart", fill: "#000" }}
           background
           dataKey="count"

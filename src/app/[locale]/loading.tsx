@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const Loading = () => {
   return (
-    <main className="flex flex-col space-y-3 justify-center items-center">
+    <main className="mx-auto max-w-7xl px-2.5 md:px-6 lg:px-7 flex flex-col space-y-3 justify-center items-center max-h-screen overflow-y-hidden">
       <Skeleton className="h-[80px] w-full rounded-xl" />
       <section
         id="Hero"

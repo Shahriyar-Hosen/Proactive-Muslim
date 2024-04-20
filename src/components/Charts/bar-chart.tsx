@@ -1,11 +1,11 @@
 "use client";
 
-import { pastDays } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 import { scaleOrdinal } from "d3-scale";
 import { schemePaired } from "d3-scale-chromatic";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import { memo, useState } from "react";
+import { FC, memo } from "react";
 import {
   Bar,
   CartesianGrid,
@@ -17,7 +17,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { Skeleton } from "../ui/skeleton";
 
 const colors = scaleOrdinal(schemePaired).range();
 
@@ -37,31 +36,42 @@ const getPath = (
   Z`;
 };
 
-const TriangleBar = memo((props: any) => {
-  const { fill, x, y, width, height } = props;
-
-  return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
-});
+const TriangleBar = memo(({ fill, x, y, width, height }: any) => (
+  <path
+    d={getPath(Number(x), Number(y), Number(width), Number(height))}
+    stroke="none"
+    fill={fill}
+  />
+));
 
 interface ICustomizedTooltip {
   active?: boolean;
   payload?: any[];
   label?: string;
 }
+
 const CustomizedTooltip = memo(
   ({ active, payload, label }: ICustomizedTooltip) => {
+    const t = useTranslations("HomePage");
+
     if (active && payload && payload.length > 0) {
       return (
-        <div className="p-2 px-3 bg-white rounded-lg chart-tooltip">
+        <div className="p-2 px-3 bg-slate-800/95 rounded-lg chart-tooltip">
           <div className="">
             <h3 className="text-center border-b-2 border-dotted text-accent border-secondary">
-              তারিখ - {label}
+              {t("analysis.date")} - {label}
             </h3>
           </div>
           <div className="">
-            <p className="text-primary">নামাজ - {payload[0]?.value}</p>
-            <p className="text-accent">জামাত - {payload[1]?.value}</p>
-            <p className="text-[#c9bc00]">তাকবীরে উলা - {payload[2]?.value}</p>
+            <p className="text-yellow-400">
+              {t("salat.completed")} - {payload[0]?.value}
+            </p>
+            <p className="text-[#33a02c]">
+              {t("salat.jamat")} - {payload[1]?.value}
+            </p>
+            <p className="text-[#00fbff]">
+              {t("salat.firstTakbeer")} - {payload[2]?.value}
+            </p>
           </div>
         </div>
       );
@@ -71,19 +81,17 @@ const CustomizedTooltip = memo(
   }
 );
 
-export const BarChartCompo = memo(() => {
-  const prvDays = pastDays(7);
-  const t = useTranslations("HomePage.analysis");
+interface IBarChartCompo {
+  data: {
+    day: string;
+    complete: number;
+    jamat: number;
+    firstTakbeer: number;
+  }[];
+  label: string;
+}
 
-  const [chartData, setChartData] = useState(
-    prvDays.reverse().map((date) => ({
-      day: date.slice(0, 2),
-      Namaz: 5,
-      Jamat: 4,
-      Takbire_Ula: 3,
-    }))
-  );
-
+export const BarChartCompo: FC<IBarChartCompo> = memo(({ data, label }) => {
   return (
     <ResponsiveContainer
       width={400}
@@ -91,9 +99,7 @@ export const BarChartCompo = memo(() => {
       className="max-w-[300px] max-h-[300px] sm:max-w-full sm:max-h-full"
     >
       <ComposedChart
-        width={400}
-        height={400}
-        data={chartData}
+        data={data}
         margin={{
           top: 20,
           right: 20,
@@ -108,7 +114,7 @@ export const BarChartCompo = memo(() => {
           className="text-slate-200"
           dataKey="day"
           label={{
-            value: t("date"),
+            value: label,
             position: "insideBottom",
             offset: -15,
             fill: "#0eca2d",
@@ -122,24 +128,24 @@ export const BarChartCompo = memo(() => {
         <Tooltip content={<CustomizedTooltip />} />
 
         <Bar
-          dataKey="Namaz"
+          dataKey="complete"
           fill="#0eca2d"
           shape={<TriangleBar />}
           label={{ position: "top" }}
         >
-          {chartData.map((entry, index) => (
+          {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={colors[(index + 4) % 7]} />
           ))}
         </Bar>
 
         <Line
           type="monotone"
-          dataKey="Takbire_Ula"
+          dataKey="firstTakbeer"
           stroke="#00fbff"
           fill="#ff6161"
         />
 
-        <Line type="monotone" dataKey="Jamat" stroke="#33a02c" fill="#daadff" />
+        <Line type="monotone" dataKey="jamat" stroke="#33a02c" fill="#daadff" />
       </ComposedChart>
     </ResponsiveContainer>
   );
