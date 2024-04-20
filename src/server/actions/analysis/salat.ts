@@ -88,7 +88,6 @@ export const get7DaySalatBarChart = async () => {
     const day7 = await prvSalatCount(6);
 
     const salats = [day7, day6, day5, day4, day3, day2, day1];
-    console.log("🚀 ~ get7DaySalatBarChart ~ day7:", day1);
 
     return { success: "Salat Added!(SA:92) ✅", data: salats };
   } catch (error) {
