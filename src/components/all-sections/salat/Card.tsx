@@ -26,9 +26,6 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => setData(salat), [salat]);
-  // useEffect(() => {
-  //   refetchAnalysis();
-  // }, [data, refetchAnalysis]);
 
   const {
     name,

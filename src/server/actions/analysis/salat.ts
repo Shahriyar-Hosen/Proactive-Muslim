@@ -44,7 +44,7 @@ export const get7DaySalatBarChart = async () => {
     const user = await currentUser();
 
     if (!user?.id) {
-      return { error: "User not logged in!(SA:45)" };
+      return { error: "User not logged in!(SA:47)" };
     }
 
     let prvDays = pastDays(7);
@@ -89,10 +89,10 @@ export const get7DaySalatBarChart = async () => {
 
     const salats = [day7, day6, day5, day4, day3, day2, day1];
 
-    return { success: "Salat Added!(SA:91) ✅", data: salats };
+    return { success: "Salat Added!(SA:92) ✅", data: salats };
   } catch (error) {
     console.log("🚀 ~ get7DaySalatBarChart ~ (SA:94) ~ error:", error);
-    return { error: "Something want Wrong!(SA:94) ❌" };
+    return { error: "Something want Wrong!(SA:95) ❌" };
   }
 };
 
@@ -101,7 +101,7 @@ export const getSalatCount = async (day: 7 | 15 | 30 | 40 | 80 | 120) => {
     const user = await currentUser();
 
     if (!user?.id) {
-      return { error: "User not logged in!(SA:103)" };
+      return { error: "User not logged in!(SA:104)" };
     }
 
     const fajrCount = await salatCount(user.id, "Fajr", day);
@@ -118,9 +118,9 @@ export const getSalatCount = async (day: 7 | 15 | 30 | 40 | 80 | 120) => {
       isha: ishaCount,
     };
 
-    return { success: "Salat Added!(SA:120) ✅", data: salats };
+    return { success: "Salat Added!(SA:121) ✅", data: salats };
   } catch (error) {
-    console.log("🚀 ~ get120DaySalat ~ (SA:122) ~ error:", error);
-    return { error: "Something want Wrong!(SA:123) ❌" };
+    console.log("🚀 ~ get120DaySalat ~ (SA:123) ~ error:", error);
+    return { error: "Something want Wrong!(SA:124) ❌" };
   }
 };
