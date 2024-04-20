@@ -1,5 +1,4 @@
 export * from "./defaultData";
-import { IChartData } from "@/types";
 import { createContext } from "react";
 import {
   barChartDefaultData,
