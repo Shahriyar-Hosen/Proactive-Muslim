@@ -1,7 +1,7 @@
 "use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { get120DaySalat } from "@/server/actions/analysis/salat";
+import { getSalatCount } from "@/server/actions/analysis/salat";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { CSSProperties, FC, useEffect, useState } from "react";
@@ -59,7 +59,7 @@ const RadialChartCompo: FC = () => {
 
   useEffect(() => {
     const handleUpdateData = async () => {
-      const salat = await get120DaySalat();
+      const salat = await getSalatCount(120);
 
       const data = defaultData.map((item) => {
         switch (item.namaz) {

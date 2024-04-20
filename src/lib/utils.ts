@@ -40,6 +40,11 @@ export const salatAllFilters = (
   selectedSalat: SalahTime,
   date: Date
 ) => {
+  // Taraweeh will not show in other months except Ramadan, it needs to be changed manually
+  if (name === "Taraweeh") {
+    return false;
+  }
+
   if (time === "Zuhr") {
     const selectSalah = isJumuahDay(date) ? "Jumuah" : "Zuhr";
     return (

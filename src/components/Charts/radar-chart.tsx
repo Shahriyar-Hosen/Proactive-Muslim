@@ -1,7 +1,7 @@
 "use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { get40DaySalat } from "@/server/actions/analysis/salat";
+import { getSalatCount } from "@/server/actions/analysis/salat";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { FC, memo, useEffect, useState } from "react";
@@ -80,7 +80,7 @@ const RadarChartComponent = memo(() => {
 
   useEffect(() => {
     const handleUpdateData = async () => {
-      const salat = await get40DaySalat();
+      const salat = await getSalatCount(40);
 
       const data = defaultData.map((item) => {
         switch (item.namaz) {
@@ -113,7 +113,7 @@ const RadarChartComponent = memo(() => {
     >
       <RadarChart
         cx={190}
-        cy={205}
+        cy={215}
         data={data}
         outerRadius={125}
         className="bg-slate-800/[0.5] backdrop-blur-sm rounded-xl w-[200px] lg:w-[380px] h-full shadow-inner"

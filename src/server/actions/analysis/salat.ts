@@ -95,70 +95,12 @@ export const get7DaySalatBarChart = async () => {
   }
 };
 
-export const get40DaySalat = async () => {
-  try {
-    const user = await currentUser();
-
-    if (!user?.id) {
-      return { error: "User not logged in!(SA:103)" };
-    }
-
-    const fajrCount = await salatCount(user.id, "Fajr", 40);
-    const zuhrCount = await salatCount(user.id, "Zuhr", 40);
-    const asrCount = await salatCount(user.id, "Asr", 40);
-    const maghribCount = await salatCount(user.id, "Maghrib", 40);
-    const ishaCount = await salatCount(user.id, "Isha", 40);
-
-    const salats = {
-      fajr: fajrCount,
-      zuhr: zuhrCount,
-      asr: asrCount,
-      maghrib: maghribCount,
-      isha: ishaCount,
-    };
-
-    return { success: "Salat Added!(SA:120) ✅", data: salats };
-  } catch (error) {
-    console.log("🚀 ~ get40DaySalat ~ (SA:123) ~ error:", error);
-    return { error: "Something want Wrong!(SA:123) ❌" };
-  }
-};
-
-export const get120DaySalat = async () => {
-  try {
-    const user = await currentUser();
-
-    if (!user?.id) {
-      return { error: "User not logged in!(SA:132)" };
-    }
-
-    const fajrCount = await salatCount(user.id, "Fajr", 120);
-    const zuhrCount = await salatCount(user.id, "Zuhr", 120);
-    const asrCount = await salatCount(user.id, "Asr", 120);
-    const maghribCount = await salatCount(user.id, "Maghrib", 120);
-    const ishaCount = await salatCount(user.id, "Isha", 120);
-
-    const salats = {
-      fajr: fajrCount,
-      zuhr: zuhrCount,
-      asr: asrCount,
-      maghrib: maghribCount,
-      isha: ishaCount,
-    };
-
-    return { success: "Salat Added!(SA:149) ✅", data: salats };
-  } catch (error) {
-    console.log("🚀 ~ get120DaySalat ~ (SA:152) ~ error:", error);
-    return { error: "Something want Wrong!(SA:152) ❌" };
-  }
-};
-
 export const getSalatCount = async (day: 7 | 15 | 30 | 40 | 80 | 120) => {
   try {
     const user = await currentUser();
 
     if (!user?.id) {
-      return { error: "User not logged in!(SA:132)" };
+      return { error: "User not logged in!(SA:103)" };
     }
 
     const fajrCount = await salatCount(user.id, "Fajr", day);
@@ -175,9 +117,9 @@ export const getSalatCount = async (day: 7 | 15 | 30 | 40 | 80 | 120) => {
       isha: ishaCount,
     };
 
-    return { success: "Salat Added!(SA:149) ✅", data: salats };
+    return { success: "Salat Added!(SA:120) ✅", data: salats };
   } catch (error) {
-    console.log("🚀 ~ get120DaySalat ~ (SA:152) ~ error:", error);
-    return { error: "Something want Wrong!(SA:152) ❌" };
+    console.log("🚀 ~ get120DaySalat ~ (SA:122) ~ error:", error);
+    return { error: "Something want Wrong!(SA:123) ❌" };
   }
 };

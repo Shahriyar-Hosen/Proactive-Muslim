@@ -68,15 +68,6 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
           ? updateRakats(value)
           : updateRakats(20)
         : updateRakats(value);
-      // if (name === "Taraweeh") {
-      //   if (value <= 20) {
-      //     updateRakats(value);
-      //   } else {
-      //     updateRakats(20);
-      //   }
-      // } else {
-      //   updateRakats(value);
-      // }
     },
     [name]
   );
