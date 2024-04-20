@@ -2,6 +2,7 @@
 
 import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { addLeadingZero } from "@/lib/helpers";
 import { pastDays } from "@/lib/utils";
 
 const previousDay = (day: number) => {
@@ -9,7 +10,6 @@ const previousDay = (day: number) => {
 
   const previousDay = new Date(currentDate);
   previousDay.setDate(currentDate.getDate() - day);
-
   previousDay.setHours(0, 0, 0, 0); // Set hours to beginning of the day
 
   const startOfDate = currentDate;
@@ -23,7 +23,7 @@ const previousDay = (day: number) => {
 
 const salatCount = async (id: string, time: SalahTime, day: number) => {
   const previous = previousDay(day);
-  const salats = await db.salat.count({
+  const result = await db.salat.count({
     where: {
       userId: id,
       time: time,
@@ -35,15 +35,15 @@ const salatCount = async (id: string, time: SalahTime, day: number) => {
     },
   });
 
-  return salats;
+  return result;
 };
 
-export const get7DaySalat = async () => {
+export const get7DaySalatBarChart = async () => {
   try {
     const user = await currentUser();
 
     if (!user?.id) {
-      return { error: "User not logged in!(S:91)" };
+      return { error: "User not logged in!(SA:45)" };
     }
 
     let prvDays = pastDays(7);
@@ -70,7 +70,7 @@ export const get7DaySalat = async () => {
       });
 
       const day = new Date(date).getDate();
-      const formattedDay = day >= 10 ? day : "0" + day;
+      const formattedDay = addLeadingZero(day);
 
       return {
         day: formattedDay,
@@ -88,10 +88,10 @@ export const get7DaySalat = async () => {
 
     const salats = [day7, day6, day5, day4, day3, day2, day1];
 
-    return { success: "Salat Added!(S:108) ✅", data: salats };
+    return { success: "Salat Added!(SA:91) ✅", data: salats };
   } catch (error) {
-    console.log("🚀 ~ getSalat ~ error:", error);
-    return { error: "Something want Wrong!(S:110) ❌" };
+    console.log("🚀 ~ get7DaySalatBarChart ~ (SA:94) ~ error:", error);
+    return { error: "Something want Wrong!(SA:94) ❌" };
   }
 };
 
@@ -100,7 +100,7 @@ export const get40DaySalat = async () => {
     const user = await currentUser();
 
     if (!user?.id) {
-      return { error: "User not logged in!(S:91)" };
+      return { error: "User not logged in!(SA:103)" };
     }
 
     const fajrCount = await salatCount(user.id, "Fajr", 40);
@@ -117,10 +117,10 @@ export const get40DaySalat = async () => {
       isha: ishaCount,
     };
 
-    return { success: "Salat Added!(S:108) ✅", data: salats };
+    return { success: "Salat Added!(SA:120) ✅", data: salats };
   } catch (error) {
-    console.log("🚀 ~ getSalat ~ error:", error);
-    return { error: "Something want Wrong!(S:110) ❌" };
+    console.log("🚀 ~ get40DaySalat ~ (SA:123) ~ error:", error);
+    return { error: "Something want Wrong!(SA:123) ❌" };
   }
 };
 
@@ -129,7 +129,7 @@ export const get120DaySalat = async () => {
     const user = await currentUser();
 
     if (!user?.id) {
-      return { error: "User not logged in!(S:91)" };
+      return { error: "User not logged in!(SA:132)" };
     }
 
     const fajrCount = await salatCount(user.id, "Fajr", 120);
@@ -146,9 +146,38 @@ export const get120DaySalat = async () => {
       isha: ishaCount,
     };
 
-    return { success: "Salat Added!(S:108) ✅", data: salats };
+    return { success: "Salat Added!(SA:149) ✅", data: salats };
   } catch (error) {
-    console.log("🚀 ~ getSalat ~ error:", error);
-    return { error: "Something want Wrong!(S:110) ❌" };
+    console.log("🚀 ~ get120DaySalat ~ (SA:152) ~ error:", error);
+    return { error: "Something want Wrong!(SA:152) ❌" };
+  }
+};
+
+export const getSalatCount = async (day: 7 | 15 | 30 | 40 | 80 | 120) => {
+  try {
+    const user = await currentUser();
+
+    if (!user?.id) {
+      return { error: "User not logged in!(SA:132)" };
+    }
+
+    const fajrCount = await salatCount(user.id, "Fajr", day);
+    const zuhrCount = await salatCount(user.id, "Zuhr", day);
+    const asrCount = await salatCount(user.id, "Asr", day);
+    const maghribCount = await salatCount(user.id, "Maghrib", day);
+    const ishaCount = await salatCount(user.id, "Isha", day);
+
+    const salats = {
+      fajr: fajrCount,
+      zuhr: zuhrCount,
+      asr: asrCount,
+      maghrib: maghribCount,
+      isha: ishaCount,
+    };
+
+    return { success: "Salat Added!(SA:149) ✅", data: salats };
+  } catch (error) {
+    console.log("🚀 ~ get120DaySalat ~ (SA:152) ~ error:", error);
+    return { error: "Something want Wrong!(SA:152) ❌" };
   }
 };

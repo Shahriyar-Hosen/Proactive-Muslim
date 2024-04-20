@@ -82,7 +82,7 @@ const RadarChartComponent = memo(() => {
     const handleUpdateData = async () => {
       const salat = await get40DaySalat();
 
-      const data = defaultData.map((item, i) => {
+      const data = defaultData.map((item) => {
         switch (item.namaz) {
           case "fajr":
             return { ...item, count: salat.data?.fajr || item.count };

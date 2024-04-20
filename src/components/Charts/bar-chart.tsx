@@ -2,7 +2,7 @@
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { pastDays } from "@/lib/utils";
-import { get7DaySalat } from "@/server/actions/analysis/salat";
+import { get7DaySalatBarChart } from "@/server/actions/analysis/salat";
 import { scaleOrdinal } from "d3-scale";
 import { schemePaired } from "d3-scale-chromatic";
 import { useTranslations } from "next-intl";
@@ -38,11 +38,13 @@ const getPath = (
   Z`;
 };
 
-const TriangleBar = memo((props: any) => {
-  const { fill, x, y, width, height } = props;
-
-  return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
-});
+const TriangleBar = memo(({ fill, x, y, width, height }: any) => (
+  <path
+    d={getPath(Number(x), Number(y), Number(width), Number(height))}
+    stroke="none"
+    fill={fill}
+  />
+));
 
 interface ICustomizedTooltip {
   active?: boolean;
@@ -92,7 +94,7 @@ export const BarChartCompo = memo(() => {
 
   useEffect(() => {
     const handleUpdateData = async () => {
-      const salat = await get7DaySalat();
+      const salat = await get7DaySalatBarChart();
       if (salat.data) {
         setData(salat?.data);
       }
@@ -103,7 +105,7 @@ export const BarChartCompo = memo(() => {
 
   useEffect(() => {
     const getData = async () => {
-      const salatsData = await get7DaySalat();
+      const salatsData = await get7DaySalatBarChart();
       console.log("🚀 ~ getData ~ salatsData:", salatsData);
     };
     getData();

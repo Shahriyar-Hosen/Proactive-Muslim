@@ -112,7 +112,7 @@ export const getSalat = async (
 
     return { success: "Salat Added!(S:108) ✅", data: salats };
   } catch (error) {
-    console.log("🚀 ~ getSalat ~ error:", error);
+    console.log("🚀 ~ getSalat ~ (S:110) ~ error:", error);
     return { error: "Something want Wrong!(S:110) ❌" };
   }
 };
