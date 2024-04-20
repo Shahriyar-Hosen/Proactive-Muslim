@@ -1,9 +1,10 @@
 "use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
+import { get120DaySalat } from "@/server/actions/analysis/salat";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import { CSSProperties, FC, useState } from "react";
+import { CSSProperties, FC, useEffect, useState } from "react";
 import {
   Legend,
   RadialBar,
@@ -22,6 +23,7 @@ const RadialChartCompo: FC = () => {
   const defaultData = [
     {
       name: t("Fajr"),
+      namaz: "fajr",
       count: 120,
       fill: "#8dd1e1",
     },
@@ -29,27 +31,58 @@ const RadialChartCompo: FC = () => {
       name: t("Zuhr", {
         option: "zuhr",
       }),
+      namaz: "zuhr",
       count: 60,
       fill: "#82ca9d",
     },
     {
       name: t("Asr"),
+      namaz: "asr",
       count: 70,
       fill: "#a4de6c",
     },
     {
       name: t("Maghrib"),
+      namaz: "maghrib",
       count: 80,
       fill: "#d0ed57",
     },
     {
       name: t("Isha"),
+      namaz: "isha",
       count: 110,
       fill: "#ffc658",
     },
   ];
 
   const [data, setData] = useState(defaultData);
+
+  useEffect(() => {
+    const handleUpdateData = async () => {
+      const salat = await get120DaySalat();
+
+      const data = defaultData.map((item, i) => {
+        switch (item.namaz) {
+          case "fajr":
+            return { ...item, count: salat.data?.fajr || item.count };
+          case "zuhr":
+            return { ...item, count: salat.data?.zuhr || item.count };
+          case "asr":
+            return { ...item, count: salat.data?.asr || item.count };
+          case "maghrib":
+            return { ...item, count: salat.data?.maghrib || item.count };
+          case "isha":
+            return { ...item, count: salat.data?.isha || item.count };
+
+          default:
+            return item;
+        }
+      });
+      setData(data);
+    };
+    handleUpdateData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <ResponsiveContainer
@@ -58,8 +91,6 @@ const RadialChartCompo: FC = () => {
       className="max-w-[300px] max-h-[320px] sm:max-w-full sm:max-h-full"
     >
       <RadialBarChart
-        width={400}
-        height={400}
         cx={200}
         cy={180}
         innerRadius={30}

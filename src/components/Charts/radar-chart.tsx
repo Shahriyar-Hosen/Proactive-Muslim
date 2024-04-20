@@ -1,7 +1,10 @@
+"use client";
+
 import { Skeleton } from "@/components/ui/skeleton";
+import { get40DaySalat } from "@/server/actions/analysis/salat";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import { FC, memo, useState } from "react";
+import { FC, memo, useEffect, useState } from "react";
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -45,30 +48,62 @@ const RadarChartComponent = memo(() => {
   const t = useTranslations("HomePage.salat.time");
   const defaultData = [
     {
-      namaz: t("Fajr"),
+      label: t("Fajr"),
+      namaz: "fajr",
       count: 7,
     },
     {
-      namaz: t("Zuhr", {
+      label: t("Zuhr", {
         option: "zuhr",
       }),
+      namaz: "zuhr",
       count: 7,
     },
     {
-      namaz: t("Asr"),
+      label: t("Asr"),
+      namaz: "asr",
       count: 7,
     },
     {
-      namaz: t("Maghrib"),
+      label: t("Maghrib"),
+      namaz: "maghrib",
       count: 7,
     },
     {
-      namaz: t("Isha"),
+      label: t("Isha"),
+      namaz: "isha",
       count: 7,
     },
   ];
 
   const [data, setData] = useState(defaultData);
+
+  useEffect(() => {
+    const handleUpdateData = async () => {
+      const salat = await get40DaySalat();
+
+      const data = defaultData.map((item, i) => {
+        switch (item.namaz) {
+          case "fajr":
+            return { ...item, count: salat.data?.fajr || item.count };
+          case "zuhr":
+            return { ...item, count: salat.data?.zuhr || item.count };
+          case "asr":
+            return { ...item, count: salat.data?.asr || item.count };
+          case "maghrib":
+            return { ...item, count: salat.data?.maghrib || item.count };
+          case "isha":
+            return { ...item, count: salat.data?.isha || item.count };
+
+          default:
+            return item;
+        }
+      });
+      setData(data);
+    };
+    handleUpdateData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <ResponsiveContainer
@@ -80,17 +115,15 @@ const RadarChartComponent = memo(() => {
         cx={190}
         cy={205}
         data={data}
-        width={400}
-        height={400}
         outerRadius={125}
         className="bg-slate-800/[0.5] backdrop-blur-sm rounded-xl w-[200px] lg:w-[380px] h-full shadow-inner"
       >
         <Tooltip content={<CustomizedTooltip />} />
         <PolarGrid />
-        <PolarAngleAxis dataKey="namaz" stroke="#e2e8f0" fill="#0eca2d" />
+        <PolarAngleAxis dataKey="label" stroke="#e2e8f0" fill="#0eca2d" />
         <PolarRadiusAxis stroke="#f6d860" fill="#0eca2d" />
         <Radar
-          name="namaz"
+          name="label"
           dataKey="count"
           stroke="#00fbff"
           fill="#24ff48"

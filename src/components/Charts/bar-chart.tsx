@@ -1,11 +1,13 @@
 "use client";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import { pastDays } from "@/lib/utils";
+import { get7DaySalat } from "@/server/actions/analysis/salat";
 import { scaleOrdinal } from "d3-scale";
 import { schemePaired } from "d3-scale-chromatic";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import {
   Bar,
   CartesianGrid,
@@ -17,7 +19,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { Skeleton } from "../ui/skeleton";
 
 const colors = scaleOrdinal(schemePaired).range();
 
@@ -48,6 +49,7 @@ interface ICustomizedTooltip {
   payload?: any[];
   label?: string;
 }
+
 const CustomizedTooltip = memo(
   ({ active, payload, label }: ICustomizedTooltip) => {
     if (active && payload && payload.length > 0) {
@@ -71,18 +73,41 @@ const CustomizedTooltip = memo(
   }
 );
 
+const defaultData = pastDays(7)
+  .reverse()
+  .map((date) => {
+    const day = new Date(date).getDate();
+    const formattedDay = day >= 10 ? day : "0" + day;
+    return {
+      day: formattedDay,
+      complete: 5,
+      jamat: 4,
+      firstTakbeer: 3,
+    };
+  });
+
 export const BarChartCompo = memo(() => {
-  const prvDays = pastDays(7);
+  const [data, setData] = useState(defaultData);
   const t = useTranslations("HomePage.analysis");
 
-  const [chartData, setChartData] = useState(
-    prvDays.reverse().map((date) => ({
-      day: date.slice(0, 2),
-      Namaz: 5,
-      Jamat: 4,
-      Takbire_Ula: 3,
-    }))
-  );
+  useEffect(() => {
+    const handleUpdateData = async () => {
+      const salat = await get7DaySalat();
+      if (salat.data) {
+        setData(salat?.data);
+      }
+    };
+    handleUpdateData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const getData = async () => {
+      const salatsData = await get7DaySalat();
+      console.log("🚀 ~ getData ~ salatsData:", salatsData);
+    };
+    getData();
+  }, []);
 
   return (
     <ResponsiveContainer
@@ -91,9 +116,7 @@ export const BarChartCompo = memo(() => {
       className="max-w-[300px] max-h-[300px] sm:max-w-full sm:max-h-full"
     >
       <ComposedChart
-        width={400}
-        height={400}
-        data={chartData}
+        data={data}
         margin={{
           top: 20,
           right: 20,
@@ -122,24 +145,24 @@ export const BarChartCompo = memo(() => {
         <Tooltip content={<CustomizedTooltip />} />
 
         <Bar
-          dataKey="Namaz"
+          dataKey="complete"
           fill="#0eca2d"
           shape={<TriangleBar />}
           label={{ position: "top" }}
         >
-          {chartData.map((entry, index) => (
+          {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={colors[(index + 4) % 7]} />
           ))}
         </Bar>
 
         <Line
           type="monotone"
-          dataKey="Takbire_Ula"
+          dataKey="firstTakbeer"
           stroke="#00fbff"
           fill="#ff6161"
         />
 
-        <Line type="monotone" dataKey="Jamat" stroke="#33a02c" fill="#daadff" />
+        <Line type="monotone" dataKey="jamat" stroke="#33a02c" fill="#daadff" />
       </ComposedChart>
     </ResponsiveContainer>
   );

@@ -1,4 +1,3 @@
-import { dateFormat } from "@/lib/helpers";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -69,27 +68,14 @@ export const replaceMatchingElements = (
   return result;
 };
 
-export const pastDays = (day: number, reversFormat?: boolean) => {
+export const pastDays = (day: number) => {
   // ✅ start from today's date
   const prvDays = Array.from(Array(day || 7).keys()).map((index) => {
     const date = new Date();
 
     date.setDate(date.getDate() - index);
 
-    const formatted = {
-      day: date.getDate(),
-      month: date.getMonth() + 1,
-      year: date.getFullYear(),
-    };
-
-    const formatDate = dateFormat({ formatted });
-    const reversFormatDate = dateFormat({ formatted, revers: true });
-
-    if (reversFormat) {
-      return reversFormatDate;
-    } else {
-      return formatDate;
-    }
+    return date;
   });
 
   return prvDays;
