@@ -1,13 +1,12 @@
 "use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { pastDays } from "@/lib/utils";
-import { get7DaySalatBarChart } from "@/server/actions/analysis/salat";
+import { useStoreContext } from "@/hooks/use-store-context";
 import { scaleOrdinal } from "d3-scale";
 import { schemePaired } from "d3-scale-chromatic";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import { memo, useEffect, useState } from "react";
+import { memo } from "react";
 import {
   Bar,
   CartesianGrid,
@@ -54,18 +53,26 @@ interface ICustomizedTooltip {
 
 const CustomizedTooltip = memo(
   ({ active, payload, label }: ICustomizedTooltip) => {
+    const t = useTranslations("HomePage");
+
     if (active && payload && payload.length > 0) {
       return (
-        <div className="p-2 px-3 bg-white rounded-lg chart-tooltip">
+        <div className="p-2 px-3 bg-slate-800/95 rounded-lg chart-tooltip">
           <div className="">
             <h3 className="text-center border-b-2 border-dotted text-accent border-secondary">
-              তারিখ - {label}
+              {t("analysis.date")} - {label}
             </h3>
           </div>
           <div className="">
-            <p className="text-primary">নামাজ - {payload[0]?.value}</p>
-            <p className="text-accent">জামাত - {payload[1]?.value}</p>
-            <p className="text-[#c9bc00]">তাকবীরে উলা - {payload[2]?.value}</p>
+            <p className="text-yellow-400">
+              {t("salat.completed")} - {payload[0]?.value}
+            </p>
+            <p className="text-[#33a02c]">
+              {t("salat.jamat")} - {payload[1]?.value}
+            </p>
+            <p className="text-[#00fbff]">
+              {t("salat.firstTakbeer")} - {payload[2]?.value}
+            </p>
           </div>
         </div>
       );
@@ -75,41 +82,9 @@ const CustomizedTooltip = memo(
   }
 );
 
-const defaultData = pastDays(7)
-  .reverse()
-  .map((date) => {
-    const day = new Date(date).getDate();
-    const formattedDay = day >= 10 ? day : "0" + day;
-    return {
-      day: formattedDay,
-      complete: 5,
-      jamat: 4,
-      firstTakbeer: 3,
-    };
-  });
-
 export const BarChartCompo = memo(() => {
-  const [data, setData] = useState(defaultData);
+  const { barChart7Day } = useStoreContext();
   const t = useTranslations("HomePage.analysis");
-
-  useEffect(() => {
-    const handleUpdateData = async () => {
-      const salat = await get7DaySalatBarChart();
-      if (salat.data) {
-        setData(salat?.data);
-      }
-    };
-    handleUpdateData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    const getData = async () => {
-      const salatsData = await get7DaySalatBarChart();
-      console.log("🚀 ~ getData ~ salatsData:", salatsData);
-    };
-    getData();
-  }, []);
 
   return (
     <ResponsiveContainer
@@ -118,7 +93,7 @@ export const BarChartCompo = memo(() => {
       className="max-w-[300px] max-h-[300px] sm:max-w-full sm:max-h-full"
     >
       <ComposedChart
-        data={data}
+        data={barChart7Day}
         margin={{
           top: 20,
           right: 20,
@@ -152,7 +127,7 @@ export const BarChartCompo = memo(() => {
           shape={<TriangleBar />}
           label={{ position: "top" }}
         >
-          {data.map((entry, index) => (
+          {barChart7Day.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={colors[(index + 4) % 7]} />
           ))}
         </Bar>

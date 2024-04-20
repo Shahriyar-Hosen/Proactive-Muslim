@@ -1,10 +1,10 @@
 "use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { getSalatCount } from "@/server/actions/analysis/salat";
-import { useTranslations } from "next-intl";
+import { useStoreContext } from "@/hooks/use-store-context";
+import { useChartData } from "@/hooks/use-update-chart-data";
 import dynamic from "next/dynamic";
-import { CSSProperties, FC, useEffect, useState } from "react";
+import { CSSProperties, FC } from "react";
 import {
   Legend,
   RadialBar,
@@ -18,71 +18,8 @@ const style: CSSProperties = {
 };
 
 const RadialChartCompo: FC = () => {
-  const t = useTranslations("HomePage.salat.time");
-
-  const defaultData = [
-    {
-      name: t("Fajr"),
-      namaz: "fajr",
-      count: 120,
-      fill: "#8dd1e1",
-    },
-    {
-      name: t("Zuhr", {
-        option: "zuhr",
-      }),
-      namaz: "zuhr",
-      count: 60,
-      fill: "#82ca9d",
-    },
-    {
-      name: t("Asr"),
-      namaz: "asr",
-      count: 70,
-      fill: "#a4de6c",
-    },
-    {
-      name: t("Maghrib"),
-      namaz: "maghrib",
-      count: 80,
-      fill: "#d0ed57",
-    },
-    {
-      name: t("Isha"),
-      namaz: "isha",
-      count: 110,
-      fill: "#ffc658",
-    },
-  ];
-
-  const [data, setData] = useState(defaultData);
-
-  useEffect(() => {
-    const handleUpdateData = async () => {
-      const salat = await getSalatCount(120);
-
-      const data = defaultData.map((item) => {
-        switch (item.namaz) {
-          case "fajr":
-            return { ...item, count: salat.data?.fajr || item.count };
-          case "zuhr":
-            return { ...item, count: salat.data?.zuhr || item.count };
-          case "asr":
-            return { ...item, count: salat.data?.asr || item.count };
-          case "maghrib":
-            return { ...item, count: salat.data?.maghrib || item.count };
-          case "isha":
-            return { ...item, count: salat.data?.isha || item.count };
-
-          default:
-            return item;
-        }
-      });
-      setData(data);
-    };
-    handleUpdateData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { radialChart } = useStoreContext();
+  const data = useChartData(radialChart);
 
   return (
     <ResponsiveContainer
@@ -100,8 +37,6 @@ const RadialChartCompo: FC = () => {
         className="bg-slate-800/[0.5] backdrop-blur-sm rounded-xl"
       >
         <RadialBar
-          // minAngle={15}
-          // clockWise
           label={{ position: "insideStart", fill: "#000" }}
           background
           dataKey="count"

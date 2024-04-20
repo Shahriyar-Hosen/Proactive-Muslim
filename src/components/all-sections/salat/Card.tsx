@@ -21,11 +21,14 @@ import { isJumuahDay } from "@/lib/utils";
 import { createOrUpdateSalat } from "@/server/actions/salat";
 
 export const SalatCard: FC<ISalat> = memo((salat) => {
-  const { date } = useStoreContext();
+  const { date, refetchAnalysis } = useStoreContext();
   const [data, setData] = useState<ISalat>(salat);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => setData(salat), [salat]);
+  // useEffect(() => {
+  //   refetchAnalysis();
+  // }, [data, refetchAnalysis]);
 
   const {
     name,
@@ -85,6 +88,7 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
         setLoading(false);
         if (data?.data) {
           setData(data.data);
+          refetchAnalysis();
         }
       })
       .catch((err) => {

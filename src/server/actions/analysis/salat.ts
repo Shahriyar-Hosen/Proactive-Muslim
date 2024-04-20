@@ -28,6 +28,7 @@ const salatCount = async (id: string, time: SalahTime, day: number) => {
       userId: id,
       time: time,
       priority: "Farz",
+      complete: true,
       date: {
         gte: previous.end,
         lt: previous.start,

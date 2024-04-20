@@ -12,7 +12,8 @@
     "analysis": {
       "title": "Salat <highlight>Analysis</highlight>",
       "date": "Date",
-      "button": "More Analysis"
+      "button": "More Analysis",
+      "radar-tooltip": "In 40 Days"
     },
     "salat": {
       "card-title": "{name} {priority}",
