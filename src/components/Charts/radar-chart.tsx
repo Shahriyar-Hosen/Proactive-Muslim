@@ -1,8 +1,6 @@
 "use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { useStoreContext } from "@/hooks/use-store-context";
-import { useChartData } from "@/hooks/use-update-chart-data";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { FC, memo } from "react";
@@ -42,10 +40,7 @@ const CustomizedTooltip: FC<ICustomizedTooltip> = memo(
   }
 );
 
-const RadarChartComponent = memo(() => {
-  const { radarChart } = useStoreContext();
-  const data = useChartData(radarChart);
-
+const RadarChartComponent: FC<{ data: IChartData[] }> = memo(({ data }) => {
   return (
     <ResponsiveContainer
       width={400}

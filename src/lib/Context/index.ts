@@ -1,4 +1,5 @@
 export * from "./defaultData";
+import { IChartData } from "@/types";
 import { createContext } from "react";
 import {
   barChartDefaultData,
@@ -6,12 +7,6 @@ import {
   radialDefaultData,
 } from "./defaultData";
 
-interface IChartData {
-  name: string;
-  namaz: string;
-  count: number;
-  fill?: string;
-}
 export interface IStore {
   date: Date;
   setDate: (date: Date | undefined) => void;

@@ -1,12 +1,11 @@
 "use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { useStoreContext } from "@/hooks/use-store-context";
 import { scaleOrdinal } from "d3-scale";
 import { schemePaired } from "d3-scale-chromatic";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import { memo } from "react";
+import { FC, memo } from "react";
 import {
   Bar,
   CartesianGrid,
@@ -82,10 +81,17 @@ const CustomizedTooltip = memo(
   }
 );
 
-export const BarChartCompo = memo(() => {
-  const { barChart7Day } = useStoreContext();
-  const t = useTranslations("HomePage.analysis");
+interface IBarChartCompo {
+  data: {
+    day: string;
+    complete: number;
+    jamat: number;
+    firstTakbeer: number;
+  }[];
+  label: string;
+}
 
+export const BarChartCompo: FC<IBarChartCompo> = memo(({ data, label }) => {
   return (
     <ResponsiveContainer
       width={400}
@@ -93,7 +99,7 @@ export const BarChartCompo = memo(() => {
       className="max-w-[300px] max-h-[300px] sm:max-w-full sm:max-h-full"
     >
       <ComposedChart
-        data={barChart7Day}
+        data={data}
         margin={{
           top: 20,
           right: 20,
@@ -108,7 +114,7 @@ export const BarChartCompo = memo(() => {
           className="text-slate-200"
           dataKey="day"
           label={{
-            value: t("date"),
+            value: label,
             position: "insideBottom",
             offset: -15,
             fill: "#0eca2d",
@@ -127,7 +133,7 @@ export const BarChartCompo = memo(() => {
           shape={<TriangleBar />}
           label={{ position: "top" }}
         >
-          {barChart7Day.map((entry, index) => (
+          {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={colors[(index + 4) % 7]} />
           ))}
         </Bar>

@@ -1,8 +1,6 @@
 "use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { useStoreContext } from "@/hooks/use-store-context";
-import { useChartData } from "@/hooks/use-update-chart-data";
 import dynamic from "next/dynamic";
 import { CSSProperties, FC } from "react";
 import {
@@ -17,10 +15,7 @@ const style: CSSProperties = {
   marginTop: -45,
 };
 
-const RadialChartCompo: FC = () => {
-  const { radialChart } = useStoreContext();
-  const data = useChartData(radialChart);
-
+const RadialChartCompo: FC<{ data: IChartData[] }> = ({ data }) => {
   return (
     <ResponsiveContainer
       width={400}

@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
-export const useChartData = (data: any[]) => {
+export const useChartData = (data: IChartData[]) => {
   const t = useTranslations("HomePage.salat.time");
 
   const formattedData = data.map((item) => {

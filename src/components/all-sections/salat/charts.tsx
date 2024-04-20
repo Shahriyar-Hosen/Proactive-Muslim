@@ -1,8 +1,13 @@
 import { BarChart, RadarChartCompo, RadialChart } from "@/components/Charts";
 import { Button } from "@/components/ui/button";
+import { useStoreContext } from "@/hooks/use-store-context";
+import { useChartData } from "@/hooks/use-update-chart-data";
 import { useTranslations } from "next-intl";
 
 export const Charts = () => {
+  const { barChart7Day, radarChart, radialChart } = useStoreContext();
+  const radarChartData = useChartData(radarChart);
+  const radialChartData = useChartData(radialChart);
   const t = useTranslations("HomePage.analysis");
 
   return (
@@ -13,9 +18,9 @@ export const Charts = () => {
         })}
       </h1>
       <div className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto">
-        <BarChart />
-        <RadarChartCompo />
-        <RadialChart />
+        <BarChart data={barChart7Day} label={t("date")} />
+        <RadarChartCompo data={radarChartData} />
+        <RadialChart data={radialChartData} />
       </div>
       <div className="flex justify-center items-center">
         <Button>{t("button")}</Button>
