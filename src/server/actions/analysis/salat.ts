@@ -104,42 +104,10 @@ export const get7DaySalatBarChart = async () => {
     const day6 = await prvSalatCount(5);
     const day7 = await prvSalatCount(6);
 
-    const salats = [
-      await prvSalatCount(30),
-      await prvSalatCount(29),
-      await prvSalatCount(28),
-      await prvSalatCount(27),
-      await prvSalatCount(26),
-      await prvSalatCount(25),
-      await prvSalatCount(24),
-      await prvSalatCount(23),
-      await prvSalatCount(22),
-      await prvSalatCount(21),
-      await prvSalatCount(20),
-      await prvSalatCount(19),
-      await prvSalatCount(18),
-      await prvSalatCount(17),
-      await prvSalatCount(16),
-      await prvSalatCount(15),
-      await prvSalatCount(14),
-      await prvSalatCount(13),
-      await prvSalatCount(12),
-      await prvSalatCount(11),
-      await prvSalatCount(10),
-      await prvSalatCount(9),
-      // await prvSalatCount(8),
-      // await prvSalatCount(7),
-      // day7,
-      // day6,
-      // day5,
-      // day4,
-      // day3,
-      // day2,
-      // day1,
-    ];
+    const salats = [day7, day6, day5, day4, day3, day2, day1];
 
-    const testing = day7;
-    console.log("🚀 ~ get7DaySalatBarChart ~ day5:", testing);
+    // const testing = await prvSalatCount(30);
+    // console.log("🚀 ~ get7DaySalatBarChart ~ day5:", testing);
 
     return { success: "Salat Added!(SA:92) ✅", data: salats };
   } catch (error) {
