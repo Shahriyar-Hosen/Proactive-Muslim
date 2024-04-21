@@ -34,7 +34,7 @@ const RadialChartCompo: FC<{ data: IChartData[]; label: string }> = ({
         <RadialBarChart
           cx={200}
           cy={195}
-          innerRadius={25}
+          innerRadius={30}
           outerRadius={150}
           barSize={20}
           data={data}

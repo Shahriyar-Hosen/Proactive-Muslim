@@ -47,7 +47,7 @@ export const get7DaySalatBarChart = async () => {
       return { error: "User not logged in!(SA:47)" };
     }
 
-    let prvDays = pastDays(70);
+    let prvDays = pastDays(10);
 
     const prvSalatCount = async (index: number) => {
       const date = prvDays[index];
@@ -69,22 +69,22 @@ export const get7DaySalatBarChart = async () => {
           firstTakbeer: true,
         },
       });
-      const salat2 = await db.salat.findMany({
-        where: {
-          userId: user.id,
-          priority: "Farz",
-          complete: true,
-          date: {
-            gte: getPrvDay,
-            lt: date,
-          },
-        },
-        select: {
-          name: true,
-          date: true,
-          id: true,
-        },
-      });
+      // const salat2 = await db.salat.findMany({
+      //   where: {
+      //     userId: user.id,
+      //     priority: "Farz",
+      //     complete: true,
+      //     date: {
+      //       gte: getPrvDay,
+      //       lt: date,
+      //     },
+      //   },
+      //   select: {
+      //     name: true,
+      //     date: true,
+      //     id: true,
+      //   },
+      // });
 
       const day = new Date(date).getDate();
       const formattedDay = addLeadingZero(day);
@@ -92,7 +92,7 @@ export const get7DaySalatBarChart = async () => {
       return {
         day: formattedDay,
         ...salat,
-        salat2,
+        // salat2,
       };
     };
 
@@ -103,8 +103,22 @@ export const get7DaySalatBarChart = async () => {
     const day5 = await prvSalatCount(4);
     const day6 = await prvSalatCount(5);
     const day7 = await prvSalatCount(6);
+    const day8 = await prvSalatCount(7);
+    const day9 = await prvSalatCount(8);
+    const day10 = await prvSalatCount(9);
 
-    const salats = [day7, day6, day5, day4, day3, day2, day1];
+    const salats = [
+      day10,
+      day9,
+      day8,
+      day7,
+      day6,
+      day5,
+      day4,
+      day3,
+      day2,
+      day1,
+    ];
 
     // const testing = await prvSalatCount(30);
     // console.log("🚀 ~ get7DaySalatBarChart ~ day5:", testing);

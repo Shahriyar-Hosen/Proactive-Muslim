@@ -1,7 +1,7 @@
 import { addLeadingZero } from "@/lib/helpers";
 import { pastDays } from "@/lib/utils";
 
-export const barChartDefaultData = pastDays(7)
+export const barChartDefaultData = pastDays(10)
   .reverse()
   .map((date) => {
     const day = new Date(date).getDate();
