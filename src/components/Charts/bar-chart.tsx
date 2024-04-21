@@ -67,10 +67,10 @@ const CustomizedTooltip = memo(
               {t("salat.completed")} - {payload[0]?.value}
             </p>
             <p className="text-[#33a02c]">
-              {t("salat.jamat")} - {payload[1]?.value}
+              {t("salat.jamat")} - {payload[2]?.value}
             </p>
             <p className="text-[#00fbff]">
-              {t("salat.firstTakbeer")} - {payload[2]?.value}
+              {t("salat.firstTakbeer")} - {payload[1]?.value}
             </p>
           </div>
         </div>

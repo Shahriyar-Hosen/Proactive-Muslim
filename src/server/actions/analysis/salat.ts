@@ -120,8 +120,8 @@ export const get7DaySalatBarChart = async () => {
       day1,
     ];
 
-    // const testing = await prvSalatCount(30);
-    // console.log("🚀 ~ get7DaySalatBarChart ~ day5:", testing);
+    // const testing = day8;
+    // console.log("🚀 ~ get7DaySalatBarChart ~ day:", testing);
 
     return { success: "Salat Added!(SA:92) ✅", data: salats };
   } catch (error) {
