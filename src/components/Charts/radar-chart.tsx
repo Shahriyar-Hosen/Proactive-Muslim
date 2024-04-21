@@ -40,35 +40,44 @@ const CustomizedTooltip: FC<ICustomizedTooltip> = memo(
   }
 );
 
-const RadarChartComponent: FC<{ data: IChartData[] }> = memo(({ data }) => {
-  return (
-    <ResponsiveContainer
-      width={400}
-      height={400}
-      className="max-w-[300px] max-h-[300px] sm:max-w-full sm:max-h-full"
-    >
-      <RadarChart
-        cx={190}
-        cy={215}
-        data={data}
-        outerRadius={125}
-        className="bg-slate-800/[0.5] backdrop-blur-sm rounded-xl w-[200px] lg:w-[380px] h-full shadow-inner"
-      >
-        <Tooltip content={<CustomizedTooltip />} />
-        <PolarGrid />
-        <PolarAngleAxis dataKey="name" stroke="#e2e8f0" fill="#0eca2d" />
-        <PolarRadiusAxis stroke="#f6d860" fill="#0eca2d" />
-        <Radar
-          name="name"
-          dataKey="count"
-          stroke="#00fbff"
-          fill="#24ff48"
-          fillOpacity={0.5}
-        />
-      </RadarChart>
-    </ResponsiveContainer>
-  );
-});
+const RadarChartComponent: FC<{ data: IChartData[]; label: string }> = memo(
+  ({ data, label }) => {
+    return (
+      <div className="relative">
+        <div className="absolute top-0 z-50 w-full">
+          <h1 className="pt-2.5 text-center text-lg text-slate-300/80">
+            {label}
+          </h1>
+        </div>
+        <ResponsiveContainer
+          width={400}
+          height={400}
+          className="max-w-[300px] max-h-[300px] sm:max-w-full sm:max-h-full"
+        >
+          <RadarChart
+            cx={190}
+            cy={215}
+            data={data}
+            outerRadius={125}
+            className="bg-slate-800/[0.5] backdrop-blur-sm rounded-xl w-[200px] lg:w-[380px] h-full shadow-inner"
+          >
+            <Tooltip content={<CustomizedTooltip />} />
+            <PolarGrid />
+            <PolarAngleAxis dataKey="name" stroke="#e2e8f0e1" fill="#0eca2d" />
+            <PolarRadiusAxis stroke="#f6d860" fill="#0eca2d" />
+            <Radar
+              name="name"
+              dataKey="count"
+              stroke="#00fbff"
+              fill="#24ff48"
+              fillOpacity={0.5}
+            />
+          </RadarChart>
+        </ResponsiveContainer>
+      </div>
+    );
+  }
+);
 
 RadarChartComponent.displayName = "RadarChart";
 CustomizedTooltip.displayName = "CustomizedTooltip";

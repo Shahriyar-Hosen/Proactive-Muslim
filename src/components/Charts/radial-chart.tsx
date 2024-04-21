@@ -15,35 +15,45 @@ const style: CSSProperties = {
   marginTop: -45,
 };
 
-const RadialChartCompo: FC<{ data: IChartData[] }> = ({ data }) => {
+const RadialChartCompo: FC<{ data: IChartData[]; label: string }> = ({
+  data,
+  label,
+}) => {
   return (
-    <ResponsiveContainer
-      width={400}
-      height={400}
-      className="max-w-[300px] max-h-[320px] sm:max-w-full sm:max-h-full"
-    >
-      <RadialBarChart
-        cx={200}
-        cy={180}
-        innerRadius={30}
-        outerRadius={170}
-        barSize={20}
-        data={data}
-        className="bg-slate-800/[0.5] backdrop-blur-sm rounded-xl"
+    <div className="relative">
+      <div className="absolute top-0 z-50 w-full">
+        <h1 className="pt-2.5 text-center text-lg text-slate-300/80">
+          {label}
+        </h1>
+      </div>
+      <ResponsiveContainer
+        width={400}
+        height={400}
+        className="max-w-[300px] max-h-[320px] sm:max-w-full sm:max-h-full"
       >
-        <RadialBar
-          label={{ position: "insideStart", fill: "#000" }}
-          background
-          dataKey="count"
-        />
-        <Legend
-          iconSize={10}
-          layout="radial"
-          verticalAlign="bottom"
-          wrapperStyle={style}
-        />
-      </RadialBarChart>
-    </ResponsiveContainer>
+        <RadialBarChart
+          cx={200}
+          cy={195}
+          innerRadius={25}
+          outerRadius={150}
+          barSize={20}
+          data={data}
+          className="bg-slate-800/[0.5] backdrop-blur-sm rounded-xl"
+        >
+          <RadialBar
+            label={{ position: "insideStart", fill: "#000" }}
+            background
+            dataKey="count"
+          />
+          <Legend
+            iconSize={10}
+            layout="radial"
+            verticalAlign="bottom"
+            wrapperStyle={style}
+          />
+        </RadialBarChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 

@@ -75,7 +75,9 @@
       "title": "নামাজের <highlight>বিশ্লেষণ</highlight>",
       "date": "তারিখ",
       "button": "আরো বিশ্লেষণ",
-      "radar-tooltip": "৪০ দিনে"
+      "radar-tooltip": "৪০ দিনে",
+      "radar-label": "গত ৪০ দিনের তথ্য",
+      "radial-label": "গত ১২০ দিনের তথ্য"
     }
   },
   "ProfilePage": {

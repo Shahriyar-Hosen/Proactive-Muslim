@@ -128,13 +128,17 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
         <CardContent className="grid gap-6">
           <div className="flex items-center justify-between space-x-2">
             <Label
-              htmlFor="completed"
-              className="flex flex-col space-y-1 text-primary/90"
+              htmlFor={`completed-${name}-${priority}-${time}-${
+                (after && "after") || (before && "before")
+              }`}
+              className="flex flex-col space-y-1 text-primary/90 cursor-pointer"
             >
               <span>{t("completed")}</span>
             </Label>
             <Switch
-              id="completed"
+              id={`completed-${name}-${priority}-${time}-${
+                (after && "after") || (before && "before")
+              }`}
               checked={complete}
               onCheckedChange={(checked) => updateComplete(checked)}
             />
@@ -143,8 +147,10 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
             <>
               <div className="flex items-center justify-between space-x-2">
                 <Label
-                  htmlFor="jamat"
-                  className="flex flex-col space-y-1 text-primary/90"
+                  htmlFor={`jamat-${name}-${priority}-${time}-${
+                    (after && "after") || (before && "before")
+                  }`}
+                  className="flex flex-col space-y-1 text-primary/90 cursor-pointer"
                 >
                   <span className="capitalize">{t("jamat")}</span>
                   <span className="font-normal leading-snug text-muted-foreground text-xs">
@@ -152,15 +158,19 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
                   </span>
                 </Label>
                 <Switch
-                  id="jamat"
+                  id={`jamat-${name}-${priority}-${time}-${
+                    (after && "after") || (before && "before")
+                  }`}
                   checked={jamat || false}
                   onCheckedChange={(checked) => updateJamat(checked)}
                 />
               </div>
               <div className="flex items-center justify-between space-x-2">
                 <Label
-                  htmlFor="firstTakbeer"
-                  className="flex flex-col space-y-1 text-primary/90"
+                  htmlFor={`firstTakbeer-${name}-${priority}-${time}-${
+                    (after && "after") || (before && "before")
+                  }`}
+                  className="flex flex-col space-y-1 text-primary/90 cursor-pointer"
                 >
                   <span>{t("firstTakbeer")}</span>
                   <span className="font-normal leading-snug text-muted-foreground text-xs">
@@ -168,7 +178,9 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
                   </span>
                 </Label>
                 <Switch
-                  id="firstTakbeer"
+                  id={`firstTakbeer-${name}-${priority}-${time}-${
+                    (after && "after") || (before && "before")
+                  }`}
                   checked={firstTakbeer || false}
                   onCheckedChange={(checked) => updateFirstTakbeer(checked)}
                 />
@@ -178,8 +190,10 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
           <div className="space-y-3.5">
             <div className="flex items-center justify-between space-x-5">
               <Label
-                htmlFor={`concentration-${name}-${priority}-${time}`}
-                className="flex flex-col space-y-2 text-primary/90"
+                htmlFor={`concentration-${name}-${priority}-${time}-${
+                  (after && "after") || (before && "before")
+                }`}
+                className="flex flex-col space-y-2 text-primary/90 cursor-pointer"
               >
                 <span>{t("concentration")}</span>
                 <span className="font-normal leading-snug text-muted-foreground text-xs">
@@ -187,7 +201,9 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
                 </span>
               </Label>
               <Input
-                id={`concentration-${name}-${priority}-${time}`}
+                id={`concentration-${name}-${priority}-${time}-${
+                  (after && "after") || (before && "before")
+                }`}
                 value={concentration || 0}
                 onChange={(e) => updateConcentration(Number(e.target.value))}
                 className="w-10 h-8 border border-slate-600 flex justify-center items-center rounded-md text-slate-300 px-1 py-0 text-center"
@@ -202,13 +218,17 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
           </div>
           <div className="flex items-center justify-between space-x-2">
             <Label
-              htmlFor={`rakats-${name}-${priority}-${time}`}
-              className="flex flex-col space-y-2 text-primary/90"
+              htmlFor={`rakats-${name}-${priority}-${time}-${
+                (after && "after") || (before && "before")
+              }`}
+              className="flex flex-col space-y-2 text-primary/90 cursor-pointer"
             >
               <span>{t("rakats")}</span>
             </Label>
             <Input
-              id={`rakats-${name}-${priority}-${time}`}
+              id={`rakats-${name}-${priority}-${time}-${
+                (after && "after") || (before && "before")
+              }`}
               value={rakats || 0}
               onChange={(e) => updateRakats(Number(e.target.value))}
               disabled={priority === "Farz" || priority === "Janazah"}

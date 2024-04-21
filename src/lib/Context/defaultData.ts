@@ -73,4 +73,10 @@ export const radialDefaultData = [
     count: 110,
     fill: "#ffc658",
   },
+  // {
+  //   name: " ",
+  //   namaz: "",
+  //   count: 120,
+  //   fill: "#24ff4850",
+  // },
 ];

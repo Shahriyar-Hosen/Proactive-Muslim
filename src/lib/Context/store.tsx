@@ -25,6 +25,7 @@ export const useContextStore = () => {
   const handleBarChart = async () => {
     const salat = await get7DaySalatBarChart();
     if (salat.data) {
+      console.log("🚀 ~ handleBarChart ~ salat:", { salat });
       setBarChart7Day(salat?.data);
     }
   };

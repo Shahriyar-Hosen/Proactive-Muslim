@@ -19,8 +19,8 @@ export const Charts = () => {
       </h1>
       <div className="w-fit flex justify-center items-start gap-2.5 flex-wrap mx-auto">
         <BarChart data={barChart7Day} label={t("date")} />
-        <RadarChartCompo data={radarChartData} />
-        <RadialChart data={radialChartData} />
+        <RadarChartCompo data={radarChartData} label={t("radar-label")} />
+        <RadialChart data={radialChartData} label={t("radial-label")} />
       </div>
       <div className="flex justify-center items-center">
         <Button>{t("button")}</Button>
