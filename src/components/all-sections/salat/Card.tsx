@@ -73,8 +73,23 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
   );
 
   useEffect(() => {
-    firstTakbeer && updateJamat(true);
-  }, [firstTakbeer, updateJamat]);
+    if (firstTakbeer) {
+      updateJamat(true);
+      updateComplete(true);
+    }
+  }, [firstTakbeer, updateComplete, updateJamat]);
+  useEffect(() => {
+    if (!complete) {
+      updateJamat(false);
+      updateFirstTakbeer(false);
+    }
+  }, [complete, updateFirstTakbeer, updateJamat]);
+  useEffect(() => {
+    jamat && updateComplete(true);
+  }, [jamat, updateComplete]);
+  useEffect(() => {
+    !jamat && updateFirstTakbeer(false);
+  }, [jamat, updateFirstTakbeer]);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -119,8 +134,8 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
                 salatTime: name === "Witr" ? salatName : salatTime,
                 priority: salatPriority,
                 option:
-                  (priority === "Sunnah" && before && "before") ||
-                  (after && "after") ||
+                  (priority === "Sunnah" &&
+                    ((before && "before") || (after && "after"))) ||
                   "other",
               })}
           </CardDescription>
@@ -214,6 +229,7 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
               step={1}
               value={[concentration || 0]}
               onValueChange={(value) => updateConcentration(value[0])}
+              className="cursor-pointer"
             />
           </div>
           <div className="flex items-center justify-between space-x-2">

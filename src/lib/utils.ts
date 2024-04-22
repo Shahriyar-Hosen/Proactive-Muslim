@@ -36,7 +36,7 @@ export const isJumuahDay = (date: Date) => {
 };
 
 export const salatAllFilters = (
-  { time, name, priority }: ISalat,
+  { time, name, priority, after, before }: ISalat,
   selectedSalat: SalahTime,
   date: Date
 ) => {
@@ -51,6 +51,13 @@ export const salatAllFilters = (
       time === selectedSalat && (name === selectSalah || priority === "Nafal")
     );
   }
+  if (after) {
+    return time === selectedSalat && after === true;
+  }
+  if (before) {
+    return time === selectedSalat && before === true;
+  }
+
   return time === selectedSalat;
 };
 
