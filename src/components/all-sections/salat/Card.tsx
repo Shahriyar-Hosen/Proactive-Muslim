@@ -90,6 +90,9 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
   useEffect(() => {
     !jamat && updateFirstTakbeer(false);
   }, [jamat, updateFirstTakbeer]);
+  useEffect(() => {
+    concentration && concentration > 0 && updateComplete(true);
+  }, [concentration, updateComplete]);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -100,7 +103,7 @@ export const SalatCard: FC<ISalat> = memo((salat) => {
         setLoading(false);
         if (data?.data) {
           setData(data.data);
-          refetchAnalysis();
+          data?.data.priority === "Farz" && refetchAnalysis();
         }
       })
       .catch((err) => {
