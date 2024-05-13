@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { FC } from "react";
 
+// TODO: Update Active Link
 const navigation = [
   { name: "Dashboard", href: "/", current: true },
   { name: "Team", href: "/", current: false },
