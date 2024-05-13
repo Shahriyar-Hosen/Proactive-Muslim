@@ -1,4 +1,3 @@
-import { dateFormat } from "@/lib/helpers";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -37,16 +36,28 @@ export const isJumuahDay = (date: Date) => {
 };
 
 export const salatAllFilters = (
-  { time, name, priority }: ISalat,
+  { time, name, priority, after, before }: ISalat,
   selectedSalat: SalahTime,
   date: Date
 ) => {
+  // Taraweeh will not show in other months except Ramadan, it needs to be changed manually
+  if (name === "Taraweeh") {
+    return false;
+  }
+
   if (time === "Zuhr") {
     const selectSalah = isJumuahDay(date) ? "Jumuah" : "Zuhr";
     return (
       time === selectedSalat && (name === selectSalah || priority === "Nafal")
     );
   }
+  if (after) {
+    return time === selectedSalat && after === true;
+  }
+  if (before) {
+    return time === selectedSalat && before === true;
+  }
+
   return time === selectedSalat;
 };
 
@@ -69,27 +80,14 @@ export const replaceMatchingElements = (
   return result;
 };
 
-export const pastDays = (day: number, reversFormat?: boolean) => {
+export const pastDays = (day: number) => {
   // ✅ start from today's date
   const prvDays = Array.from(Array(day || 7).keys()).map((index) => {
     const date = new Date();
 
     date.setDate(date.getDate() - index);
 
-    const formatted = {
-      day: date.getDate(),
-      month: date.getMonth() + 1,
-      year: date.getFullYear(),
-    };
-
-    const formatDate = dateFormat({ formatted });
-    const reversFormatDate = dateFormat({ formatted, revers: true });
-
-    if (reversFormat) {
-      return reversFormatDate;
-    } else {
-      return formatDate;
-    }
+    return date;
   });
 
   return prvDays;

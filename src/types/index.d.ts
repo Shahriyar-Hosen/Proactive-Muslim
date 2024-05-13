@@ -75,3 +75,10 @@ declare interface ISalat {
   before?: boolean | null;
   after?: boolean | null;
 }
+
+declare interface IChartData {
+  name: string;
+  namaz: string;
+  count: number;
+  fill?: string;
+}

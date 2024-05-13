@@ -1,1 +1,1 @@
-export * from "./dateFormat";
+export * from "./format";
