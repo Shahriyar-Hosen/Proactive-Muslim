@@ -10,10 +10,10 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 142.1 76.2% 36.3%;
-    --secondary-foreground: 355.7 100% 97.3%;
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 221.2 83.2% 53.3%;
+    --secondary-foreground: 210 40% 98%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
     --accent: 210 40% 96.1%;
@@ -56,4 +56,37 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Clock */
+.dots::before {
+  box-shadow: 0 0 20px var(--clr), 0 0 40px var(--clr), 0 0 60px var(--clr),
+    0 0 80px var(--clr);
+}
+
+.single-rounded-clock-dot-shadow::before {
+  box-shadow: 0 0 20px var(--clr), 0 0 40px var(--clr), 0 0 60px var(--clr),
+    0 0 80px var(--clr);
+}
+
+.single-rounded-clock-text-shadow {
+  text-shadow: 0 0 3px var(--c), 0 0 20px var(--c);
+}
+
+/* Chart Style */
+.recharts-default-legend {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.recharts-default-legend li {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.recharts-radial-bar-background path {
+  fill: #c0c2c910;
 }

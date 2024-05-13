@@ -1,18 +1,19 @@
+import { Hero, SalatsSection } from "@/components/all-sections";
 import { NextPage } from "next";
-import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
+import { memo } from "react";
 
-const Home: NextPage<ParamsLocale> = ({ params: { locale } }) => {
+const Home: NextPage<ParamsLocale> = memo(({ params: { locale } }) => {
   // Enable static rendering
   unstable_setRequestLocale(locale);
 
-  const t = useTranslations("HomePage");
-
   return (
-    <main className="space-y-5">
-      <h1>test</h1>
+    <main className="space-y-20 my-10">
+      <Hero />
+      <SalatsSection />
     </main>
   );
-};
+});
 
+Home.displayName = "Home";
 export default Home;
