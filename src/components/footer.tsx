@@ -116,12 +116,13 @@ const social = [
 ];
 
 export const Footer = () => (
-  <footer className="bg-slate-900">
+  <footer className="bg-slate-900/50">
     <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
       <div className="md:flex md:justify-between">
         <div className="mb-6 md:mb-0">
           <Logo />
         </div>
+
         <div className="grid grid-cols-2 gap-8 sm:gap-6">
           {footerLink.map(({ items, title }, i) => (
             <div key={i}>
@@ -145,13 +146,15 @@ export const Footer = () => (
           ))}
         </div>
       </div>
+
       <hr className="my-6 sm:mx-auto border-slate-700 lg:my-8" />
+
       <div className="sm:flex sm:items-center sm:justify-between">
         <span className="text-sm sm:text-center text-slate-400">
-          © {new Date().getFullYear()}{" "}
-          <a href="https://flowbite.com/" className="hover:underline">
+          © {new Date().getFullYear()}&nbsp;
+          <Link href="https://flowbite.com/" className="hover:underline">
             Proactive Muslim™
-          </a>
+          </Link>
           . All Rights Reserved.
         </span>
         <div className="flex mt-4 sm:justify-center sm:mt-0">
