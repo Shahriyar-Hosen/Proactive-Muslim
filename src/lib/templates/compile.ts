@@ -1,5 +1,3 @@
-"use client";
-
 import * as handlebars from "handlebars";
 import {
   emailVerificationTemplate,
