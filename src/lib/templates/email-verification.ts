@@ -1551,8 +1551,8 @@ export const emailVerificationTemplate = `
                                     "
                                   >
                                     <img
-                                      src="https://ffznwei.stripocdn.email/content/guids/CABINET_055ba03e85e991c70304fecd78a2dceaf6b3f0bc1b0eb49336463d3599679494/images/vector.png"
-                                      alt="Logo"
+                                      src="https://proactive-muslim.vercel.app/icon.png"
+                                      alt="logo"
                                       style="
                                         display: block;
                                         font-size: 12px;
@@ -1560,7 +1560,7 @@ export const emailVerificationTemplate = `
                                         outline: none;
                                         text-decoration: none;
                                       "
-                                      title="Logo"
+                                      title="logo"
                                       height="60"
                                       width="38"
                                     />

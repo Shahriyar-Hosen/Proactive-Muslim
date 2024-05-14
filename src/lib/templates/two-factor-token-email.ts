@@ -609,7 +609,7 @@ export const twoFactorTokenEmailTemplate = `
                                           >support@proactive-muslim.com</a
                                         >.
                                         <a
-                                          href="Example.com"
+                                          href="https://proactive-muslim.vercel.app"
                                           rel="noopener"
                                           style="
                                             text-decoration: underline;

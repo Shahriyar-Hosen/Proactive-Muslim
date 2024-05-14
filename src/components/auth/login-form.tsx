@@ -21,7 +21,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { ILoginSchema, LoginSchema } from "@/lib/schemas";
 import { login } from "@/server/actions/auth/login";
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import { useTranslations } from "next-intl";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
+import { InputPassword } from "../ui/input-password";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -86,14 +89,23 @@ export const LoginForm = () => {
                 control={form.control}
                 name="code"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="flex justify-center items-center flex-col gap-2.5">
                     <FormLabel>{t("2FA.2fa")}</FormLabel>
                     <FormControl>
-                      <Input
+                      <InputOTP
                         {...field}
-                        disabled={isPending}
-                        placeholder={t("2FA.2fa-placeholder")}
-                      />
+                        maxLength={6}
+                        pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
+                      >
+                        <InputOTPGroup>
+                          <InputOTPSlot index={0} />
+                          <InputOTPSlot index={1} />
+                          <InputOTPSlot index={2} />
+                          <InputOTPSlot index={3} />
+                          <InputOTPSlot index={4} />
+                          <InputOTPSlot index={5} />
+                        </InputOTPGroup>
+                      </InputOTP>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -127,7 +139,7 @@ export const LoginForm = () => {
                     <FormItem>
                       <FormLabel>{t("password")}</FormLabel>
                       <FormControl>
-                        <Input
+                        <InputPassword
                           {...field}
                           disabled={isPending}
                           placeholder="******"
