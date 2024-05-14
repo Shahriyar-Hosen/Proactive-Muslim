@@ -6,17 +6,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC, useEffect } from "react";
 
-type Props = {
-  error: Error;
-  reset(): void;
-};
-
+type Props = { error: Error; reset(): void };
 const Error: FC<Props> = ({ error, reset }) => {
   const t = useTranslations("Error");
 
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
+  useEffect(() => console.error(error), [error]);
 
   return (
     <main className="w-full h-screen flex flex-col items-center justify-center">
@@ -26,7 +20,7 @@ const Error: FC<Props> = ({ error, reset }) => {
           {t("title")}
         </p>
 
-        <Link href="/" title={t("title")}>
+        <Link href="/" onClick={reset} title={t("title")}>
           <Button className="flex items-center space-x-2 mt-12 rounded">
             <svg
               xmlns="http://www.w3.org/2000/svg"

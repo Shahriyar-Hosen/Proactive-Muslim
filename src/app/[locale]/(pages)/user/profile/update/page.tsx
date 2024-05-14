@@ -43,6 +43,7 @@ import { Switch } from "@/components/ui/switch";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { IUserSchema, UserSchema } from "@/lib/schemas";
 import { userProfile } from "@/server/actions/user-profile";
+import { InputPassword } from "@/components/ui/input-password";
 
 const ProfilePage = () => {
   const user = useCurrentUser();
@@ -267,7 +268,7 @@ const ProfilePage = () => {
                             <FormItem>
                               <FormLabel>{t("update.password.old")}</FormLabel>
                               <FormControl>
-                                <Input
+                                <InputPassword
                                   {...field}
                                   placeholder="******"
                                   type="password"
@@ -285,7 +286,7 @@ const ProfilePage = () => {
                             <FormItem>
                               <FormLabel>{t("update.password.new")}</FormLabel>
                               <FormControl>
-                                <Input
+                                <InputPassword
                                   {...field}
                                   placeholder="******"
                                   type="password"

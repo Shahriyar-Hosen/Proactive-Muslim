@@ -2,10 +2,12 @@
 
 import { decrement, increment, incrementByAmount } from "@/redux/features";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { memo } from "react";
 
-export const Counter = () => {
+export const Counter = memo(() => {
   const count = useAppSelector((state) => state.counter.value);
   const dispatch = useAppDispatch();
+
   return (
     <section className="flex flex-col justify-center items-center">
       <h1>Count: - {count}</h1>
@@ -16,4 +18,6 @@ export const Counter = () => {
       </button>
     </section>
   );
-};
+});
+
+Counter.displayName = "Counter";

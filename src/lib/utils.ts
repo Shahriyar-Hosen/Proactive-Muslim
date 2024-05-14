@@ -19,3 +19,79 @@ export const handleError = (error: unknown) => {
     throw new Error(`Unknown error: ${JSON.stringify(error)}`);
   }
 };
+
+const currentTime = new Date().getHours();
+export const prayerTime =
+  (currentTime >= 4 && currentTime < 11 && "Fajr") ||
+  (currentTime >= 11 && currentTime < 15 && "Zuhr") ||
+  (currentTime >= 15 && currentTime <= 17 && "Asr") ||
+  (currentTime >= 17 && currentTime <= 18 && "Maghrib") ||
+  "Isha";
+
+export const isJumuahDay = (date: Date) => {
+  const today = new Date(date);
+  const day = today.toDateString().slice(0, 3);
+  const isJumuah = day === "Fri";
+  return isJumuah;
+};
+
+export const salatAllFilters = (
+  { time, name, priority, after, before }: ISalat,
+  selectedSalat: SalahTime,
+  date: Date
+) => {
+  // Taraweeh will not show in other months except Ramadan, it needs to be changed manually
+  if (name === "Taraweeh") {
+    return false;
+  }
+
+  if (time === "Zuhr") {
+    const selectSalah = isJumuahDay(date) ? "Jumuah" : "Zuhr";
+    return (
+      time === selectedSalat && (name === selectSalah || priority === "Nafal")
+    );
+  }
+  if (after) {
+    return time === selectedSalat && after === true;
+  }
+  if (before) {
+    return time === selectedSalat && before === true;
+  }
+
+  return time === selectedSalat;
+};
+
+export const replaceMatchingElements = (
+  defaultData: ISalat[],
+  dbData?: ISalat[]
+) => {
+  const result = defaultData.map((defaultSalat) => {
+    const matchingObj =
+      dbData &&
+      dbData.find(
+        (dbSalat) =>
+          defaultSalat.name === dbSalat.name &&
+          defaultSalat.time === dbSalat.time &&
+          defaultSalat.priority === dbSalat.priority
+      );
+    return matchingObj ? { ...matchingObj } : defaultSalat;
+  });
+
+  return result;
+};
+
+export const pastDays = (day: number) => {
+  // ✅ start from today's date
+  const prvDays = Array.from(Array(day || 7).keys()).map((index) => {
+    const date = new Date();
+
+    date.setDate(date.getDate() - index);
+
+    return date;
+  });
+
+  return prvDays;
+
+  // 👇️ [0, 1, 2, 3, 4, 5, 6]
+  // console.log(Array.from(Array(day || 7).keys()));
+};

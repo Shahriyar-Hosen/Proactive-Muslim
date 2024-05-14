@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import { IRegisterSchema, RegisterSchema } from "@/lib/schemas";
 import { register } from "@/server/actions/auth/register";
 import { useTranslations } from "next-intl";
+import { InputPassword } from "../ui/input-password";
 
 export const RegisterForm = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -100,7 +101,7 @@ export const RegisterForm = () => {
                 <FormItem>
                   <FormLabel>{t("password")}</FormLabel>
                   <FormControl>
-                    <Input
+                    <InputPassword
                       {...field}
                       disabled={isPending}
                       placeholder="******"

@@ -199,7 +199,7 @@ export const twoFactorTokenEmailTemplate = `
                                     <div style="max-width: 125px">
                                       <img
                                         alt="your-logo"
-                                        src="https://res.cloudinary.com/dev-shahriyar/image/upload/v1710531379/Store/LOGO_wigqen.png"
+                                        src="https://proactive-muslim.vercel.app/icon.png"
                                         style="
                                           display: block;
                                           height: auto;
@@ -609,7 +609,7 @@ export const twoFactorTokenEmailTemplate = `
                                           >support@proactive-muslim.com</a
                                         >.
                                         <a
-                                          href="Example.com"
+                                          href="https://proactive-muslim.vercel.app"
                                           rel="noopener"
                                           style="
                                             text-decoration: underline;
