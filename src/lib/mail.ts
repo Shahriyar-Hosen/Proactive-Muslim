@@ -8,7 +8,7 @@ import {
 const domain = process.env.NEXT_PUBLIC_APP_URL;
 const smtpEmail = process.env.SMTP_EMAIL;
 const smtpPassword = process.env.SMTP_PASSWORD;
-const defaultFrom = `🕋 ☪️ Proactive Muslim 🕌 🤲🏻 <${smtpEmail}>`;
+const defaultFrom = `Proactive Muslim ⇶ 🕋 ☪️ 🕌 🤲🏻 <${smtpEmail}>`;
 
 type ISendMail = { to: string; subject: string; body: string };
 export const sendMail = async ({ to, subject, body }: ISendMail) => {
