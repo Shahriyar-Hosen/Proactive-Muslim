@@ -199,7 +199,7 @@ export const twoFactorTokenEmailTemplate = `
                                     <div style="max-width: 125px">
                                       <img
                                         alt="your-logo"
-                                        src="https://res.cloudinary.com/dev-shahriyar/image/upload/v1710531379/Store/LOGO_wigqen.png"
+                                        src="https://proactive-muslim.vercel.app/icon.png"
                                         style="
                                           display: block;
                                           height: auto;
