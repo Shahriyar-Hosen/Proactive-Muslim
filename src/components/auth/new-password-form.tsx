@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { INewPasswordSchema, NewPasswordSchema } from "@/lib/schemas";
 import { newPassword } from "@/server/actions/auth/new-password";
 import { useTranslations } from "next-intl";
+import { InputPassword } from "../ui/input-password";
 
 export const NewPasswordForm = () => {
   const searchParams = useSearchParams();
@@ -67,7 +68,7 @@ export const NewPasswordForm = () => {
                 <FormItem>
                   <FormLabel>{t("password")}</FormLabel>
                   <FormControl>
-                    <Input
+                    <InputPassword
                       {...field}
                       disabled={isPending}
                       placeholder="******"

@@ -24,6 +24,7 @@ import { login } from "@/server/actions/auth/login";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import { useTranslations } from "next-intl";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
+import { InputPassword } from "../ui/input-password";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -138,7 +139,7 @@ export const LoginForm = () => {
                     <FormItem>
                       <FormLabel>{t("password")}</FormLabel>
                       <FormControl>
-                        <Input
+                        <InputPassword
                           {...field}
                           disabled={isPending}
                           placeholder="******"
