@@ -1,6 +1,6 @@
 <h1 align="center">Proactive Muslim</h1>
 
-## Salah List
+### Salah List
 
 - [x] Fajr
 - [x] Zuhr
